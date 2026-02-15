@@ -1,0 +1,60 @@
+.card {
+  border-radius: calc(var(--radius) * 2); /* rounded-lg */
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 1.5rem 0;
+  margin-bottom: 1.25rem;
+}
+
+.cardTitle {
+  color: hsl(var(--foreground) / 0.7);
+  font-size: 1rem; /* text-2xl */
+  font-weight: 500; /* font-semibold */
+  line-height: 1; /* leading-none */
+}
+
+.cardDescription {
+  font-size: 0.875rem; /* text-sm */
+  color: hsl(var(--muted-foreground));
+}
+
+.cardContent {
+  padding: 1.5rem;
+  overflow-x: auto;
+  padding-top: 0; /* pt-0 */
+  /* min-height: 200px; */
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem; /* p-6 */
+  padding-top: 0; /* pt-0 */
+}
+
+.cardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+/* Add a new style for the card content titles */
+.card_title {
+  color: hsl(var(--foreground) / 0.6); /* Making content titles more subtle */
+  font-size: 0.875rem; /* Slightly smaller than the card header title */
+  font-weight: 500;
+}

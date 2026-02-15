@@ -1,0 +1,479 @@
+.section {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(230, 232, 236, 1);
+}
+.heading {
+  margin-bottom: 20px;
+}
+.timeline_wrapper {
+  display: flex;
+}
+.timeline_wrapper > * {
+  min-width: 0;
+}
+
+.details {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.details > * {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.details,
+.details a {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.details a {
+  padding: 10px;
+  border-radius: 4px;
+  background: rgba(239, 239, 239, 1);
+  text-overflow: ellipsis;
+}
+
+.date {
+  width: 6rem;
+  min-width: 6rem;
+  max-width: 6rem;
+}
+
+.sectionContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+
+button.copy {
+  width: auto;
+  height: auto;
+  gap: 0;
+  min-width: 0 !important;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-color);
+  background-color: rgba(248, 244, 255, 1);
+}
+.copy i {
+  width: 12px;
+  height: 15px;
+  color: var(--main-color);
+}
+
+.timeline {
+  margin-top: 60px;
+  max-height: 60vh;
+  max-height: 60svh;
+  overflow-y: auto;
+}
+.item {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  padding: 1rem 0;
+  gap: 4px;
+}
+
+.item .date * {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgba(106, 112, 126, 1);
+  font-weight: 400;
+}
+
+.item .title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  align-self: center;
+}
+
+.item .visual {
+  display: flex;
+  align-items: center;
+  width: 70px;
+  min-width: 70px;
+  max-width: 70px;
+  position: relative;
+}
+.visual .point {
+  position: relative;
+  width: 100%;
+  border: 0.5px dashed rgba(107, 44, 209, 1);
+}
+
+.visual .point::after {
+  content: "";
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABdSURBVHgBbY3NCYAwFIPz3kHw1o3EDdxARfHsCI7hQayjuIEruIagxB8o1NLcvi+QAJHYikZDOXcskXDTqTkLXwo4QI9cbHsteIiiq5P1mO7ybb6lSubk/7Cn8fkGuO8f0mPz69EAAAAASUVORK5CYII=);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 8px;
+  position: absolute;
+  display: block;
+  top: -10px;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  border-radius: 99999px;
+  border: 3px solid rgba(159, 101, 254, 1);
+  background-color: white;
+  box-shadow: 0px 12px 23px 0px rgba(62, 73, 84, 0.04);
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+.visual .point:hover::after {
+  transform: scale(1.2);
+}
+
+.line {
+  position: absolute;
+  right: 15px;
+  top: -1rem;
+  width: 25px;
+  height: calc(100% + 2rem);
+  background-color: rgba(242, 233, 255, 1);
+  box-shadow: 0px 12px 23px 0px rgba(62, 73, 84, 0.04);
+}
+
+.item:first-child .line {
+  border-radius: 12px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.item:last-child .line {
+  border-radius: 12px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.cards {
+  display: grid;
+  gap: 30px;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0px 4px 32px 0px rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
+  padding: 30px 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.card:first-child {
+  text-align: center;
+}
+.card h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.card h2 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  color: rgba(116, 120, 141, 1);
+}
+
+.card .icon {
+  position: absolute;
+  background: rgba(240, 234, 250, 1);
+  padding: 14px;
+  border-bottom-left-radius: 8px;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.providerWrapper {
+  display: flex;
+  overflow-x: auto;
+  width: 100%;
+  border: 1px solid var(--border-color);
+}
+.providers {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.providers td,
+.providers th {
+  border: 1px solid rgba(242, 242, 242, 1);
+  padding: 6px 10px;
+  text-align: center;
+}
+.providers td:last-child {
+  padding: 0;
+}
+.providers td button {
+  width: 100% !important;
+}
+.providerDetails > div {
+  text-align: center;
+  padding: 6px 10px;
+}
+
+.provider {
+  padding: 1rem 1.5rem;
+  min-width: 5rem;
+  background-color: rgba(246, 246, 246, 1);
+  border-radius: 8px 0px 0px 8px;
+}
+.providerDetails {
+  width: 100%;
+}
+
+.providerDetails h1 {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  color: rgba(171, 175, 179, 1);
+}
+.providerDetails h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 29px;
+  color: rgba(16, 24, 64, 1);
+}
+.provider img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.provider figure {
+  height: 20px;
+}
+
+.providerDetails button.btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  border: 1px solid rgba(107, 44, 209, 1);
+  background-color: rgba(248, 244, 255, 1);
+  color: rgba(107, 44, 209, 1);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase !important;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.providerDetails button.btn .icon2 {
+  width: 20px;
+  height: 20px;
+}
+
+.button,
+button.button {
+  display: flex;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  align-items: center;
+  padding: 10px !important;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(107, 44, 209, 1);
+  color: rgba(107, 44, 209, 1);
+}
+.icon {
+  width: 24px;
+  height: 24px;
+  font-size: 18px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(230, 232, 236, 1);
+}
+
+.modalItem {
+  margin: 20px 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(230, 232, 236, 1);
+}
+
+.modalItemHeader,
+.modalItemHeader > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.modalItemHeader > div {
+  gap: 4px;
+}
+.modalItemHeader > div:first-child {
+  padding-right: 20px;
+  border-right: 1px solid rgba(230, 232, 236, 1);
+}
+.modalItemHeader * {
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+.modalItemHeader h1 {
+  font-weight: 600;
+}
+.sectionContainer > * {
+  min-width: 0;
+  min-height: 0;
+}
+.pieChart {
+  justify-content: center;
+}
+
+.OrderImages {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  min-width: 0;
+  gap: 1rem;
+}
+.OrderImages .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+.OrderImages .img:hover .overlay {
+  opacity: 1;
+}
+.OrderImages .overlay svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #fff;
+}
+.OrderImages .img {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.OrderImages .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.attachedImage {
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+}
+
+/* Carousel */
+.Carousel .CarouselImages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 80vw;
+  height: 80vh;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.CarouselDialog {
+  background-color: transparent !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.Carousel .CarouselImages .CarouselItem {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(100%);
+  will-change: transform;
+
+  transition: transform 0.3s ease;
+}
+.Carousel .CarouselImages .CarouselItem.activeCarousel {
+  transform: translateX(0);
+}
+.Carousel .CarouselImages .CarouselItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.Carousel .CarouselDot {
+  background-color: var(--border-color);
+}
+.Carousel .CarouselDot.CarouselDotActive {
+  background-color: var(--main-color);
+}
+.Carousel .CarouselButton {
+  background-color: var(--border-color);
+  color: var(--main-color);
+  border: 1px solid var(--border-color);
+  min-width: 0;
+}
+.Carousel .CarouselButton svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+@media (min-width: 768px) {
+  .timeline_wrapper .inner {
+    width: 90%;
+    margin-right: 20px;
+    border-right: 2px solid rgba(242, 242, 242, 1);
+  }
+  .cards {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+@media not all and (min-width: 768px) {
+  .timeline_wrapper,
+  .cards {
+    flex-direction: column;
+  }
+  .timeline_wrapper .inner .visual {
+    min-width: 50px;
+    max-width: 50px;
+  }
+  .sectionContainer {
+    flex-direction: column;
+  }
+  .providerDetails {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .providerDetails > div:last-child {
+    width: 90%;
+  }
+  .providerDetails button.btn {
+    width: 100%;
+  }
+  .cards {
+    width: 100%;
+  }
+}

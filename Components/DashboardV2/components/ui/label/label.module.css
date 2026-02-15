@@ -1,0 +1,13 @@
+.label {
+  display: block;
+  margin-bottom: 5px;
+  color: hsl(var(--foreground));
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.required {
+  color: hsl(var(--destructive));
+  margin-left: 2px;
+} 

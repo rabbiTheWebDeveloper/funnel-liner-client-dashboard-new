@@ -1,0 +1,83 @@
+.packagePrice {
+  text-align: center;
+}
+
+.packagePrice h3 {
+  text-align: center;
+  color: var(--header-color);
+}
+
+.packagePrice ul {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.packagePrice ul li img {
+  height: 25px;
+  margin-right: 10px;
+}
+
+
+.packagePrice ul li {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.packagePrice button {
+  background: var(--main-color);
+  width: 100%;
+  margin-top: 20px;
+  color: var(--white-color);
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.packagePrice button:hover {
+  background: var(--main-hover-color);
+}
+
+.packagePrice h4 {
+  font-size: 50px;
+  line-height: 60px;
+  font-weight: 700;
+  color: var(--main-color);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.packagePrice i {
+  margin-bottom: -5px;
+  margin-right: 2px;
+}
+
+
+/* SubsHeight */
+/* .SubsHeight {
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+} */
+
+
+
+@media (max-width: 1399px) {
+
+  .packagePrice h4 {
+    font-size: 40px;
+    line-height: 60px;
+  }
+
+  .packagePrice h3 {
+    font-size: 20px;
+  }
+
+
+}

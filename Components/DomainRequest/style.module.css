@@ -1,0 +1,296 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,600;1,600&display=swap");
+
+.domainRequest {
+  padding: 1.2rem;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+}
+.domainRequest * {
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  font-family: "Inter", sans-serif !important;
+  font-optical-sizing: auto;
+  font-variation-settings: "slnt" 0;
+}
+.domainRequest .tabsIndicator {
+  display: block;
+  height: 2px;
+  background-color: var(--main-color);
+}
+.domainRequest .title h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #121212;
+  letter-spacing: -0.029375rem;
+}
+
+.domainRequest .title p {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #222;
+}
+
+.domainRequest .addDomain {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 1.25rem;
+}
+
+.domainRequest .addDomainInput {
+  width: 100%;
+  position: relative;
+  min-width: 0;
+  display: flex;
+}
+.domainRequest .addDomainInput input {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  color: #171717;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.domainRequest .addDomain .addDomainInput input:focus {
+  outline: none;
+  border-color: var(--main-color);
+}
+
+.domainRequest .addDomainButton {
+  border-radius: 4px;
+  margin: unset;
+  background-color: var(--main-color);
+  color: #fff;
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.domainRequest .addDomainButton:hover {
+  background-color: var(--main-color);
+  box-shadow: none;
+  outline: none;
+}
+.domainRequest .addDomainButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.domainRequest .domainList {
+  padding-top: 2rem;
+  display: grid;
+  gap: 1.25rem;
+}
+.domainRequest .domain {
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.domainRequest .domain .domainName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.domainRequest .domain .domainName h1 {
+  color: #171717;
+  font-size: 1.25rem;
+  letter-spacing: -0.020625rem;
+  font-weight: 600;
+}
+.domainRequest .statuses {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.domainRequest .status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+}
+.domainRequest .status .statusIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  min-width: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-color);
+}
+.domainRequest .status h4 {
+  color: var(--main-color);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.domainRequest .status.invalid .statusIcon,
+.domainRequest .status.invalid h4 {
+  color: #fd2929;
+}
+
+.domainRequest .domainAssignInstruction,
+.domainRequest .domainEdit {
+  margin-top: 1.45rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.domainRequest .tabsFlex {
+  gap: 1rem;
+}
+
+.domainRequest .tabButton,
+.domainRequest .tabButton.tabSelected {
+  background-color: transparent;
+  background: none;
+  border: none;
+  color: #171717;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.75rem 0;
+  margin: 0;
+  border-radius: 0;
+  min-width: 0;
+}
+.domainRequest .tabButton.tabSelected {
+  color: var(--main-color);
+}
+
+.domainRequest .instrunction {
+  padding-top: 1.45rem;
+}
+
+.domainRequest .instrunction .instrunctionTitle h1 {
+  color: #171717;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.domainRequest .instrunctions {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start !important;
+
+  border-radius: 6px;
+  padding: 10px 12px;
+  border: 1px solid #ebebeb;
+  gap: 30px;
+  font-size: 0.875rem;
+}
+.domainRequest .instrunctions .item {
+  min-width: 0;
+}
+.domainRequest .instrunctions h1,
+.domainRequest .instrunctions pre {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #666;
+  font-family: monospace;
+  font-weight: 400;
+}
+.domainRequest .instrunctions pre {
+  font-family: "Source Code Pro", monospace !important;
+  font-weight: 600;
+  color: #171717;
+  margin-top: 0.45rem;
+  font-size: 1rem;
+  overflow-y: auto;
+}
+
+.domainRequest .actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.domainRequest .actionButton {
+  border-radius: 4px;
+  margin: unset;
+  color: #111;
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #eaeaea;
+  gap: 0.5rem;
+}
+.domainRequest .actionButton:hover {
+  box-shadow: none;
+  outline: none;
+  border: 1px solid #eaeaea;
+  background-color: #f5f5f5;
+}
+.domainRequest .actionButton:active,
+.domainRequest .actionButton:focus {
+  box-shadow: none;
+  outline: none;
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+}
+
+.domainRequest .domainActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.domainInput {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.domainInput h1 {
+  color: #171717;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.02rem;
+}
+
+.domainRequest .domainActionRemove,
+.domainRequest .domainActionRemove:hover {
+  background-color: #fd2929;
+  border-color: #fd2929;
+}
+
+.refreshLoader {
+  width: 1.15rem;
+  height: 1.15rem;
+  --thickness: 5px;
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(#0000 10%, var(--color, #474bff));
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    #0000 calc(100% - var(--thickness, 9px)),
+    #000 0
+  );
+  animation: spinner-zp9dbg 1s infinite linear;
+}
+
+@keyframes spinner-zp9dbg {
+  to {
+    transform: rotate(1turn);
+  }
+}

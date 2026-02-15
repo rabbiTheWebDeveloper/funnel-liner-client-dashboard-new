@@ -1,0 +1,48 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: calc(var(--radius) * 0.5);
+  border: 1px solid transparent;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: colors 0.2s ease;
+}
+
+.badge:focus {
+  outline: none;
+  box-shadow: 0 0 0 calc(1px + 1px) hsl(var(--ring)) !important;
+}
+
+/* Variants */
+.default {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.default:hover {
+  background-color: hsl(var(--primary) / 80%);
+}
+
+.secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+.secondary:hover {
+  background-color: hsl(var(--secondary) / 80%);
+}
+
+.destructive {
+  background-color: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+}
+
+.destructive:hover {
+  background-color: hsl(var(--destructive) / 80%);
+}
+
+.outline {
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
+}

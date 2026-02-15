@@ -1,0 +1,81 @@
+.tabsWrapper {
+  width: 100%;
+}
+
+.tabs {
+  border-bottom: 1px solid hsl(var(--border));
+  min-height: 40px !important;
+}
+
+.tabRoot {
+  min-height: 40px !important;
+}
+
+.tabsWrapper :global(.MuiTabs-flexContainer) {
+  padding-bottom: 0 !important;
+}
+
+.tab {
+  text-transform: none !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  color: hsl(var(--muted-foreground)) !important;
+  min-height: 40px !important;
+  padding: 0 16px !important;
+  position: relative !important;
+}
+
+.tab:hover {
+  color: hsl(var(--foreground)) !important;
+}
+
+.tab[aria-selected="true"] {
+  color: hsl(var(--foreground)) !important;
+}
+
+.tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: hsl(var(--primary));
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.tabIndicator {
+  display: none !important;
+}
+
+.tabPanel {
+  padding: 16px 0;
+}
+
+/* Variants */
+.default {
+  /* Default styles are already in .tabs */
+}
+
+.bordered {
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+}
+
+/* Sizes */
+.default {
+  /* Default sizes already set */
+}
+
+.small .tab {
+  min-height: 32px !important;
+  padding: 0 12px !important;
+  font-size: 13px !important;
+}
+
+.large .tab {
+  min-height: 48px !important;
+  padding: 0 24px !important;
+  font-size: 15px !important;
+}

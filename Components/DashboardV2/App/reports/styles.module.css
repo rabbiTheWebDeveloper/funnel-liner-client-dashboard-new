@@ -1,0 +1,240 @@
+.errorContainer {
+  text-align: center;
+  padding: 64px 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.errorTitle {
+  font-size: 120px;
+  margin: 0;
+  color: #1a73e8;
+  line-height: 1;
+}
+
+.errorMessage {
+  font-size: 24px;
+  margin: 24px 0 16px;
+  color: #202124;
+}
+
+.errorDescription {
+  font-size: 16px;
+  color: #5f6368;
+  margin-bottom: 32px;
+}
+
+.backButton {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #1557b0;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.inputGroup label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.dialogContent {
+  background: hsl(var(--popover)) !important;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  box-sizing: border-box !important;
+}
+
+.dialogContent h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.dropdownMenuButton {
+  box-shadow: none !important;
+  gap: 0.5rem;
+}
+.dropdownMenuButton svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+
+@media print {
+  /* Hide non-printable elements */
+  .header button,
+  .header select,
+  .dialog {
+    display: none !important;
+  }
+
+  /* Ensure table fits on page */
+  .profit-report-table {
+    font-size: 10pt;
+    width: 100%;
+  }
+
+  /* Remove background colors for better printing */
+  .profit-report-table th,
+  .profit-report-table td {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  /* PDF-specific styles */
+  .profit-report-table {
+    font-size: 8pt; /* Smaller font size for PDF */
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .profit-report-table th,
+  .profit-report-table td {
+    padding: 4px 8px;
+    word-wrap: break-word;
+    max-width: none; /* Remove max-width constraints */
+    white-space: normal; /* Allow text wrapping */
+  }
+
+  /* Show full text in PDF */
+  .profit-report-table .pdf-full-text {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    max-width: none !important;
+  }
+
+  /* Ensure all content is visible */
+  .profit-report-table * {
+    overflow: visible !important;
+  }
+
+  /* Adjust column widths for better fit */
+  .profit-report-table th:first-child,
+  .profit-report-table td:first-child {
+    width: 80px; /* Date column */
+  }
+
+  .profit-report-table th:nth-child(2),
+  .profit-report-table td:nth-child(2) {
+    width: 150px; /* Product name column */
+  }
+
+  /* Hide tooltips in PDF */
+  .tooltipHidden {
+    display: none !important;
+  }
+
+  .screenOnly {
+    display: none !important;
+  }
+
+  .pdfOnly {
+    display: block !important;
+  }
+
+  /* Add specific styling for note content in PDF */
+  .profit-report-table td .pdfOnly {
+    text-align: left;
+    padding: 4px 8px;
+    font-size: 8pt;
+  }
+
+  .profit-report-table td .pdfOnly h1 {
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: none;
+  }
+}
+
+/* Add styles for PDF export */
+.profit-report-table.for-pdf {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profit-report-table.for-pdf td,
+.profit-report-table.for-pdf th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.profit-report-table.for-pdf th {
+  background-color: #f8f9fa;
+}
+
+/* Add these new classes */
+.screenOnly {
+  display: block;
+}
+
+.pdfOnly {
+  display: none;
+}
+
+/* PDF Table Styles */
+.pdfTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+
+.pdfTable th,
+.pdfTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.pdfTable th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.pdfTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Remove any truncation or overflow constraints */
+.pdfTable td {
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Specific column widths */
+.pdfTable th:first-child,
+.pdfTable td:first-child {
+  width: 80px; /* Date column */
+}
+
+.pdfTable th:nth-child(2),
+.pdfTable td:nth-child(2) {
+  width: 150px; /* Product name column */
+}
+
+.pdfTable th:last-child,
+.pdfTable td:last-child {
+  width: 200px; /* Notes column */
+}

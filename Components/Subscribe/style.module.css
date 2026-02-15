@@ -1,0 +1,160 @@
+/* Subscribe */
+.Subscribe {
+  position: fixed;
+  z-index: 999;
+  width: -webkit-fill-available;
+  bottom: 0px;
+  left: 0;
+  padding: 5px 100px;
+  background: var(--main-color);
+  box-shadow: 0px -10px 30px rgba(137, 75, 202, 0.27);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Subscribe h5 {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--white-color);
+  font-weight: 400;
+}
+
+.Subscribe ul {
+  margin: 0 10px;
+}
+
+.Subscribe ul li {
+  font-size: 14px;
+  line-height: 20px;
+  background: #d7b0ff;
+  box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  color: var(--main-color);
+  text-align: center;
+  padding: 2px 3px;
+  font-weight: 400;
+  display: inline-block;
+  margin: 0 5px;
+  width: 60px;
+}
+
+.Subscribe ul li span {
+  font-weight: 800;
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.Subscribe a {
+  background: #ba78ff;
+  border-radius: 74px;
+  margin-left: 40px;
+  padding: 5px 50px;
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--white-color);
+  border: 1px solid #ba78ff;
+  letter-spacing: 1px;
+}
+
+.Subscribe a:hover {
+  background: var(--main-color);
+  border: 1px solid var(--white-color);
+}
+
+.Subscribe .left {
+  display: flex;
+  align-items: center;
+}
+
+
+
+@media (max-width: 1399px) {
+
+  .Subscribe {
+    padding: 5px 20px;
+  }
+
+  .Subscribe ul li {
+    font-size: 12px;
+    line-height: 16px;
+    padding: 1px 3px;
+    margin: 0 3px;
+    width: 35px;
+  }
+
+  .Subscribe ul li span {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .Subscribe ul {
+    margin: 0 2px;
+  }
+
+  .Subscribe h5 {
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--white-color);
+    font-weight: 400;
+  }
+
+
+
+  .Subscribe a {
+    margin-left: 30px;
+    padding: 3px 20px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+}
+
+
+@media (max-width: 1023px) {
+
+  .Subscribe {
+    padding: 5px 10px;
+  }
+
+  .Subscribe a {
+    margin-left: 10px;
+    padding: 2px 10px;
+    font-size: 11px;
+    line-height: 18px;
+  }
+
+}
+
+
+@media (max-width: 767px) {
+
+  .Subscribe {
+    padding: 5px 10px;
+    z-index: 9999;
+    display: block;
+    text-align: center;
+  }
+
+  .Subscribe .left {
+    display: block;
+  }
+
+  .Subscribe ul {
+    margin: 5px 2px;
+  }
+
+  .Subscribe a {
+    margin-left: 10px;
+    padding: 5px 15px;
+    font-size: 13px;
+    line-height: 18px;
+    margin-top: 5px;
+  }
+
+  .Subscribe h5 {
+    font-size: 12px;
+  }
+
+}

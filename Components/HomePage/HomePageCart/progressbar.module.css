@@ -1,0 +1,19 @@
+.ProgressCircleMain{
+  width: 150px;
+  height: 150px;
+}
+
+.progressCircle {
+  display: block;
+}
+
+.circleBackground {
+  fill: transparent;
+}
+
+.circleProgress {
+  fill: transparent;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 0.3s ease;
+}

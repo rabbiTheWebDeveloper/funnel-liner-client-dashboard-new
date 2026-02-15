@@ -1,0 +1,59 @@
+name: Push-from-Staging-to-Server
+
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  deploy:
+    name: Deploy to Server on Staging branch push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the files
+        uses: actions/checkout@v2
+
+      - name: Run npm build and restart/start the app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.STAGING_DASHBOARD_HOST }}
+          username: ${{ secrets.STAGING_DASHBOARD_USERNAME }}
+          key: ${{ secrets.STAGING_DASHBOARD_SSH_KEY }}
+          script: |
+            ##################################################
+            # 1. FAIL FAST
+            ##################################################
+            set -e
+
+            ##################################################
+            # 2. GO TO PROJECT DIRECTORY
+            ##################################################
+            cd ${{ secrets.STAGING_DASHBOARD_TARGET_DIR }}
+
+            ##################################################
+            # 3. SSH TRUST
+            ##################################################
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+            ##################################################
+            # 4. SYNC CODE
+            ##################################################
+            git fetch origin staging
+            git reset --hard origin/staging
+
+            ##################################################
+            # 5. INSTALL & BUILD
+            ##################################################
+            npm install --force
+            npm run build
+
+            ##################################################
+            # 6. POST-BUILD PM2 MANAGEMENT
+            ##################################################
+            if pm2 describe FunnelLiner-client-dashboard > /dev/null 2>&1; then
+              pm2 restart FunnelLiner-client-dashboard
+            else
+              pm2 start npm --name "FunnelLiner-client-dashboard" -- run start
+            fi
+
+            pm2 save

@@ -1,0 +1,37 @@
+.input {
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--input));
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 calc(1px + 1px) hsl(var(--ring));
+}
+
+.input::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+.input:disabled {
+  background-color: hsl(var(--muted));
+  cursor: not-allowed;
+}
+
+/* You can add more variants and sizes as needed */
+.default {
+  /* Default styles are already in .input */
+}
+
+.error {
+  border-color: hsl(var(--destructive));
+}
+
+.success {
+  border-color: hsl(var(--success));
+}

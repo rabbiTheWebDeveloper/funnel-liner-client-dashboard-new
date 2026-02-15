@@ -1,0 +1,4200 @@
+/* --------------------------------------------------------------------------
+Subscription Start
+-------------------------------------------------------------------------- */
+
+.SubscriptionModal {
+  width: 100%;
+}
+
+.SubscriptionModal .PaymentType {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.SubscriptionModal .card {
+  background: #ffffff;
+  box-shadow: 0px 141.825px 113.46px rgba(0, 0, 0, 0.03),
+    -2px 1px 66.4476px rgba(0, 0, 0, 0.0828);
+  border-radius: 8px;
+  padding: 10px 20px;
+  width: 28%;
+  height: 100px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.SubscriptionModal img {
+  height: 100px;
+  width: 120px;
+  object-fit: contain;
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  .SubscriptionModal .radio {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff;
+    border: 1px solid var(--main-color);
+    cursor: pointer;
+    outline: none;
+    transition: background 0.1s ease-out, border-color 0.1s ease-out;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    padding: 0;
+  }
+
+  .SubscriptionModal .radio::after {
+    border: 1px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    content: "";
+    display: block;
+    height: 11px;
+    left: 8px;
+    position: absolute;
+    top: 3px;
+    transform: rotate(45deg);
+    width: 0.375rem;
+  }
+
+  .SubscriptionModal .radio:checked {
+    background: #5db361;
+    border-color: #5db361;
+  }
+
+  .SubscriptionModal .card:hover .radio {
+    border-color: var(--color-dark-gray);
+  }
+
+  .SubscriptionModal .card:hover .radio:checked {
+    border-color: var(--main-color);
+  }
+}
+
+.SubscriptionModal .Review {
+  border-top: 1px solid var(--border-color);
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.SubscriptionModal .Review h6 {
+  font-size: 14px;
+  line-height: 24px;
+  background: #f4ebff;
+  border-radius: 74px;
+  color: var(--main-color);
+  display: inline-block;
+  padding: 3px 15px;
+}
+
+.SubscriptionModal .SubscribeAmount {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SubscriptionModal .Review h4 {
+  color: #2a3547;
+}
+
+.SubscriptionModal .Review h3 {
+  font-size: 28px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.SubscriptionModal .Review i {
+  color: var(--main-color);
+  margin-bottom: -3px;
+  line-height: 30px;
+  font-size: 30px;
+  margin-right: 5px;
+}
+
+.SubscriptionModal .terms-condition {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.SubscriptionModal .terms-condition input {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+}
+
+.SubscriptionModal .terms-condition input:focus {
+  outline: 0;
+}
+
+.SubscriptionModal .terms-condition label {
+  margin-bottom: 0;
+  margin-left: 10px;
+}
+
+.SubscriptionModal .terms-condition label a {
+  color: var(--main-color);
+  padding: 0 5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.SubscriptionModal .duelButton button {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+Subscription End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+Menu Start
+-------------------------------------------------------------------------- */
+
+.Notification button {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.Notification button i {
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.Notification button h6 {
+  position: absolute;
+  top: -4px;
+  right: 8px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white-color);
+}
+
+.NotificationContent .MuiPaper-root {
+  width: 500px;
+  border-radius: 20px;
+}
+
+.NotificationContent .header {
+  padding: 20px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.custom_date_picer_width .nice-dates-popover {
+  max-width: 254px !important;
+}
+
+.NotificationContent .header p {
+  margin-top: 2px;
+}
+
+.NotificationContent .MuiPaper-root.MuiPaper-elevation {
+  top: 123px !important;
+  left: unset !important;
+  border-radius: 10px;
+  right: 35px;
+}
+
+.NotificationContent h5 {
+  padding: 0 20px;
+  padding-bottom: 15px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.NotificationContent ul.NotificationUl {
+  padding: 0 20px;
+  height: 250px;
+  overflow-y: auto;
+  background: var(--white-color);
+  padding-bottom: 10px;
+}
+
+.NotificationContent ul li {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.NotificationContent ul li .left {
+  display: flex;
+  align-items: center;
+}
+
+.NotificationContent ul li .left .img {
+  height: 30px;
+  width: 30px;
+  border: 1px solid var(--border-color);
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NotificationContent ul li .left img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.NotificationContent ul li .left .text {
+  margin-left: 10px;
+}
+
+.NotificationContent ul li .left h6 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #848484;
+}
+
+.NotificationContent ul li .left p {
+  font-size: 14px;
+  line-height: 20px;
+  color: #2a3547;
+  margin-top: 0px;
+  font-weight: 700;
+}
+
+.NotificationContent ul li i {
+  font-size: 15px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.NotificationContent a.AllShow {
+  background: var(--main-color);
+  width: -webkit-fill-available;
+  margin: 10px 20px;
+  font-size: 16px;
+  color: var(--white-color) !important;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+Menu End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ Order Start
+-------------------------------------------------------------------------- */
+.Sidebar .MenuItem a.active .MuiBadge-badge {
+  color: var(--main-color);
+  background: var(--white-color);
+  margin-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+Order End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+Product Start
+-------------------------------------------------------------------------- */
+
+/* add-product */
+.css-13cymwt-control,
+.css-t3ipsp-control {
+  /* padding: 4px 10px !important; */
+  /* border-radius: 30px !important; */
+  border: 1px solid var(--main-color) !important;
+}
+
+div#react-select-2-placeholder {
+  font-size: 14px;
+}
+
+/* --------------------------------------------------------------------------
+Product End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ WebsiteSetting
+-------------------------------------------------------------------------- */
+.LandingWebsiteItem {
+  text-align: center;
+}
+
+.LandingWebsiteItem .img {
+  width: 100%;
+}
+
+.LandingWebsiteItem img {
+  width: -webkit-fill-available;
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  padding: 5px;
+  min-height: 200px;
+  height: 250px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.LandingWebsiteItem h4 {
+  padding: 20px 0;
+}
+
+.LandingWebsiteItem .DuelButton {
+  flex-wrap: wrap;
+}
+
+.LandingWebsiteItem .DuelButton button {
+  width: 100%;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 400 !important;
+  color: var(--white-color);
+  margin-top: 0;
+  background: var(--main-color);
+}
+
+.LandingWebsiteItem .DuelButton button a {
+  color: var(--white-color);
+}
+
+.LandingWebsiteItem .DuelButton button:hover {
+  background: var(--main-color);
+}
+
+.LandingWebsiteItem .DuelButton .left {
+  width: 48%;
+}
+
+.LandingWebsiteItem .DuelButton .left a {
+  width: 100%;
+}
+
+.LandingWebsiteItem .DuelButton .right {
+  width: 48%;
+}
+
+.LandingWebsiteItem .DuelButton .right a {
+  width: 100%;
+}
+
+.LandingWebsiteItem .DuelButton .right button {
+  background: var(--pending-color);
+}
+
+/* CustomDomain */
+
+.ChooseDomainSidebar .DomainRequest .duelButton {
+  margin-top: 0;
+}
+
+.ChooseDomainSidebar .DomainRequest .duelButton button {
+  margin-top: 0;
+  color: var(--white-color);
+}
+
+.LandingWebsiteItem .DuelButton button:hover {
+  color: var(--white-color);
+}
+
+.DashboardSetting.WebsiteSetting .style_HomeSlider__hmi81 .MuiContainer-root {
+  padding-left: 0px !important;
+  padding-right: 0 !important;
+}
+
+.DashboardSetting.WebsiteSetting
+  .style_HomeSlider__hmi81
+  .MuiContainer-root
+  .boxShadow {
+  padding: 0;
+  box-shadow: none;
+}
+
+.DashboardSetting.WebsiteSetting
+  .style_HomeSlider__hmi81
+  .MuiContainer-root
+  .boxShadow
+  .MuiTabPanel-root {
+  margin-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* --------------------------------------------------------------------------
+WebsiteSetting End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+About Start
+-------------------------------------------------------------------------- */
+
+.submitButtonForPages button {
+  background: var(--main-color);
+  padding: 8px 30px;
+  margin-top: 10px;
+}
+
+/* --------------------------------------------------------------------------
+About End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+Account Start
+-------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------
+START Otp PART
+--------------------------------------------------------------------------------------------------------------------------------------------------- */
+.Otp {
+  background: #f6f6f6;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.OtpContent {
+  width: 650px;
+  padding: 30px;
+  border-radius: 20px;
+  background: var(--white-color);
+  text-align: center;
+}
+
+.OtpContent h4 {
+  margin-top: 20px;
+  font-size: 25px;
+  line-height: 35px;
+  color: #fb8c00;
+  font-weight: 700;
+}
+
+.OtpContent p {
+  width: 80%;
+  margin: 10px auto;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.OtpContent p a {
+  color: #894bca;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.OtpContent .Logo img {
+  height: 80px;
+}
+
+.OtpContent .OtpCode {
+  margin-top: 20px;
+}
+
+.OtpContent .OtpCode label {
+  display: block;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+  color: #6f6f6f;
+}
+
+.OtpContent .OtpCode input {
+  width: 60px;
+  border: 1px solid #fb8c00;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0 10px;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  color: #fb8c00;
+}
+
+.OtpContent .OtpCode input:focus {
+  outline: unset;
+}
+
+.OtpContent button {
+  width: 100%;
+  margin-top: 20px;
+  background: #894bca;
+  border-radius: 10px;
+  padding: 10px 0;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+  color: var(--white-color);
+  border: none;
+}
+
+.OtpContent button:hover {
+  background: #fb8c00;
+  color: var(--white-color);
+}
+
+.quill {
+  width: 1000px;
+  margin: 0 auto !important;
+}
+
+.ql-editor {
+  min-height: 500px;
+}
+
+.submitButtonForPages {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.theme_edit_submit_btn:disabled,
+.theme_edit_submit_btn [disabled] {
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  border-radius: 0 0 20px 20px;
+}
+
+.quill {
+  width: 100%;
+}
+
+.DashboardSetting .ChooseDomain .MuiButtonBase-root a {
+  color: var(--white-color);
+}
+
+.CashInModal .CashInModalContent {
+  background: var(--white-color);
+  border-radius: 16px;
+  padding: 50px 30px;
+  padding-top: 30px;
+  width: 600px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.CashInModal .header h3 {
+  display: flex;
+  align-items: center;
+}
+
+.CashInModal .header img {
+  margin-right: 20px;
+}
+
+.selectedPayment {
+  box-sizing: border-box;
+  border: 3px solid #3a2358;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.support_ticket_preview_image img {
+  width: 100px;
+}
+
+.nice-dates-navigation,
+.nice-dates-day {
+  color: #9a68cc !important;
+}
+
+.nice-dates-day:before {
+  background-color: #894bca !important;
+}
+
+.nice-dates-navigation {
+  height: 50px;
+}
+
+.nice-dates-grid {
+  height: 250px !important;
+}
+
+.nice-dates-day {
+  height: 40px !important;
+}
+
+.nice-dates-popover {
+  /* width: 400px !important; */
+}
+
+/* BkashSignUp */
+.BkashSignUp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.BkashSignUpContent {
+  padding-top: 10px;
+  width: 500px;
+}
+
+.BkashSignUpContent .Header {
+  text-align: center;
+  background: none;
+}
+
+.BkashSignUpContent .Header h6 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--text-color);
+  margin-top: 5px;
+}
+
+/* BkashDashboard */
+.BkashDashboard {
+  margin-top: 30px;
+}
+
+.BkashDashboard h4 {
+  font-size: 25px;
+  line-height: 35px;
+  color: var(--header_color);
+}
+
+.BkashDashboard .ButtonWithSearch {
+  margin-top: 20px;
+}
+
+.BkashDashboard .ButtonWithSearch .MuiButtonBase-root {
+  background: var(--main-color);
+  color: var(--white-color);
+  padding: 10px 20px;
+  font-weight: 700;
+  text-transform: capitalize;
+  font-size: 16px;
+  line-height: 24px;
+  margin-right: 20px;
+  border: 1px solid var(--main-color);
+}
+
+.BkashDashboardNextBtn button {
+  background: var(--main-color);
+  color: var(--white-color);
+  text-transform: capitalize;
+  font-size: 16px;
+  line-height: 24px;
+  margin-right: 20px;
+  border: 1px solid var(--main-color);
+}
+
+.BkashDashboardNextBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.BkashDashboardNextBtn button:hover {
+  background: #9b4bca;
+  color: var(--white-color);
+}
+
+.BkashDashboard .ButtonWithSearch .MuiButtonBase-root svg {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.BkashDashboard .HeaderRightItem {
+  background: #e6f2e2;
+  border-radius: 12px;
+  padding: 45px 20px;
+  padding-bottom: 30px;
+  width: 300px;
+}
+
+.BkashDashboard .HeaderRightItem h5 {
+  font-size: 25px;
+  line-height: 35px;
+  font-weight: 700;
+}
+
+.BkashDashboard .HeaderRightItem p {
+  color: #50a517;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.BkashDashboard .HeaderRightItem .img {
+  position: relative;
+}
+
+.BkashDashboard .HeaderRightItem select {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  padding: 2px 5px;
+  color: var(--main-color);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.BkashDashboard .HeaderRightItem select:focus {
+  outline: none;
+}
+
+.BkashDashboard .HeaderRightItem.bg2 {
+  background: #f6eeff;
+  margin-left: 20px;
+}
+
+.BkashDashboard .HeaderRightItem.bg2 p {
+  color: var(--main-color);
+}
+
+.BkashDashboardTable {
+  margin-top: 50px;
+}
+
+.BkashDashboardTable .ProductTable table td {
+  padding: 15px 5px;
+}
+
+/* AccountingFirstOpen */
+.AccountingFirstOpen {
+  width: 100%;
+  height: 100vh;
+  background: rgba(13, 7, 19, 0.63);
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 99;
+}
+
+.AccountingFirstOpen .Circle {
+  width: 2858px;
+  height: 2858px;
+  border-radius: 50%;
+  background: var(--white-color);
+  position: absolute;
+  top: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.AccountingFirstOpen .Circle .img {
+  margin-top: -350px;
+}
+
+.AccountingFirstOpen .text {
+  margin-top: 30px;
+}
+
+.AccountingFirstOpen .text a {
+  padding: 10px 30px;
+  padding-right: 60px;
+  border-radius: 10px;
+  border: 1px solid var(--main-color);
+  display: inline-block;
+  font-size: 16px;
+  line-height: 24px;
+  position: relative;
+}
+
+.AccountingFirstOpen .text a svg {
+  margin-left: 20px;
+  font-size: 24px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: var(--main-color);
+}
+
+.AccountingFirstOpen .text a:hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+.AccountingFirstOpen .text a:hover svg {
+  color: var(--white-color);
+}
+
+/* AccountCashIn */
+.AccountCashIn .MuiButtonBase-root {
+  background: #2bbf58;
+  box-shadow: 0px 22px 113.46px rgba(0, 0, 0, 0.03);
+  border-radius: 16px;
+  color: var(--white-color);
+  padding: 15px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.AccountCashIn .MuiButtonBase-root img {
+  height: 35px;
+}
+
+.AccountCashIn .MuiButtonBase-root span {
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+/* AccountCashInCashOut */
+.AccountCashIn.CashOut .MuiButtonBase-root {
+  background: #f72b50;
+  margin-left: 30px;
+}
+
+.AccountDashboard .FilterItem.CustomDate.dateRangePicker {
+  padding-right: 70px !important;
+}
+
+.AccountingFirstOpen .text .DuelButton {
+  display: inline-flex;
+  margin-top: 20px;
+}
+
+/* AccountDashboard */
+.accounting_modules_custom_date_range {
+  position: relative;
+}
+
+.nice-dates-popover {
+  /* width: 140% !important; */
+}
+
+.AccountDashboard .HeaderItemContent {
+  margin-top: 30px;
+  width: 18.5%;
+  background: var(--white-color);
+  border-radius: 16px;
+  box-shadow: 0px 5px 10px 7px rgba(0, 0, 0, 0.1);
+}
+
+.AccountDashboard .HeaderItem {
+  padding: 15px 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.AccountDashboard .HeaderItem h5 {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--text-color);
+}
+
+.AccountDashboard .HeaderItem .img {
+  margin-right: 10px;
+  position: relative;
+  z-index: 9;
+}
+
+.AccountDashboard .HeaderItem .img img {
+  height: 30px;
+}
+
+.AccountDashboard .HeaderItem .text {
+  position: relative;
+  z-index: 9;
+}
+
+.AccountDashboard .HeaderItem h3 {
+  font-weight: 700;
+  color: var(--header_color);
+  font-size: 20px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.AccountDashboard .HeaderItem h3 svg {
+  font-size: 30px;
+  color: #2bbf58;
+  margin-left: -10px;
+}
+
+.AccountDashboard .overlay {
+  position: absolute;
+  bottom: -90px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.AccountDashboard .HeaderItem.Minus h3 {
+  color: #f84062;
+}
+
+.AccountDashboard .HeaderItem.Minus h3 svg {
+  color: #f84062;
+}
+
+.AccountDashboard .HeaderItem.Equal h3 {
+  color: var(--main-color);
+}
+
+.AccountDashboard .HeaderItem.Equal h3 svg {
+  color: var(--main-color);
+}
+
+.AccountDashboard .AccountCashIn .MuiButtonBase-root {
+  padding: 25px 10px;
+  width: 100%;
+}
+
+.AccountDashboard .AccountCashIn.CashOut .MuiButtonBase-root {
+  margin-left: 0;
+}
+
+.AccountDashboard .AccountCashIn .MuiButtonBase-root:hover {
+  background: #2bbf58 !important;
+}
+
+.AccountDashboard .AccountCashIn.CashOut .MuiButtonBase-root:hover {
+  background: #f72b50 !important;
+}
+
+/* AccountDashboard Selector */
+.AccountDashboard .Selector {
+  text-align: center;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.AccountDashboard .nice-dates-popover.-open {
+  max-width: 400px;
+  z-index: 99;
+}
+
+.AccountDashboard .nice-dates-day:before {
+  background-color: var(--main-color);
+}
+
+.AccountDashboard .Selector button {
+  border: 1px solid var(--border_color);
+  margin-right: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 8px 20px;
+  border-radius: 30px;
+  color: var(--header_color);
+}
+
+.AccountDashboard .Selector button.active {
+  background: var(--main-color);
+  border: 1px solid var(--main-color);
+  color: var(--white-color);
+}
+
+/* AccountTable */
+.AccountTable {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.AccountDashboard.AccountPdfReport {
+  margin-bottom: 100px;
+}
+
+.AccountDashboard.AccountPdfReport .Header {
+  justify-content: unset;
+}
+
+.AccountTable .ProductTable table td {
+  padding: 15px 5px;
+}
+
+.AccountTable .ProductTable table td.Plus {
+  color: #09d309;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.AccountTable .ProductTable table td.Minus {
+  color: #f72b50;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.AccountTable .Filter {
+  flex-wrap: wrap;
+}
+
+.AccountTable .FilterItem {
+  width: 18%;
+}
+
+/* FilterItem */
+
+.AccountTable .Filter .FilterItem .MuiAutocomplete-hasPopupIcon {
+  width: 100% !important;
+  border: none;
+}
+
+.AccountTable .Filter .FilterItem .MuiOutlinedInput-root {
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+}
+
+.AccountTable .Filter .FilterItem .MuiOutlinedInput-root .MuiTouchRipple-root {
+  padding: 0;
+}
+
+.AccountTable .Filter .FilterItem button {
+  padding: 0;
+}
+
+.AccountTable .Filter .FilterItem .Search {
+  position: relative;
+}
+
+.AccountTable .Filter .FilterItem .Search input {
+  padding: 12px 20px;
+  padding-left: 40px;
+}
+
+.AccountDashboard .FilterItem.CustomDate.dateRangePicker {
+  width: 100%;
+}
+
+.AccountTable .Filter .FilterItem .Search input::placeholder {
+  color: var(--text-color);
+}
+
+.AccountTable .Filter .FilterItem .Search svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  color: var(--main-color);
+  font-size: 20px;
+}
+
+.AccountTable .AccountEdit .MuiButtonBase-root {
+  width: auto;
+  min-width: auto;
+  padding: 8px 10px;
+  border-radius: 5px;
+  justify-content: center;
+  font-size: 20px;
+  background: var(--main-color);
+}
+
+.AccountTable .Filter .MuiOutlinedInput-root .MuiAutocomplete-input {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  border: 1px solid var(--main-color);
+  color: var(--text-color);
+  width: -webkit-fill-available;
+  padding: 12px 15px;
+  border-radius: 10px;
+}
+
+.AccountTable
+  .Filter
+  .MuiOutlinedInput-root
+  .MuiAutocomplete-input::placeholder {
+  font-size: 12px;
+  color: var(--text-color);
+}
+
+.AccountTable .Filter .MuiOutlinedInput-root .MuiAutocomplete-input:focus {
+  outline: unset !important;
+}
+
+.AccountTable .Filter .FilterItem .Dropdown button {
+  background: var(--main-color);
+  padding: 6px 60px;
+  color: var(--white-color);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.AccountTable .Filter .FilterItem .Dropdown button a {
+  color: var(--white-color);
+}
+
+.AccountTable .Filter .FilterItem .Dropdown button svg {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.AccountDashboard .FilterItem.CustomDate .nice-dates input {
+  padding: 9px 20px;
+  border: 1px solid var(--border_color);
+  border-radius: 30px;
+}
+
+.AccountDashboard.AccountPdfReport .FilterItem {
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.AccountDashboard.AccountPdfReport .FilterButton.FilterItem {
+  width: 12%;
+}
+
+.AccountEditIcon h3 svg {
+  font-size: 30px;
+  color: var(--main-color);
+  margin-right: 15px;
+}
+
+.AccountEditIcon .DuelButton button {
+  background: var(--white-color);
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  padding: 10px 25px;
+}
+
+.AccountTable .ProductTable table td.d_flex {
+  justify-content: center;
+}
+
+.AccountTable .ProductTable table td button {
+  font-size: 20px;
+  margin-left: 10px;
+  background: #f72b50;
+  padding: 8px 10px;
+  color: var(--white-color);
+  min-width: auto;
+}
+
+.CashInModal .CashInModalContent button.red {
+  background: #7f22e3;
+}
+
+/* AccountPdfReport */
+.AccountPdfReport h4 {
+  font-weight: 700;
+  font-size: 35px;
+  margin: 20px 0;
+}
+
+.AccountPdfReport .Filter h3 {
+  font-size: 22px;
+  line-height: 35px;
+  font-weight: 700;
+}
+
+.AccountPdfReport .HeaderItemContent {
+  margin-right: 30px;
+}
+
+.AccountPdfReport .FilterButton {
+  margin-left: 20px;
+}
+
+.AccountPdfReport .FilterButton button {
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid var(--main-color);
+  /* margin-right: 20px; */
+  padding: 5px 20px;
+  color: var(--main-color);
+}
+
+.AccountPdfReport .FilterButton button.active {
+  background: var(--main-color);
+  color: var(--white-color);
+  padding: 6px 20px;
+  border-radius: 30px;
+}
+
+.AccountPdfReport .DownloadPdf {
+  text-align: right;
+  margin-top: 30px;
+}
+
+.AccountPdfReport .DownloadPdf button {
+  background: var(--main-color);
+  padding: 5px 30px;
+  color: var(--white-color);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.AccountPdfReport .DownloadPdf button svg {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.SalesTargetModal .TopSellingProducts .DashboardForm {
+  margin-top: 20px;
+}
+
+.SalesTargetModal .TopSellingProducts .DelivaryCharge select {
+  width: 100%;
+  background: var(--input_bg);
+  border-radius: 10px;
+  padding: 18px 10px;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color);
+  margin-bottom: 30px;
+
+  margin-top: 10px;
+}
+
+input#outlined-basic-bulk-sms {
+  height: 55px;
+}
+
+/* EditTheme */
+.EditTheme {
+  margin-top: 20px;
+  z-index: 1;
+}
+
+.EditTheme input,
+.EditTheme textarea {
+  padding: 15px 20px;
+  width: -webkit-fill-available;
+}
+
+.EditTheme textarea {
+  background: var(--input_bg);
+  border-radius: 10px;
+  border: 1px solid var(--input_bg);
+}
+
+.EditTheme button {
+  background: var(--main-color);
+  padding: 10px 50px;
+  border-radius: 5px;
+  color: var(--white-color);
+  font-size: 18px;
+  line-height: 28px;
+  text-transform: capitalize;
+}
+
+.EditTheme button:hover {
+  background: var(--main-color);
+}
+
+.EditTheme {
+  position: relative;
+}
+
+.EditTheme .Overlay {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.EditTheme .Success {
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  background: var(--white-color);
+  width: 60%;
+  height: 500px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.EditTheme .Success svg {
+  font-size: 50px;
+  color: var(--main-color);
+}
+
+.EditTheme .Success h4 {
+  font-size: 25px;
+  line-height: 35px;
+  margin-top: 20px;
+  font-weight: 700;
+}
+
+.EditTheme .Success p {
+  color: var(--text-color);
+  padding: 20px 0;
+}
+
+.EditTheme .Success a {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+.dropzone {
+  border: 2px dashed #894bca;
+  padding: 30px 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: all linear 0.2s;
+  cursor: pointer;
+}
+
+.dropzone:hover {
+  background: var(--border_color);
+  border: 2px solid #894bca;
+}
+
+.dropzone p {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  color: var(--main-color2);
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.EditTheme .HeaderText {
+  padding: 20px 0;
+  text-align: center;
+  font-size: 24px;
+  line-height: 30px;
+  color: var(--main-color2);
+  font-weight: 700;
+}
+
+.EditTheme .HeaderText span {
+  color: var(--main-color);
+}
+
+.EditTheme aside img {
+  border-radius: 5px;
+  width: 100% !important;
+}
+
+/*  */
+.date-range input#\:r7\: {
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.Sidebar .MenuItem .MuiBadge-badge {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+.Sidebar .MenuItem a.active .MuiBadge-badge {
+  color: var(--main-color);
+  background: var(--white-color);
+}
+
+#order_view {
+  justify-content: space-between;
+}
+
+/* .Filter.d_flex.d_justify.FilterItem {
+  margin-left: 931px;
+} */
+.custom-select-class .Select-value-label {
+  color: black !important;
+}
+
+.AccountDashboard .Header {
+  flex-wrap: wrap;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+Account End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+Subscription Start
+-------------------------------------------------------------------------- */
+
+.SubscriptionInvoice .InvoiceItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px;
+  border-radius: 10px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.SubscriptionInvoice .InvoiceItem:nth-child(even) {
+  background: var(--cart-color-4);
+}
+
+.SubscriptionInvoice .InvoiceItem:nth-child(odd) {
+  background: var(--cart-color-2);
+}
+
+.SubscriptionInvoice .InvoiceItem h5 {
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--main-color2);
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.SubscriptionInvoice .InvoiceItem h5 span {
+  font-weight: 400;
+}
+
+.SubscriptionInvoice .InvoiceItem svg {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.SubscriptionInvoice .InvoiceItem h4 {
+  color: #09d309;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.SubscriptionInvoice .InvoiceItem button {
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--white-color);
+  background: var(--main-color);
+  padding: 5px;
+  font-weight: 600;
+  width: 190px;
+  text-align: center;
+}
+
+.SubscriptionInvoice .InvoiceItem h4.UnPaid {
+  color: #fe0707;
+}
+
+.SubscriptionInvoice .InvoiceItem h6 {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--white-color);
+  font-weight: 600;
+  width: 200px;
+}
+
+.SubscriptionInvoice .InvoiceItem h6 span {
+  background: #09d309;
+  padding: 5px 30px;
+  border-radius: 10px;
+}
+
+/* --------------------------------------------------------------------------
+Subscription End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+Courier Start
+-------------------------------------------------------------------------- */
+.Courier .CourierItem {
+  text-align: center;
+}
+
+.Courier .CourierItem .customInput {
+  text-align: left;
+}
+
+.CourierItem .customInput.Pathao label {
+  color: var(--text-color);
+}
+
+.CourierItem .customInput.pathao span {
+  color: var(--main-color);
+  margin: 0 5px;
+}
+
+.CourierItem .customInput.pathao ul li {
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.CourierItem .customInput.pathao ul li h5 {
+  font-size: 14px;
+  font-weight: 700;
+  width: 90%;
+  word-wrap: break-word;
+}
+
+.CourierItem .customInput.pathao ul li button {
+  padding: 0;
+  background: none !important;
+  text-align: right;
+}
+
+.CourierItem .customInput.pathao ul li button i {
+  font-size: 16px;
+  color: var(--main-color);
+}
+
+.Courier .CourierItem .img {
+  margin-bottom: 10px;
+}
+
+.Courier .CourierItem img {
+  width: 80%;
+}
+
+/* --------------------------------------------------------------------------
+Courier End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+BulkSms Start
+-------------------------------------------------------------------------- */
+
+.BulkSms .BulkSmsItem {
+  height: 310px;
+}
+
+.BulkSms .BulkSmsItem .customInput {
+  margin-top: 5px;
+}
+
+.BulkSms .BulkSmsItem .duelButton {
+  margin-top: 0;
+}
+
+.BulkSms .BulkSmsItem .duelButton button {
+  width: 100%;
+}
+
+.BulkSms .BulkToggle label span {
+  color: var(--main-color);
+}
+
+.BulkSms .BulkToggle {
+  display: block;
+  margin-top: 20px;
+}
+
+.BulkSms .BulkToggle label {
+  width: 48%;
+}
+
+.BulkSms .BulkToggle .MuiTypography-root {
+  color: var(--header-color);
+}
+
+.BulkSms .BulkSmsItem .header {
+  height: 50px;
+}
+
+/* BulkSmsSend */
+.BulkSmsSend {
+  margin-top: 80px;
+}
+
+.BulkSmsItem .customInput h5 {
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: 10px;
+  color: var(--header-color);
+}
+
+.BulkSmsItem .MuiInputBase-root {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.BulkSmsItem .MuiOutlinedInput-notchedOutline {
+  border: none;
+  border-radius: 10px;
+}
+
+.BulkSmsItem .MuiSelect-select {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  border: 1px solid var(--main-color);
+  color: var(--text-color);
+  width: -webkit-fill-available;
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+.BulkSmsItem .css-14lo706 {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+BulkSms End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+SupportTicket Start
+-------------------------------------------------------------------------- */
+
+.imgUploader label {
+  width: 100% !important;
+}
+
+.SelectImgButton {
+  width: 100% !important;
+  border: 1px solid var(--main-color) !important;
+  color: var(--text-color) !important;
+  background: var(--white-color) !important;
+  padding: 12px 20px !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
+  text-transform: capitalize !important;
+}
+
+.SelectImgButton:hover {
+  background: unset !important;
+  box-shadow: none !important;
+}
+
+/* --------------------------------------------------------------------------
+SupportTicket End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+Plugin Start
+-------------------------------------------------------------------------- */
+
+.AddonsTabsHeader {
+  margin-bottom: 30px;
+}
+
+.AddonsTabsHeader .MuiButtonBase-root svg {
+  font-size: 20px;
+}
+
+.AddonsTabsHeader .MuiButtonBase-root.Mui-selected svg {
+  color: var(--white-color);
+}
+
+.AddonsTabsHeader .Search {
+  position: relative;
+}
+
+.AddonsTabsHeader .Search input {
+  background: #fbf8ff;
+  border: 0.5px solid #894bca;
+  border-radius: 8px;
+  padding: 15px;
+  padding-left: 40px;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15px;
+}
+
+.searchIcon svg {
+  color: #894bca;
+}
+
+.AddonsTabItem {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.AddonsTabItem .PainUnpaid {
+  position: absolute;
+  top: 5px;
+  right: -45px;
+  padding: 10px 20px;
+  border-radius: 0;
+  transform: rotate(40deg);
+  border-left: 0;
+  border-right: 0;
+  width: 150px;
+  background: var(--main-color);
+}
+
+.AddonsTabItem .PainUnpaid.Free {
+  background: #4caf50;
+}
+
+.AddonsTabItem .PainUnpaid h5 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--white-color);
+}
+
+.AddonsTabItem .img {
+  margin-top: 10px;
+}
+
+.AddonsTabItem .img img {
+  height: 60px;
+  width: auto;
+}
+
+.AddonsTabItem h4 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2c2c2c;
+  margin-top: 10px;
+  height: 50px;
+  text-transform: capitalize;
+}
+
+.AddonsTabItem h5 {
+  font-size: 25px;
+  line-height: 35px;
+  color: var(--main-color);
+  margin: 10px 0;
+  font-weight: 700;
+}
+
+.AddonsTabItem .DualButton {
+  margin-top: 20px;
+}
+
+.AddonsTabItem .DualButton button {
+  background: var(--main-color);
+  color: var(--white-color);
+  border: 1px solid var(--main-color);
+}
+
+.AddonsTabItem .DualButton button.Deactivated {
+  background: var(--white-color);
+  color: var(--main-color);
+  margin-left: 10px;
+}
+
+.AddonsTabItem .DualButton button.Install {
+  color: #68de7c;
+  border: 1px solid #68de7c;
+  background: #f4fff6;
+}
+
+.AddonsTabItem .DualButton button.Install svg {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.AddonsTabItem h6 {
+  font-size: 16px;
+  line-height: 20px;
+  color: #17b431;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+/* --------------------------------------------------------------------------
+Plugin End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+WebsiteSetting Start
+-------------------------------------------------------------------------- */
+.WebsiteSettingPayment {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.WebsiteSettingPayment .icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.WebsiteSettingPayment .icon i {
+  font-size: 35px;
+  line-height: 35px;
+  color: var(--main-color);
+}
+
+/* InvoiceFormate */
+.InvoiceFormate {
+  margin-top: 20px;
+}
+
+.InvoiceFormateItem {
+  display: inline-block;
+}
+
+.InvoiceFormateItem img {
+  width: 100%;
+}
+
+.InvoiceFormateItem button.red {
+  background: #9376e0;
+  display: block;
+  margin-left: 10px;
+}
+
+.InvoiceFormateItem button.red:hover {
+  background: var(--main-hover-color);
+}
+
+/* ChooseDomainSidebar */
+
+.ChooseDomainSidebar {
+  margin-top: 50px;
+}
+
+.ChooseDomainSidebarLeft.boxShadow.commonCart.cart-4 {
+  padding: 30px 20px;
+}
+
+.ChooseDomainSidebarLeft button {
+  display: block;
+  width: 100%;
+  font-size: 13px;
+  line-height: 24px;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.ChooseDomainSidebarLeft .MuiTabs-flexContainer {
+  display: block;
+}
+
+.ChooseDomainSidebarLeft {
+  height: 93vh;
+}
+
+.ChooseDomainSidebar .DomainRequest h4 {
+  color: var(--main-color);
+}
+
+.ChooseDomainSidebar .DomainRequest h5 {
+  font-size: 15px;
+  margin: 10px 0;
+  line-height: 25px;
+  color: var(--header-color);
+}
+
+.ChooseDomainSidebar .DomainRequest h6 {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--text-color);
+  margin-top: 10px;
+}
+
+.ChooseDomainSidebar .DomainRequest .duelButton {
+  border-bottom: 1px solid var(--main-color);
+  border-top: 0;
+  padding-bottom: 10px;
+}
+
+.ChooseDomainSidebar .DomainRequest .customDomainRequest label {
+  margin-top: 10px;
+}
+
+/* ChooseDomain */
+.ChooseDomain {
+  /* margin-top: 30px; */
+  text-align: center;
+}
+
+.ChooseDomain .MuiOutlinedInput-notchedOutline {
+  border: 0;
+}
+
+.ChooseDomainItem h4 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--main-color);
+}
+
+.ChooseDomainItem .left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 13px 11px;
+  color: var(--text-color);
+  border-right: 1px solid var(--main-color);
+}
+
+.ChooseDomainItem .left h5 {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--main-color);
+}
+
+.ChooseDomainItem .MuiButtonBase-root {
+  position: absolute;
+  top: 0;
+  right: -15px;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 11px 20px;
+  border-radius: 0 30px 30px 0;
+  background: var(--main-color);
+  width: 130px;
+}
+
+.ChooseDomainItem .DropDown {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 140px;
+  z-index: 9;
+  cursor: pointer;
+}
+
+.ChooseDomainItem .DropDown h6 {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--main-color);
+}
+
+.ChooseDomainItem .DropDown h6 svg {
+  color: var(--main-color);
+  font-size: 18px;
+  margin-left: 5px;
+  margin-top: 8px;
+}
+
+.DomainPart {
+  justify-content: center;
+}
+
+.DomainPartItem {
+  width: 80px;
+  margin-top: 20px;
+  margin-right: 20px;
+  background: var(--main-color);
+  position: relative;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all linear 0.1s;
+  overflow: hidden;
+}
+
+.DomainPartItem:nth-child(2) {
+  background: var(--cart-color-2);
+}
+
+.DomainPartItem:nth-child(3) {
+  background: var(--cart-color-3);
+}
+
+.DomainPartItem:nth-child(4) {
+  background: var(--cart-color-2);
+}
+
+.DomainPartItem:nth-child(5) {
+  background: var(--cart-color-4);
+}
+
+.DomainPartItem:nth-child(6) {
+  background: var(--cart-color-1);
+}
+
+.DomainPartItem img {
+  position: absolute;
+  bottom: 3px;
+  left: 12px;
+}
+
+.DomainPartItem a {
+  font-size: 20px;
+  line-height: 35px;
+  font-weight: 700;
+  z-index: 9;
+  text-align: center;
+}
+
+.YourWebLink {
+  margin-top: 50px;
+}
+
+.YourWebLink h6 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--main-color);
+}
+
+.YourWebLink a {
+  font-size: 20px;
+  margin-top: 10px;
+  color: var(--main-color);
+  font-weight: 500;
+}
+
+.ChooseDomain input {
+  padding-left: 80px;
+  border-radius: 30px;
+}
+
+/* BusinessInfo */
+.BusinessInfoItem {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.BusinessInfo h4 {
+  color: var(--main-color);
+}
+
+.BusinessInfo .duelButton {
+  border: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.AddAnotherVerification pre {
+  margin: 10px 0;
+  color: var(--text-color);
+  font-size: 14px;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: break-spaces;
+}
+
+.DomainVerification ul li {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.AddAnotherVerification h4 {
+  color: var(--main-color);
+}
+
+.FacebookPixel h4 {
+  color: var(--main-color);
+}
+
+.FacebookPixel h6.padding {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--header-color);
+  margin-top: 10px;
+}
+
+.WebsiteSetting .MuiTabs-flexContainer {
+  flex-wrap: wrap;
+}
+
+/* DashboardSetting */
+
+.DashboardSettingItem {
+  margin-top: 10px;
+}
+
+.DashboardSettingItem h4 {
+  color: var(--main-color);
+}
+
+.DashboardSettingItem label {
+  display: flex;
+  align-items: center;
+}
+
+.DashboardSettingItem label i {
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--main-color);
+  margin-bottom: -1px;
+  margin-right: 10px;
+}
+
+/* --------------------------------------------------------------------------
+WebsiteSetting End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+Home Page Design
+----------------------------------------------------------------------------
+-------------------------------------------------------------------------- */
+
+/* -----------------------------
+ Start WebsiteLinkContent
+------------------------------- */
+
+.WebsiteLink {
+  /* margin-bottom: 30px; */
+}
+
+.WebsiteLinkContent .left ul li {
+  display: inline-block;
+  margin-right: 10px;
+  padding-right: 10px;
+}
+
+.WebsiteLinkContent .left ul li :where(a, button) {
+  font-size: 14px;
+  background: var(--main-bg-color-2);
+  color: var(--main-color);
+  padding: 4px 15px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 400;
+  border: 1px solid #ece9f1;
+}
+
+.WebsiteLinkContent .left ul li h5 {
+  color: var(--header-color);
+}
+
+.WebsiteLinkContent .left ul li h5 a {
+  padding: 0;
+  border: none;
+  margin-left: 10px;
+  margin-left: 5px;
+  color: var(--main-color);
+}
+
+.WebsiteLinkContent .left ul li h5 span {
+  margin-left: 5px;
+  color: var(--main-color);
+}
+
+.WebsiteLinkContent .left ul li a {
+  border: 1px solid var(--main-color);
+  background: none;
+  padding: 5px 15px;
+}
+
+.WebsiteLinkContent .left ul li i {
+  margin-left: 5px;
+  margin-bottom: -5px;
+  font-size: 16px;
+}
+
+.WebsiteLinkContent .left ul li :where(a, button):hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+/* -----------------------------
+ End WebsiteLinkContent
+----------------------------- */
+
+/* -----------------------------
+ Start WelcomeModel
+------------------------------- */
+
+.WelcomeModelContent {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 30px;
+  width: 550px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.WelcomeModelContent h3 {
+  font-family: "Niconne", cursive;
+  font-size: 50px;
+  line-height: 60px;
+  color: var(--bg_color);
+  letter-spacing: 2px;
+}
+
+.WelcomeModelContent h4 {
+  color: var(--main-color);
+  padding: 15px 0;
+}
+
+.WelcomeModelContent h5 {
+  font-size: 28px;
+  line-height: 40px;
+  color: #ff6347;
+}
+
+.WelcomeModelContent .Gif {
+  margin: 20px 0;
+}
+
+.WelcomeModelContent img {
+  width: 100%;
+}
+
+.WelcomeModelContent p {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  padding: 0 100px;
+}
+
+.WelcomeModelContent p span {
+  color: var(--bg_color);
+}
+
+.WelcomeModelContent a {
+  width: -webkit-fill-available;
+  margin-top: 10px;
+}
+
+/* -----------------------------
+ End WelcomeModel
+----------------------------- */
+
+/* -----------------------------
+ Start ChartJs
+------------------------------- */
+
+.HomePage h4 {
+  color: var(--header-color);
+  font-size: 18px;
+}
+
+.HomePage .Header {
+  border-bottom: 1px solid var(--border-color);
+  margin: 0 -20px;
+  padding: 0 20px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.HomePage .Header .right {
+  position: relative;
+}
+
+.HomePage .Header button {
+  padding: 5px 20px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  color: var(--text-color);
+  border-radius: 8px;
+}
+
+.HomePage .SalesTargetContent .Header button {
+  color: var(--white-color);
+  font-weight: 400;
+  border-radius: 30px;
+  font-size: 14px;
+}
+
+.SalesTargetBox {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.HomePage .SalesTargetContent .SalesTargetItem {
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 22px 113.46px rgba(0, 0, 0, 0.03);
+  width: 30%;
+  margin: 15px 0;
+  margin-top: 20px;
+}
+
+.HomePage .SalesTargetContent .SalesTargetItem h5 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.HomePage .SalesTargetContent .SalesTargetItem h5:nth-child(2) {
+  font-weight: 400;
+  color: var(--text-color);
+  font-size: 14px;
+}
+
+.HomePage .SalesTargetItemBox .item {
+  padding-left: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.HomePage .SalesTargetItemBox .item h3 {
+  font-size: 22px;
+}
+
+.HomePage .SalesTargetItemBox .item::after {
+  position: absolute;
+  content: "";
+  top: 15px;
+  left: 0;
+  height: 30px;
+  width: 5px;
+  border-radius: 5px;
+  background: var(--main-color);
+}
+
+.HomePage .SalesTargetItemBox .item:last-child::after {
+  background: var(--main-bg-color);
+}
+
+.HomePage .SalesTargetItemBox .item:last-child {
+  margin-bottom: 0;
+}
+
+.HomePage .SalesTargetItemBox .item h6 {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color);
+}
+
+.HomePage .SalesTargetItemBox .right {
+  position: relative;
+}
+
+.HomePage .SalesTargetItemBox .right .overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.HomePage .SalesTargetItemBox .right .overlay span {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 700;
+  color: var(--main-color);
+}
+
+.HomePage .SalesTargetItemBox .right .overlay p {
+  font-size: 12px;
+  margin-top: 1px;
+  font-weight: 500;
+}
+
+/* circle */
+
+.progressCircle {
+  display: block;
+}
+
+.circle {
+  fill: transparent;
+  stroke: #0070f3;
+  /* Replace with your desired color */
+  stroke-width: 10;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+/* circle */
+
+.HomePage .Header button i {
+  font-size: 13px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+}
+
+.HomePage .HomePageCart .duelButton {
+  position: absolute;
+  bottom: 11px;
+  left: 30px;
+  border-top: 0;
+}
+
+.HomePage .HomePageCart .duelButton button {
+  width: 100%;
+  font-size: 12px;
+  background: var(--main-color);
+  color: var(--white-color);
+  border-radius: 30px;
+  padding: 5px 10px;
+}
+
+.ChartJs .recharts-responsive-container {
+  margin-left: -30px;
+}
+
+.ChartJs.Channels {
+  height: 372px;
+}
+
+.Channels .recharts-responsive-container {
+  width: 200px !important;
+  height: 270px !important;
+  margin-left: 0;
+}
+
+.Channels .recharts-responsive-container svg {
+  height: 340px;
+  margin-top: -20px;
+}
+
+/* ChannelContent */
+
+.ChannelContent .left {
+  width: 70%;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ChannelContent .left .leftItem {
+  width: 46%;
+}
+
+.ChannelContent .left .leftItem p {
+  position: relative;
+  padding-left: 20px;
+}
+
+.ChannelContent .left .leftItem p::after {
+  position: absolute;
+  content: "";
+  top: 5px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--main-color);
+}
+
+.ChannelContent .left .leftItem:nth-child(2) p:after {
+  background: #f5b849;
+}
+
+.ChannelContent .left .leftItem:nth-child(3) p:after {
+  background: #26bf94;
+}
+
+.ChannelContent .left .leftItem:nth-child(4) p:after {
+  background: #23b7e5;
+}
+
+.ChannelContent .left .leftItem h3 {
+  margin: 5px 0;
+}
+
+.HomePage h6 {
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  font-weight: 400;
+}
+
+.HomePage h6.increase {
+  color: var(--main-color);
+}
+
+.HomePage h6.decrease {
+  color: var(--red-color);
+}
+
+.HomePage h6 i {
+  font-size: 20px;
+  margin-left: 10px;
+  margin-bottom: -5px;
+}
+
+/* right */
+
+.ChannelContent .right #circle,
+.ChannelContent .right #circle .segment {
+  border-color: lightgray;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 25px;
+  box-sizing: border-box;
+  height: 250px;
+  position: relative;
+  width: 250px;
+}
+
+.ChannelContent .right #circle .segment {
+  -webkit-clip-path: inset(0 40px 50px 40px);
+  left: -26px;
+  position: absolute;
+  top: -25px;
+}
+
+.ChannelContent .right #circle .segment:nth-child(1) {
+  border-color: #23b7e5;
+  transform: rotate(-20deg);
+}
+
+.ChannelContent .right #circle .segment:nth-child(2) {
+  border-color: #6b2cd1;
+  transform: rotate(70deg);
+}
+
+.ChannelContent .right #circle .segment:nth-child(3) {
+  border-color: #f5b849;
+  transform: rotate(160deg);
+}
+
+.ChannelContent .right #circle .segment:nth-child(4) {
+  border-color: #26bf94;
+  transform: rotate(250deg);
+}
+
+/* -----------------------------
+ Start HomePageCart
+------------------------------- */
+
+.HomePage .boxShadow {
+  padding: 20px;
+}
+
+.HomePageCart {
+  position: relative;
+  height: 170px;
+}
+
+.HomePageCart .Header {
+  border: 0;
+  padding-bottom: 0;
+}
+
+.HomePageCart .Header h4 {
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.HomePageCart h3 {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+.HomePageCart .Footer {
+  margin-top: 20px;
+  padding: 0;
+}
+
+.HomePageCart .img {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+}
+
+.HomePageCart .img img {
+  width: auto;
+  height: 40px;
+}
+
+.HomePageCart .ListItem li {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-color);
+  margin-bottom: 5px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.HomePageCart .ListItem li:last-child {
+  margin-bottom: -5px;
+}
+
+.HomePageCart .ListItem li::after {
+  position: absolute;
+  content: "";
+  top: 8px;
+  left: 0;
+  width: 15px;
+  height: 2px;
+  background: var(--main-color);
+}
+
+.HomePageCart .ListItem li span {
+  color: var(--header-color);
+  font-weight: 700;
+  margin-left: 5px;
+  font-size: 13px;
+}
+
+/* -----------------------------
+ End HomePageCart
+------------------------------- */
+
+/* -----------------------------
+ Start RecentOrder
+------------------------------- */
+
+.RecentOrder,
+.TopSelling {
+  height: 500px;
+}
+
+.RecentOrder .Header {
+  margin-bottom: 0;
+}
+
+.RecentOrder .RecentOrderTitle .RecentOrderItem {
+  padding: 10px 20px !important;
+  margin: 0 -20px;
+}
+
+.RecentOrder .RecentOrderTitle .RecentOrderItem h5 {
+  font-size: 12px;
+}
+
+.RecentOrder .RecentOrderTitle .RecentOrderItem:first-child {
+  background: #f7f2ff;
+}
+
+.RecentOrder .RecentOrderItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.RecentOrder .RecentOrderItem:last-child {
+  margin-bottom: 0;
+  border: 0;
+  padding-bottom: 0;
+}
+
+.RecentOrder .RecentOrderItem .item:nth-child(1) {
+  width: 15%;
+  text-align: left;
+}
+
+.RecentOrder .RecentOrderItem .item:nth-child(2) {
+  width: 30%;
+}
+
+.RecentOrder .RecentOrderItem .item:nth-child(3) {
+  width: 25%;
+}
+
+.RecentOrder .RecentOrderItem .item:nth-child(4) {
+  width: 15%;
+}
+
+.RecentOrder .RecentOrderItem .item:nth-child(5) {
+  width: 15%;
+  text-align: right;
+}
+
+.RecentOrder .RecentOrderItem .item h6 {
+  font-size: 13px;
+  line-height: 20px;
+  color: #fb8c00;
+  background: #fff4e5;
+  padding: 5px 15px;
+  border-radius: 20px;
+  text-align: center;
+  display: unset;
+  font-weight: 600;
+}
+
+.RecentOrder .RecentOrderItem .item p {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.RecentOrder .RecentOrderItem .item .name {
+  font-size: 12px;
+  color: var(--text-color);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.RecentOrder .RecentOrderItem .item .name .icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f7f2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.RecentOrder .RecentOrderItem .item .name:last-child {
+  color: var(--main-color);
+  margin-bottom: 0;
+}
+
+.RecentOrder .RecentOrderItem .item .name i {
+  font-size: 15px;
+  line-height: 15px;
+  margin-bottom: -3px;
+  color: var(--main-color);
+}
+
+.RecentOrder .RecentOrderItem .item h4 {
+  display: block;
+  align-items: center;
+  color: var(--header-color);
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.RecentOrder .RecentOrderItem .item h4 i {
+  margin-right: 5px;
+}
+
+.RecentOrder .RecentOrderItem .Status button {
+  padding: 0;
+  padding: 4px 10px;
+  border-radius: 10px;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.RecentOrder .RecentOrderItem .Status button i {
+  margin-left: 10px;
+  margin-bottom: -5px;
+  font-size: 11px;
+}
+
+/* -----------------------------
+ End RecentOrderTitle
+------------------------------- */
+
+/* -----------------------------
+ Start TopSelling
+------------------------------- */
+
+.TopSelling .Header {
+  margin-bottom: 0;
+}
+
+.TopSelling .TopSellingContent {
+  background: #f8f8fb;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.TopSelling .TopSellingContent .item {
+  width: 15%;
+}
+
+.TopSelling .TopSellingContent .item:nth-child(3) {
+  width: 25%;
+}
+
+.TopSelling .TopSellingContent .item:first-child {
+  width: 50%;
+}
+
+.TopSelling .TopSellingContent .item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.TopSelling .TopSellingContent .item p {
+  margin-left: 10px;
+  margin-top: 0;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.TopSelling .TopSellingContent .item h4 {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.TopSelling .TopSellingContent .item h4 i {
+  margin-bottom: -5px;
+  margin-right: 5px;
+}
+
+.TopSelling .TopSellingContent .item h6 {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--text-color);
+  font-weight: 400;
+}
+
+.TopSelling .TopSellingContent .item span {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.TopSelling .TopSellingContent .item .StockOut {
+  color: var(--red-color);
+}
+
+/* -----------------------------
+ End TopSelling
+------------------------------- */
+
+/* --------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+Home Page Design
+----------------------------------------------------------------------------
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ Start SectionCustomize
+-------------------------------------------------------------------------- */
+
+.SectionCustomize .UpdateButtonCustomize {
+  text-align: right;
+}
+
+.SectionCustomize .bg {
+  width: 50%;
+  margin-top: 10px;
+}
+
+.SectionCustomizeBox {
+  margin-bottom: 30px;
+}
+
+.SectionCustomize .Header {
+  margin: 0 -30px;
+  padding: 0 30px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.SelectSectionBox {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.SelectSectionItem {
+  width: 31%;
+  position: relative;
+  cursor: pointer;
+}
+
+.SelectSectionItem .img {
+  height: 160px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+
+.SelectSectionItem img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.SelectSectionBox .radio {
+  font-size: inherit;
+  margin: 0;
+  position: absolute;
+  padding: 0;
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  .SelectSectionBox .radio {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.2s ease-out, border-color 0.2s ease-out;
+    display: none;
+  }
+
+  .SelectSectionBox .radio:checked {
+    background: var(--main-color);
+    display: block;
+    width: 25px;
+    height: 25px;
+    right: 10px;
+    top: 10px;
+  }
+
+  .SelectSectionBox .radio::after {
+    border: 2px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    content: "";
+    display: block;
+    height: 7px;
+    width: 3px;
+    left: 9px;
+    top: 6px;
+    position: absolute;
+    transform: rotate(45deg);
+  }
+
+  .SelectSectionBox .radio:checked + .img {
+    border: 1px solid var(--main-color);
+  }
+}
+
+/* ColorSection */
+
+.ColorSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ColorSection h5 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--header-color);
+}
+
+.ColorSection .ColorSectionItem {
+  width: 48%;
+}
+
+.ColorSection .ColorSectionItem:first-child {
+  border-right: 1px solid var(--border-color);
+  padding-right: 70px;
+}
+
+.ColorSection .ColorSectionItem:last-child {
+  padding-left: 70px;
+}
+
+.ColorSection .showColor {
+  position: relative;
+  padding: 10px;
+  height: 20px;
+  background: #eeeeee;
+  border-radius: 10px;
+}
+
+.ColorSection .showColor h4 {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.ColorSection .showColor input {
+  padding: 0;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.ColorSection .showColor input:focus {
+  outline: none;
+}
+
+.SectionButton {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.SectionButton .bg {
+  width: auto;
+  background: var(--cart-color-1);
+  color: var(--header-color);
+}
+
+/* --------------------------------------------------------------------------
+ End SectionCustomize
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ Start NullPage
+-------------------------------------------------------------------------- */
+
+.NullPage {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.NullPage .bg {
+  margin-top: 20px;
+}
+
+/* --------------------------------------------------------------------------
+ End NullPage
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ Start OrderDetailsPage
+-------------------------------------------------------------------------- */
+
+.OrderDetailsPage .OrderDetailsContent .Header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.OrderDetailsPage .OrderDetailsContent .Header h3 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.OrderDetailsPage .OrderDetailsContent .Header h3 a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f2e9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-color);
+}
+
+.OrderDetailsPage .OrderDetailsContent .Header h3 a i {
+  line-height: 0;
+  font-size: 16px;
+}
+
+.OrderDetailsPage .OrderDetailsContent .Header .right {
+  gap: 10px;
+}
+
+.OrderDetailsPage .OrderDetailsContent .Header .right select {
+  width: 200px;
+}
+
+.OrderDetailsPage .OrderDetailsContent .Header .right button {
+  gap: 10px;
+  font-weight: 500;
+  min-width: unset;
+  font-size: 14px;
+}
+
+/* OrderNumber */
+
+.OrderDetailsPage .OrderNumber {
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+
+.OrderDetailsPage .OrderNumber .left h4 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.OrderDetailsPage .OrderNumber i {
+  cursor: pointer;
+}
+
+.OrderDetailsPage .OrderNumber ul li {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--text-color);
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.OrderDetailsPage .OrderNumber ul li button {
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.OrderDetailsPage .OrderNumber ul li span {
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+.OrderDetailsPage .OrderNumber ul li span.status {
+  color: var(--main-color);
+  padding: 5px 20px;
+  border-radius: 20px;
+  background: var(--main-bg-color);
+  font-weight: 400;
+}
+
+.OrderDetailsPage .OrderNumber ul li span.unpaid {
+  color: var(--red-color);
+  padding: 5px 20px;
+  border-radius: 20px;
+  background: #fdeced;
+  font-weight: 400;
+}
+
+.OrderDetailsPage .OrderNumber ul li span.phone {
+  color: #fb8c00;
+  padding: 5px 20px;
+  border-radius: 20px;
+  background: #feeed9;
+  font-weight: 400;
+}
+
+.OrderDetailsPage .OrderNumber .right ul li span.name {
+  color: var(--main-color);
+}
+
+.OrderDetailsPage .OrderNumber .right ul li i {
+  color: var(--main-color);
+}
+
+.OrderDetailsPage .Table td {
+  font-weight: 500;
+}
+
+.OrderDetailsPage .Table td:nth-child(2) {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.OrderDetailsPage .Table th:nth-child(2) {
+  text-align: left;
+}
+
+.OrderDetailsPage .Table td:nth-child(2) div {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.OrderDetailsPage .Table td:nth-child(2) p {
+  font-weight: 400;
+}
+
+/* OrderTracking */
+
+.OrderTracking {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.OrderTrackingLeft {
+  width: 60%;
+  border-radius: 4px;
+  border: 1px solid var(--colors-subtitle-text-3, #f2f2f2);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.05);
+}
+
+.OrderTrackingLeft .header {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.OrderTrackingLeftLeft {
+  padding: 20px 0;
+  border-right: 1px solid var(--border-color);
+  width: 70%;
+  min-height: 600px;
+}
+
+.OrderTrackingLeftLeft h5 {
+  font-size: 16px;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.OrderTrackingLeftLeft h5 span {
+  border-radius: 4px;
+  background: #efefef;
+  padding: 3px 8px;
+}
+
+.OrderTrackingLeftLeft h5 i {
+  line-height: 0;
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+/* TrackingDetails */
+
+.TrackingDetails {
+  margin-top: 50px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+
+.TrackingDetails .time .timeItem {
+  margin-bottom: 20px;
+}
+
+.TrackingDetails .time .timeItem:last-child {
+  margin-bottom: 0;
+}
+
+.TrackingDetails .time h6 {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.TrackingDetails .TrackingDetailsStatus h4 {
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 700;
+  color: var(--header-color);
+  margin-bottom: 38px;
+}
+
+.TrackingDetails .TrackingDetailsStatus h4:last-child {
+  margin-bottom: 0;
+}
+
+.TrackingDetailsBg {
+  margin-top: -30px;
+  background: url("../public/images/order_bg.svg");
+  min-height: 225px;
+  height: 100%;
+  width: 50px;
+}
+
+.TrackingDetails_order_bg img {
+  height: 100%;
+  width: 80px;
+}
+
+.TrackingDetailsItem {
+  margin-top: 35px;
+  margin-left: -47px;
+}
+
+/* OrderTrackingLeftRight */
+
+.OrderTrackingLeftRight {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.OrderTrackingLeftRight .OrderNote {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.OrderTrackingLeftRight label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.OrderTrackingLeftRight label i {
+  line-height: 0;
+  font-size: 20px;
+}
+
+.OrderTrackingLeftRight textarea {
+  width: -webkit-fill-available;
+}
+
+/* OrderTrackingRight */
+.OrderTrackingRight {
+  border-radius: 20px;
+  background: var(--white-color);
+  box-shadow: 0px 10px 49px 0px rgba(0, 0, 0, 0.13);
+  width: 35%;
+  padding: 30px;
+}
+
+.OrderTrackingRight li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.OrderTrackingRight li:last-child {
+  margin-bottom: 0;
+}
+
+.OrderTrackingRight li span {
+  width: 50%;
+  text-align: right;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.OrderTrackingRight li p {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+}
+
+.OrderTrackingRight li p i {
+  line-height: 0;
+}
+
+.OrderTrackingRight li:nth-child(3) p {
+  color: var(--main-color);
+}
+
+.OrderTrackingRight li:last-child {
+  border-top: 1px solid var(--border-color);
+  margin-top: 15px;
+  padding-top: 15px;
+}
+
+.OrderTrackingRight li:last-child span {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--red-color);
+  font-weight: 600;
+}
+
+.OrderTrackingRight li:last-child p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--red-color);
+}
+
+/* --------------------------------------------------------------------------
+ End OrderDetails
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ Start
+-------------------------------------------------------------------------- */
+
+.MuiToggleButtonGroup-root .Mui-selected {
+  background: var(--main-bg-color) !important;
+  color: var(--main-color) !important;
+}
+
+/* --------------------------------------------------------------------------
+ End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ Start
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ Start
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ Start
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ End
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ Start
+-------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+ End
+-------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+Media 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+@media (max-width: 1399px) {
+  .css-13cymwt-control,
+  .css-t3ipsp-control {
+    padding: 0px 10px !important;
+  }
+
+  .LandingWebsiteItem {
+    padding: 15px;
+  }
+
+  .LandingWebsiteItem h4 {
+    padding: 10px 0;
+    font-size: 15px;
+    line-height: 28px;
+  }
+
+  .AccountDashboard .Selector button {
+    margin-right: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 30px;
+  }
+
+  .AccountDashboard .HeaderItem {
+    display: block;
+    text-align: center;
+  }
+
+  .AccountDashboard .HeaderItem h3 {
+    justify-content: center;
+  }
+
+  .AccountDashboard .AccountCashIn .MuiButtonBase-root {
+    display: block;
+    padding: 20px 10px;
+  }
+
+  .AccountCashIn .MuiButtonBase-root span {
+    margin-right: 0;
+    display: block;
+  }
+
+  .AccountDashboard .HeaderItem .img {
+    margin-right: 0;
+  }
+
+  .AccountTable .Filter .MuiOutlinedInput-root .MuiAutocomplete-input {
+    padding: 9px 15px;
+  }
+
+  .AccountCashIn .MuiButtonBase-root span {
+    font-size: 18px;
+  }
+
+  .AccountDashboard.AccountPdfReport .FilterButton.FilterItem {
+    width: 16%;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h5 {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem button {
+    font-size: 11px;
+    line-height: 24px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem {
+    padding: 10px;
+  }
+
+  .CourierItem .customInput .eye {
+    top: 40px;
+  }
+
+  .BulkSms .BulkSmsItem .header h4 {
+    line-height: 20px;
+  }
+
+  .BulkSms .BulkToggle .MuiTypography-root {
+    font-size: 14px;
+  }
+
+  .AddonsTabItem h4 {
+    font-size: 14px;
+    height: 52px;
+    line-height: 20px;
+  }
+
+  .AddonsTabItem h5 {
+    margin: 5px 0;
+  }
+
+  .AddonsTabItem .img img {
+    height: 50px;
+  }
+
+  .AddonsTabItem .PainUnpaid {
+    padding: 6px 20px;
+  }
+
+  .AddonsTabItem .PainUnpaid {
+    width: 125px;
+  }
+
+  .ChooseDomainItem .left {
+    padding: 9px 11px;
+  }
+
+  .ChooseDomainItem .MuiButtonBase-root {
+    right: -10px;
+    font-size: 16px;
+    padding: 7px 20px;
+  }
+
+  .DomainPartItem {
+    margin-right: 10px;
+    padding: 10px 8px;
+  }
+
+  .DomainPartItem a {
+    font-size: 17px;
+    line-height: 30px;
+  }
+
+  .InvoiceFormate .duelButton {
+    display: block;
+    margin-top: 0;
+  }
+
+  .InvoiceFormate .duelButton button {
+    width: 100%;
+  }
+
+  .InvoiceFormate .duelButton button.red {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .ChannelContent .left .leftItem {
+    width: 45%;
+  }
+
+  .Channels .recharts-responsive-container svg {
+    height: 310px;
+  }
+
+  .ChartJs.Channels {
+    height: 364px;
+  }
+
+  .HomePage .Header button i {
+    font-size: 10px;
+    margin-bottom: -1px;
+  }
+
+  .HomePage .SalesTargetItemBox .item h3 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .HomePage .SalesTargetItemBox .item h6 {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .progressbar_ProgressCircleMain__x3b_x {
+    width: 130px !important;
+    height: 130px !important;
+  }
+
+  .HomePage h4 {
+    font-size: 16px;
+  }
+
+  .HomePage .SalesTargetContent .SalesTargetItem h5 {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .HomePage .SalesTargetContent .SalesTargetItem h5:nth-child(2) {
+    font-size: 12px;
+  }
+
+  .RecentOrder .RecentOrderItem .item .name a {
+    font-size: 12px;
+  }
+
+  .nice-dates-week-header_day {
+    font-size: 11px;
+  }
+
+  .ColorSection .ColorSectionItem:first-child {
+    padding-right: 30px;
+  }
+
+  .ColorSection .ColorSectionItem:last-child {
+    padding-left: 30px;
+  }
+
+  .OrderTrackingLeft {
+    padding: 20px;
+  }
+
+  .TrackingDetails .time .timeItem {
+    width: 100px;
+  }
+
+  .TrackingDetails .time h6 {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .TrackingDetails .TrackingDetailsStatus h4 {
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 35px;
+  }
+
+  .OrderTrackingLeftLeft h5 {
+    font-size: 12px;
+  }
+
+  .OrderTrackingRight {
+    padding: 20px;
+    width: 30%;
+  }
+
+  .OrderTrackingRight li span {
+    font-size: 14px;
+    line-height: 20px;
+    width: 56%;
+  }
+
+  .OrderTrackingRight li:last-child span {
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .OrderTrackingRight li:last-child p {
+    font-size: 17px;
+    line-height: 22px;
+  }
+
+  .OrderDetailsPage .OrderDetailsContent .Header h3 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .OrderDetailsPage .OrderDetailsContent .Header .right select {
+    width: 150px;
+  }
+
+  .OrderDetailsPage .OrderDetailsContent .Header .right button {
+    padding: 8px;
+  }
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+Media 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+@media (max-width: 1023px) {
+  .ChooseDomainItem .MuiButtonBase-root {
+    width: 90px;
+  }
+
+  .DashboardSetting .ChooseDomain .MuiButtonBase-root a {
+    font-size: 13px;
+  }
+
+  .ChooseDomainItem .DropDown {
+    right: 85px;
+  }
+
+  .HomePage .Header {
+    border-bottom: 1px solid var(--border-color);
+    margin: 0 -15px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    height: 35px;
+  }
+
+  .progressbar_ProgressCircleMain__x3b_x {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .HomePage .SalesTargetItemBox .right .overlay p {
+    display: none;
+  }
+
+  .HomePage .SalesTargetItemBox .right .overlay span {
+    font-size: 14px;
+  }
+
+  .HomePage .SalesTargetContent .SalesTargetItem h5:nth-child(2) {
+    font-size: 10px;
+  }
+
+  .HomePage .SalesTargetItemBox .item {
+    margin-bottom: 10px;
+  }
+
+  #Profile .MuiPaper-root.MuiPaper-elevation {
+    top: 90px !important;
+    width: 320px;
+    right: 20px;
+  }
+
+  .style_NotificationContent__Q3Idx ul li {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .RecentOrder,
+  .TopSelling {
+    height: auto;
+  }
+
+  .HomePage .SalesTargetContent .SalesTargetItem .SalesTargetItemBox {
+    flex-direction: column;
+  }
+
+  .HomePage .SalesTargetContent .SalesTargetItem .SalesTargetItemBox .left {
+    margin-top: 10px;
+    order: 2;
+  }
+
+  .HomePage .SalesTargetContent .SalesTargetItem .SalesTargetItemBox .right {
+    width: 100%;
+    order: 1;
+  }
+
+  .progressbar_ProgressCircleMain__x3b_x {
+    width: 130px !important;
+    height: 130px !important;
+    margin: 0 auto;
+  }
+
+  .OrderDetailsPage .OrderDetailsContent .Header {
+    display: block;
+  }
+
+  .OrderDetailsPage .OrderDetailsContent .Header h3 {
+    margin-bottom: 20px;
+  }
+
+  .OrderDetailsPage .Table table tr:last-child td:first-child {
+    border-radius: 0 0 0 20px;
+    width: 300px;
+  }
+
+  .OrderDetailsPage .OrderTracking {
+    display: block;
+  }
+
+  .OrderDetailsPage .OrderTrackingLeft {
+    width: -webkit-fill-available;
+  }
+
+  .OrderDetailsPage .OrderTrackingRight {
+    width: -webkit-fill-available;
+    margin-top: 30px;
+  }
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+Media 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+@media (max-width: 600px) {
+  .AccountDashboard .HeaderItemContent {
+    width: 100%;
+  }
+
+  .AccountDashboard .HeaderItem .img img {
+    height: 50px;
+  }
+
+  .AccountDashboard .HeaderItem h5 {
+    font-size: 20px;
+    line-height: 30px;
+    margin: 10px 0;
+  }
+
+  .AccountDashboard .Selector button {
+    margin: 10px 0;
+    margin-right: 10px;
+  }
+
+  .AccountPdfReport h4 {
+    font-weight: 700;
+    font-size: 27px;
+    margin: 0px 0;
+  }
+
+  .AccountPdfReport .FilterButton button.active {
+    font-size: 14px;
+  }
+
+  .AccountDashboard.AccountPdfReport .FilterButton.FilterItem {
+    width: 30%;
+  }
+
+  .AccountDashboard.AccountPdfReport .FilterButton.FilterItem {
+    width: 30%;
+    margin-left: 0;
+  }
+
+  .AccountTable .FilterItem {
+    width: 100%;
+  }
+
+  .AccountPdfReport .HeaderItemContent {
+    margin-right: 0;
+  }
+
+  .BulkSms .BulkSmsItem {
+    height: auto;
+  }
+
+  .BulkSms .BulkSmsItem .header {
+    height: auto;
+  }
+
+  .BulkSms .BulkToggle label {
+    width: 100%;
+  }
+
+  .BkashSignUp {
+    margin-top: 0;
+  }
+
+  .BkashSignUpContent {
+    width: 90%;
+  }
+
+  .AddonsTabsHeader {
+    display: block;
+  }
+
+  .AddonsTabItem h4 {
+    font-size: 16px;
+    height: auto;
+  }
+
+  .ChooseDomainSidebarLeft {
+    height: auto;
+  }
+
+  .ChooseDomainSidebar {
+    margin-top: 20px;
+  }
+
+  .ChooseDomainItem .MuiButtonBase-root {
+    width: 65px;
+  }
+
+  .DashboardSetting .ChooseDomain .MuiButtonBase-root a {
+    font-size: 12px;
+  }
+
+  .ChooseDomainItem .left h5 {
+    font-size: 12px;
+  }
+
+  .ChooseDomainItem .left {
+    padding: 9px 7px;
+  }
+
+  .ChooseDomain input {
+    padding-left: 55px;
+    font-size: 12px;
+  }
+
+  .ChooseDomain input::placeholder {
+    font-size: 12px;
+  }
+
+  .ChooseDomainItem .DropDown {
+    right: 55px;
+  }
+
+  .ChooseDomainItem .DropDown .MuiSelect-select.MuiSelect-outlined {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .WebsiteSettingPayment .icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .WebsiteSettingPayment .icon i {
+    font-size: 25px;
+    line-height: 25px;
+  }
+
+  .WebsiteSettingPayment h4 {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .DomainRequest .ProductTable .d_flex.d_justify {
+    display: block;
+    text-align: center;
+  }
+
+  .DashboardSetting .SelectImgButton {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .tableModal .tableModalContent {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .SalesTargetBox {
+    display: block;
+  }
+
+  .HomePage .SalesTargetContent .SalesTargetItem {
+    width: -webkit-fill-available;
+  }
+
+  .HomePage .SalesTargetContent .Header button {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .HomePage h4 {
+    font-size: 14px;
+  }
+
+  .ChartJs.Channels {
+    height: auto;
+  }
+
+  .ChannelContent .left {
+    width: 100%;
+  }
+
+  .HomePage .Header {
+    padding-bottom: 15px;
+  }
+
+  .Channels .recharts-responsive-container {
+    width: auto !important;
+    height: 250px !important;
+    margin-left: 0;
+  }
+
+  .Channels .recharts-wrapper {
+    height: auto;
+  }
+
+  .RecentOrder,
+  .TopSelling {
+    height: auto;
+    overflow: scroll;
+    width: 450px;
+  }
+
+  h4 {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .WebsiteLinkContent .left ul li {
+    margin-bottom: 5px;
+  }
+
+  .MobileFooterMenu {
+    width: -webkit-fill-available;
+  }
+
+  .MobileFooterMenu ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .MobileFooterMenu li a {
+    font-size: 30px;
+  }
+
+  .MobileFooterMenu li.active a {
+    color: var(--main-color);
+  }
+
+  .OrderDetailsPage .OrderDetailsContent .Header .right {
+    flex-wrap: wrap;
+  }
+
+  .OrderDetailsPage .OrderDetailsContent .Header .right select {
+    width: 140px;
+  }
+
+  .OrderDetailsPage .OrderNumber .left h4 {
+    display: block;
+  }
+
+  .OrderDetailsPage .OrderNumber {
+    display: block;
+  }
+
+  .OrderDetailsPage .OrderNumber .left {
+    width: 100%;
+  }
+
+  .OrderTrackingLeftBox {
+    display: block;
+  }
+
+  .OrderTrackingLeftLeft {
+    width: -webkit-fill-available;
+    border-right: 0;
+    min-height: auto;
+  }
+
+  .OrderTrackingLeftLeft h5 {
+    word-break: break-word;
+  }
+
+  .TrackingDetailsBg {
+    display: none;
+  }
+
+  .TrackingDetails {
+    padding-right: 0;
+    gap: 10px;
+  }
+
+  .OrderTrackingLeftRight {
+    width: 100%;
+  }
+}
+
+.suggested_note {
+  display: none;
+}
+
+nav.MuiPagination-root ul.MuiPagination-ul.css-wjh20t-MuiPagination-ul {
+  margin-top: 30px;
+}
+
+.LandingWebsite button {
+  margin-top: 30px !important;
+}
+
+.LandingWebsiteContent a button {
+  background: var(--main-color) !important;
+  padding: 8px 20px;
+  border-radius: 30px;
+}
+
+.product_sort_description,
+.product_long_description {
+  width: 100%;
+  margin-top: 20px;
+}
+.product_sort_description .ql-container {
+  height: 100px;
+  overflow: scroll;
+  border-radius: 0 !important;
+}
+
+.product_long_description .ql-container {
+  height: 200px;
+  overflow-y: scroll;
+  border-radius: 0 !important;
+}
+
+.sr-only {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.fraudCheck.modalContent .MuiPagination-ul button {
+  font-size: 1rem;
+  padding: 0;
+  height: 2rem;
+}
+.fraudCheck.modalContent .MuiPagination-ul button:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+.fraudCheck.modalContent {
+  max-height: 80svh;
+  margin-bottom: 8svh;
+}
+
+.boxShadow2 {
+  box-shadow: 0px 4px 32px 0px rgba(0, 0, 0, 0.07);
+  background-color: #fff;
+}

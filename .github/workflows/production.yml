@@ -1,0 +1,72 @@
+name: Push-from-Production-to-Server
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  deploy:
+    name: Deploy to Production Server
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout the repository
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      # 2️⃣ Sync project files via rsync using SSH key from secrets
+      - name: Sync files to server
+        run: |
+          mkdir -p ~/.ssh
+          cat << 'EOF' > ~/.ssh/id_rsa
+          ${{ secrets.SSH_PRIVATE_KEY }}
+          EOF
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          ssh -vvv -i ~/.ssh/id_rsa \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "echo SSH OK"
+          rsync -az --delete \
+            --exclude=".git" \
+            --exclude="node_modules" \
+            -e "ssh -vv -i ~/.ssh/id_rsa" \
+            ./ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.TARGET_DIR }}
+
+      # 3️⃣ Build and manage PM2 app
+      - name: Build and restart PM2 app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -e
+            cd "${{ secrets.TARGET_DIR }}"
+
+            # Install dependencies and build
+            npm install --force
+            npm run build
+
+            # PM2 cluster management
+            APP_NAME="FunnelLiner-client-dashboard"
+
+            if pm2 describe "$APP_NAME" > /dev/null 2>&1; then
+              STATUS=$(pm2 info "$APP_NAME" | grep status | awk '{print $4}')
+
+              if [ "$STATUS" = "stopped" ] || [ "$STATUS" = "errored" ]; then
+                echo "⚠️ App exists but not running — starting"
+                pm2 start npm --name "$APP_NAME" -- start
+              else
+                echo "✅ App running — reloading"
+                #pm2 reload ecosystem.config.js --only "$APP_NAME"
+                pm2 reload "$APP_NAME"
+
+              fi
+            else
+              echo "🆕 App not found — starting fresh"
+              pm2 start npm --name "$APP_NAME" -- start
+            fi
+            pm2 status
+            pm2 save
+            echo "✅ Production deployment completed successfully"

@@ -1,0 +1,133 @@
+.HomeSlider {
+  margin-top: 30px;
+}
+
+.HomeSlider .HomeSliderContent .customInput {
+  margin-top: 20px;
+}
+
+.HomeSlider .HomeSliderContent .customInput input {
+  width: 40%;
+  /* margin-top: -14px; */
+}
+
+.HomeSlider .HomeSliderContent label span {
+  color: var(--header-color);
+}
+
+.HomeSlider .HomeSliderContent .close {
+  cursor: pointer;
+  margin-top: -8px;
+}
+
+.HomeSlider .HomeSliderContent .close i {
+  font-size: 30px;
+  color: var(--red-color);
+}
+
+.HomeSlider .HomeSliderContent .Add {
+  margin-top: 20px;
+}
+
+.HomeSlider .HomeSliderContent .Add button {
+  background: var(--active-color);
+  border: 1px solid var(--active-color);
+  padding: 10px 30px;
+  color: var(--header-color);
+  font-size: 18px;
+  line-height: 24px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.HomeSlider .HomeSliderContent .Add button i {
+  font-size: 14px;
+  line-height: 18px;
+  margin-right: 10px;
+  margin-bottom: -5px;
+}
+
+.Submit {
+  text-align: center;
+}
+
+.Submit button {
+  background: var(--main-color);
+  border: 1px solid var(--main-color);
+  padding: 10px 50px;
+  color: var(--white-color);
+  font-size: 18px;
+  line-height: 24px;
+  border-radius: 30px;
+  display: inline-flex;
+  margin-top: 20px;
+  text-align: right;
+}
+
+.Submit button i {
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.Submit button:hover {
+  background: var(--main-hover-color);
+}
+
+
+.homeSliderDivMain{
+  display: flex;
+  gap:30px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.homeSliderDiv{
+  width: 16%;
+  position: relative;
+}
+
+.homeSliderDiv img{
+  display: flex;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+
+.homeSliderDiv i{
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+  color: red;
+  right: 0;
+}
+
+
+@media (max-width: 1399px) {
+  
+  .HomeSlider .HomeSliderContent .Add button {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .homeSliderDiv img {
+    height: 150px;
+  }
+
+
+
+}
+
+
+@media (max-width: 575px) {
+
+  .homeSliderDiv{
+    width: 100%;
+  }
+
+  .homeSliderDiv img{
+    height: 200px;
+  }
+
+}

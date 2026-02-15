@@ -1,0 +1,321 @@
+.Register {
+    background: #894BCA;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.RegisterForm {
+    text-align: center;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 20px;
+}
+
+.RegisterForm input {
+    width: -webkit-fill-available;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--text_color);
+    border: none;
+    background: #F5F5F5;
+}
+
+.RegisterForm input:focus {
+    outline: none;
+}
+
+.RegisterForm .Overflow {
+    overflow-y: auto;
+    max-height: 640px;
+    width: 640px;
+    padding-right: 10px;
+}
+
+.LoginContent {
+    width: 640px;
+}
+
+.RegisterFormLogo {
+    height: 80px;
+}
+
+.RegisterForm .text {
+    margin-top: 10px;
+}
+
+.RegisterForm h3 {
+    font-size: 32px;
+    line-height: 45px;
+    color: var(--text_color);
+    font-weight: 600;
+}
+
+.RegisterForm .text p {
+    margin: 0 auto;
+    margin-top: 5px;
+    line-height: 24px;
+    font-size: 15px;
+    font-weight: 500;
+    max-width: 70%;
+}
+
+.RegisterForm .CustomerInput {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.RegisterForm .CustomerInput label {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #6f6f6f;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.RegisterForm .CustomerInputField {
+    width: -webkit-fill-available !important;
+    background: #F5F5F5 !important;
+    padding: 12px 20px !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    outline: none !important;
+    border: none !important;
+}
+
+.RegisterForm .CustomerInputButton {
+    width: 100%;
+    background: #894BCA;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 500;
+    transition: all linear .2s;
+    border: none !important;
+    cursor: pointer;
+}
+
+.RegisterForm .CustomerInputButton:hover {
+    background: #fb8c00 !important;
+    color: #fff;
+}
+
+.RegisterForm .CustomerInputPara {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.RegisterForm .CustomerInputLink {
+    font-weight: 600 !important;
+    color: #894BCA;
+}
+
+.RegisterForm .CustomerInput p a {
+    margin-left: 10px;
+}
+
+.RegisterForm .CustomerInput p a:hover {
+    color: #fb8c00;
+}
+
+
+/* width */
+
+.Register ::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.Register ::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+/* Handle */
+.Register ::-webkit-scrollbar-thumb {
+    background: #fb8c00;
+}
+
+/* Handle on hover */
+.Register ::-webkit-scrollbar-thumb:hover {
+    background: #fb8c00;
+}
+
+
+.ValidationError {
+    border: 2px solid #894BCA !important;
+}
+
+.ValidationErrorLabel {
+    color: #894BCA !important;
+}
+
+
+@media (max-width: 1440px) {
+
+    .RegisterForm .Overflow {
+        max-height: 550px;
+        width: 550px;
+        overflow-y: auto;
+    }
+
+    .CustomeInput {
+        margin-top: 10px;
+    }
+
+    .LoginContent a.bg, .LoginContent .MuiButtonBase-root.bg {
+        line-height: 20px;
+        padding: 10px;
+    }
+
+    .CustomeInput .eye {
+        top: 48px;
+    }
+
+    .LoginContent p {
+        margin-bottom: 0px;
+    }
+
+    .LoginContent {
+        width: 500px;
+        padding: 30px;
+        max-height: 500px;
+        padding-top: 0px;
+        
+    }
+
+    .LoginContent a.bg, .LoginContent .MuiButtonBase-root.bg {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 28px;
+        background: var(--bg_color);
+        color: var(--white);
+        padding: 10px;
+        width: 100%;
+        border-radius: 10px;
+        text-transform: capitalize;
+    }
+
+    .LoginContent .CustomeInput input {
+        height: 15px;
+    }
+
+    .LoginContent h3 {
+        margin-top: 0;
+        font-size: 28px;
+        line-height: 40px;
+    }
+
+    .LoginContent .Logo img {
+        height: 90px;
+    }
+
+    .LoginContent .HeaderText {
+        margin-top: 0;
+    }
+
+
+}
+
+
+@media (max-width: 1024px) {
+
+    .RegisterForm .Overflow {
+        max-height: 450px;
+        width: 550px;
+    }
+
+    .RegisterForm {
+        padding: 20px 30px;
+        padding-top: 15px;
+    }
+
+    .RegisterFormLogo {
+        height: 70px;
+    }
+
+    .CustomerInputButton {
+        padding: 6px;
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .LoginContent {
+        width: 500px;
+        padding: 30px;
+        max-height: 450px;
+        padding-top: 15px;
+    }
+
+    .LoginContent .Logo img {
+        height: 80px;
+    }
+
+    .LoginContent h3 {
+        margin-top: 0;
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    .LoginContent p {
+        margin-top: 2px;
+        line-height: 20px;
+        margin-bottom: 15px;
+    }
+
+    .LoginContent a.bg, .LoginContent .MuiButtonBase-root.bg {
+        font-size: 16px;
+        line-height: 24px;
+        padding: 8px;
+    }
+
+
+}
+
+@media (max-width: 767.9px) {
+
+    .RegisterForm .Overflow {
+        max-height: 450px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .RegisterForm {
+        padding: 20px;
+        padding-right: 15px;
+        padding-top: 15px;
+        margin: 0 20px;
+    }
+
+    .RegisterForm h3 {
+        font-size: 25px;
+        line-height: 35px;
+    }
+
+    .RegisterForm p {
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 5px;
+    }
+
+    .LoginContent {
+        padding: 20px;
+        max-height: 450px;
+        padding-top: 15px;
+    }
+
+    .Login {
+        padding: 0 20px;
+    }
+
+
+}

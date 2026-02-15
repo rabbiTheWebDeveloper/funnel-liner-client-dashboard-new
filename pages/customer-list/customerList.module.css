@@ -1,0 +1,30 @@
+.CustomerListContent{
+    display: flex;
+    align-items: self-start;
+    justify-content: space-between;
+}
+
+.select{
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.select select{
+    border-radius: 30px;
+    padding: 5px 20px;
+    width: auto;
+    cursor: pointer;
+}
+
+@media (max-width: 550px) {
+
+    .CustomerListContent{
+        display: block;
+    }
+
+    .CustomerListContent .select{
+        margin-top: 20px;
+    }
+
+}

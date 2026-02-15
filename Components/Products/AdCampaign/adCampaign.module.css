@@ -1,0 +1,284 @@
+.AdCampaign ::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+}
+
+.header {
+  margin-top: 10px;
+}
+
+.header p {
+  margin-top: 0;
+}
+
+.FormValidation {
+  margin-top: 0px;
+  display: flex;
+  align-items: self-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.customInput {
+  margin-top: 20px;
+  width: 48%;
+}
+
+.customInputFull {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.mustBe {
+  color: var(--header-color);
+  font-size: 14px;
+}
+
+.Submit {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.Submit button {
+  background: var(--main-color);
+  border: 1px solid var(--main-color);
+  padding: 10px 50px;
+  color: var(--white-color);
+  font-size: 18px;
+  line-height: 24px;
+  border-radius: 30px;
+  display: inline-flex;
+  margin-top: 20px;
+  text-align: right;
+}
+
+.Submit button i {
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.Submit button:hover {
+  background: var(--main-hover-color);
+}
+
+.duelInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.duelInput .customInput {
+  width: 48%;
+}
+
+.SelectDropdown {
+  z-index: 9;
+  position: relative;
+  background: var(--white-color) !important;
+}
+
+.sectionBox {
+  border: 1px solid var(--border-color);
+  margin-top: 30px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.sectionBox h4 {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--header-color);
+}
+
+.countdownSection {
+  margin-top: 10px;
+}
+
+/* Selected count badge */
+.selectedCount {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--main-color);
+  margin-left: 5px;
+}
+
+/* Product chips */
+.productChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.productChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f2e9ff;
+  color: var(--main-color);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.productChip button {
+  background: none;
+  border: none;
+  color: var(--red-color);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.productChip button:hover {
+  color: #d32f2f;
+}
+
+/* Product search */
+.productSearch {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.productSearch input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.productSearch input:focus {
+  border-color: var(--main-color);
+}
+
+/* Product table */
+.productTable {
+  border: 1px solid #e6e8ec;
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.productTable table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.productTable table thead tr {
+  background: #f6f8fa;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.productTable table th {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+  padding: 10px 12px;
+  text-align: left;
+  color: var(--header-color);
+  border-bottom: 1px solid #e6e8ec;
+}
+
+.productTable table td {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  color: var(--text-color);
+}
+
+.productTable table tbody tr:hover {
+  background: #faf8ff;
+}
+
+.selectedRow {
+  background: #f2e9ff !important;
+}
+
+/* Status badges */
+.statusActive {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statusInactive {
+  background: #fdeced;
+  color: var(--red-color);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* End of list message */
+.endOfList {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #999;
+}
+
+.errorText {
+  color: var(--red-color);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ---------------------------------------------------
+  Media
+---------------------------------------------------  */
+@media (max-width: 1399px) {
+  .Submit button {
+    padding: 10px 50px !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .header {
+    margin-top: 10px;
+  }
+
+  .customInput {
+    margin-top: 10px;
+  }
+
+  .Submit {
+    margin-top: 0px;
+  }
+
+  .Submit button {
+    padding: 10px 30px !important;
+  }
+}
+
+@media (max-width: 550px) {
+  .customInput {
+    width: 100%;
+  }
+
+  .duelInput .customInput {
+    width: 100%;
+  }
+}

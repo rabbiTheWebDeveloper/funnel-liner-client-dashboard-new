@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+.main ::selection {
+  background-color: rgba(151, 77, 231, 0.25);
+}
+
+.section button {
+  display: inline-flex;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: var(--main-color);
+  background-color: #f8f4f8;
+  border: 1px solid var(--border-color);
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  gap: 1rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0px 0px 40px 0px rgba(98, 18, 182, 0.12);
+}
+.info h1 {
+  color: white;
+}
+
+.info .card {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.info .card .cardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.icon {
+  border-radius: 6px;
+  display: inline-block;
+  padding: 14px;
+  background-color: #a34bff;
+  color: #fff;
+}
+
+.underline_button {
+  background-color: transparent!important;
+  border: none!important;
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.arrow {
+  width: 1rem;
+}
+
+.balance {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  color: #fff;
+}
+.checkBalanceBtn {
+  margin-top: 1rem;
+}
+.arrow,
+.externalIcon {
+  width: 1.25rem;
+}
+.info button {
+  padding: 8px 14px;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+}
+.info button:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+.info .currentText {
+  color: white;
+  margin-top: 1rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.checkout {
+  margin-top: auto;
+  width: 100%;
+}
+.checkout button {
+  width: 100%;
+}
+
+.pickup {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pickup button {
+  background-color: #f8f4f8;
+  width: 100%;
+  height: 4rem;
+  margin-top: 1.5rem;
+}
+
+.section,
+.section * {
+  font-family: "Inter", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "slnt" 0;
+  --main-color: rgba(98, 18, 182, 1);
+}
+.section {
+  padding-top: 1rem;
+}
+
+.heading {
+  margin-bottom: 3rem;
+}
+.heading h1 {
+  font-size: 1.25rem;
+}
+.cards {
+  display: grid;
+  gap: 2rem;
+}
+.dropdown .css-1itpi5-MuiFormControl-root-MuiTextField-root .MuiInputBase-root {
+  height: auto;
+}
+.dropdown button,
+.dropdown input {
+  display: block;
+  height: 2rem;
+  padding: 0 10px;
+  border-radius: 4px;
+  width: 7rem;
+}
+.content {
+  padding: 1rem 0;
+}
+.section > *,
+.content > * {
+  --reverse: 1;
+  margin-top: calc(1.45rem * calc(1 - var(--reverse)));
+  margin-bottom: calc(1.45rem * var(--reverse));
+}
+.section > *:last-child,
+.content > *:last-child {
+  margin-bottom: 0;
+}
+.ghost {
+  padding: 0;
+}
+.ghost > * {
+  background: none;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.table .first {
+  border-top-left-radius: 20px;
+}
+.table .last1 {
+  text-align: right;
+  border-top-right-radius: 20px;
+}
+.table .last {
+  text-align: right;
+}
+@media (min-width: 1280px) {
+  .tContainer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .tContainer .cards {
+    order: 1;
+    grid-column: span 2 / span 2;
+  }
+  .tContainer .walletContainer {
+    order: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .tContainer .walletContainer .info,
+  .tContainer .walletContainer .info .card,
+  .tContainer .walletContainer .info .card .cardContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+@media not all and (min-width: 1280px) {
+  .info,
+  .pickup {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .info,
+  .pickup {
+    display: block;
+  }
+}

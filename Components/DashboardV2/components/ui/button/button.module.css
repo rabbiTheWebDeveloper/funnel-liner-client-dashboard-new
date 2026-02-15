@@ -1,0 +1,122 @@
+.button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  transition: colors 0.2s !important;
+  text-transform: none !important;
+  box-shadow: none;
+  border-radius: 0.5rem !important;
+}
+
+.button:focus,
+.button:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 calc(1px + 1px) hsl(var(--ring)) !important;
+}
+
+.button:disabled {
+  pointer-events: none !important;
+  opacity: 0.5 !important;
+}
+
+/* Variants */
+.default {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.default:hover {
+  background-color: color-mix(
+    in srgb,
+    hsl(var(--primary)) 90%,
+    transparent
+  ) !important;
+}
+
+.destructive {
+  background-color: hsl(var(--destructive)) !important;
+  color: hsl(var(--destructive-foreground)) !important;
+}
+
+.destructive:hover {
+  background-color: color-mix(
+    in srgb,
+    hsl(var(--destructive)) 90%,
+    transparent
+  ) !important;
+}
+
+.outline {
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--input)) !important;
+  background-color: hsl(var(--background)) !important;
+}
+
+.outline:hover {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+}
+
+.secondary {
+  background-color: hsl(var(--secondary)) !important;
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+.secondary:hover {
+  background-color: color-mix(
+    in srgb,
+    hsl(var(--secondary)) 80%,
+    transparent
+  ) !important;
+}
+
+.ghost:hover {
+  background-color: color-mix(
+    in srgb,
+    hsl(var(--primary)) 10%,
+    transparent
+  ) !important;
+  color: hsl(var(--primary)) !important;
+}
+
+.ghost:focus-within {
+  box-shadow: 0 0 0 2px hsl(var(--primary)) !important;
+}
+
+.ghost:active {
+  border-radius: 0.125rem !important;
+}
+
+.link {
+  color: hsl(var(--primary)) !important;
+  text-decoration-thickness: 4px !important;
+}
+
+.link:hover {
+  text-decoration: underline !important;
+}
+
+/* Sizes */
+.default {
+  height: 2.5rem; /* h-10 */
+}
+
+.sm {
+  height: 2.25rem; /* h-9 */
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.lg {
+  height: 2.75rem; /* h-11 */
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.icon {
+  height: 2.5rem; /* h-10 */
+  width: 2.5rem; /* w-10 */
+}

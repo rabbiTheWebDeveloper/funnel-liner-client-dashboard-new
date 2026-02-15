@@ -1,0 +1,515 @@
+/* ---------------------------------------------------------------------------------------------------------------------------
+Menubar
+--------------------------------------------------------------------------------------------------------------------------- */
+
+.Menubar {
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  margin-top: 20px;
+}
+
+.MenubarContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MenubarContent .SideMenu h4 {
+  display: flex;
+  align-items: center;
+}
+
+.MenubarContent .SideMenu h4 img {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.MenubarContent .right {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.MenubarContent .right .CustomeInput {
+  margin: 0;
+  position: relative;
+}
+
+.MenubarContent .right .CustomeInput input {
+  height: 10px;
+}
+
+.MenubarContent .right .CustomeInput .MuiInputLabel-root {
+  top: -6px;
+}
+
+.MenubarContent .right .CustomeInput .MuiInputLabel-shrink {
+  top: 0;
+}
+
+.MobileMenu {
+  display: none;
+}
+
+.MenubarContent .CustomeInput button {
+  position: absolute;
+  padding: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  right: 20px;
+  color: var(--bg_color);
+}
+
+.SupportTicket i {
+  font-size: 30px;
+  line-height: 30px;
+  color: var(--main-color);
+}
+
+.MenubarContent .Profile .img {
+  cursor: pointer;
+}
+
+.MenubarContent .Profile .profileButton {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.MenubarContent .Profile .profileButton:hover {
+  background: none;
+}
+
+.MenubarContent .Profile i {
+  font-size: 30px;
+  color: var(--main-color);
+}
+
+.MenubarContent .Profile .img img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#Profile a {
+  padding: 8px 20px;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--bg_color2);
+}
+
+#Profile svg {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+#Profile a.d_flex {
+  color: #f34235;
+  padding-bottom: 12px;
+}
+
+#Profile .css-r8u8y9 {
+  padding: 0;
+}
+
+#Profile li.MuiButtonBase-root {
+  padding: 0;
+  display: block;
+}
+
+#Profile .MuiPaper-root.MuiPaper-elevation {
+  top: 103px !important;
+  left: unset !important;
+  border-radius: 0 0 10px 10px;
+  right: 30px;
+}
+
+.Profile button {
+  background: none;
+  padding: 0;
+  padding-top: 5px;
+  min-width: unset;
+}
+
+/* --------------------------------------------------------------------------
+Notification Start
+-------------------------------------------------------------------------- */
+
+.Notification button:hover {
+  background: none;
+}
+
+.Notification button {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  max-width: unset;
+  min-width: unset;
+}
+
+.Notification button i {
+  font-size: 30px;
+  line-height: 30px;
+  color: var(--main-color);
+}
+
+.Notification button h6 {
+  position: absolute;
+  top: -4px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white-color);
+}
+
+.NotificationContent .MuiPaper-root {
+  width: 500px;
+  border-radius: 20px;
+}
+
+.NotificationContent .header {
+  padding: 20px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.NotificationContent .header p {
+  margin-top: 2px;
+}
+
+.NotificationContent .MuiPaper-root.MuiPaper-elevation {
+  top: 123px !important;
+  left: unset !important;
+  border-radius: 10px;
+  right: 35px;
+}
+
+.NotificationContent h5 {
+  padding: 0 20px;
+  padding-bottom: 15px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.NotificationContent ul.NotificationUl {
+  padding: 0 20px;
+  height: 250px;
+  overflow-y: auto;
+  background: var(--white-color);
+  padding-bottom: 10px;
+}
+
+.NotificationContent ul li {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.NotificationContent ul li .left {
+  display: flex;
+  align-items: center;
+}
+
+.NotificationContent ul li .left .img {
+  height: 30px;
+  width: 30px;
+  border: 1px solid var(--border-color);
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NotificationContent ul li .left img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.NotificationContent ul li .left .text {
+  margin-left: 10px;
+}
+
+.NotificationContent ul li .left h6 {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #848484;
+  margin-bottom: 2px;
+}
+
+.NotificationContent ul li .left p {
+  font-size: 12px;
+  line-height: 20px;
+  color: #2a3547;
+  margin-top: 0px;
+  font-weight: 700;
+}
+
+.NotificationContent ul li i {
+  font-size: 15px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.NotificationContent a.AllShow {
+  background: var(--main-color);
+  width: -webkit-fill-available;
+  margin: 10px 20px;
+  font-size: 16px;
+  color: var(--white-color) !important;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+}
+
+.NotificationContent a.AllShow:hover {
+  background: var(--main-hover-color);
+}
+/* VideoIcon */
+.VideoIcon button {
+  background: var(--main-color);
+  min-width: unset;
+  padding: 10px 15px;
+  color: var(--white-color);
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.VideoIcon button i {
+  line-height: 0;
+}
+
+.VideoIcon button:hover {
+  background: var(--main-hover-color);
+}
+/* ChangeLogs */
+.changeLogs {
+  position: relative;
+}
+
+.changeLogsBadge {
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  z-index: 2;
+  font-size: 10px;
+  background-color: var(--white-color);
+  padding: 1px 2px;
+  font-weight: 700;
+  border-radius: 3px;
+  text-transform: uppercase;
+  color: var(--main-color);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.changeLogs button {
+  background: var(--main-color);
+  color: var(--white-color);
+  width: 3rem;
+  min-width: unset;
+}
+
+.changeLogs button:hover {
+  background: var(--main-hover-color);
+}
+
+/* Changelog Icon */
+.changeIcon {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  color: var(--white-color);
+  width: 1rem;
+}
+
+.HeaderDescription .Right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.youTubeVideo {
+  margin-top: 20px;
+}
+
+.youTubeVideo {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border-color);
+}
+
+.youTubeVideo iframe {
+  border-radius: 15px;
+  width: 100%;
+  height: 500px;
+}
+
+@media (max-width: 1399px) {
+  .MenubarContent .Left {
+    width: 45%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .DesktopMenu {
+    display: none;
+  }
+
+  .MobileMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 22px 113.46px rgba(0, 0, 0, 0.03);
+    background: var(--white-color);
+  }
+
+  .Notification button i {
+    font-size: 25px;
+    line-height: 25px;
+  }
+
+  .SupportTicket {
+    padding: 0 15px;
+  }
+
+  .SupportTicket i {
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  .Notification button h6 {
+    top: -4px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+
+  .MenubarContent .Left {
+    width: 45%;
+    display: flex;
+    align-items: center;
+  }
+
+  .MenubarContent .Left img {
+    height: 50px;
+  }
+
+  .MenubarContent .Left svg {
+    font-size: 35px;
+    color: var(--main-color);
+  }
+
+  .RightMenu {
+    display: flex;
+    align-items: center;
+  }
+
+  .SideToggleMenu .Shop {
+    display: block;
+    text-align: center;
+    width: 220px;
+    margin-bottom: 20px;
+  }
+
+  .MuiDrawerPaper {
+    width: 250px;
+  }
+
+  .SideToggleMenu .Logo {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .SideToggleMenu .Shop img {
+    height: 80px;
+    width: 80px;
+    margin-top: 15px;
+    object-fit: cover;
+  }
+
+  .SideToggleMenu .Shop p {
+    margin-top: 5px;
+  }
+
+  .SideToggleMenu {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  .MenubarContent .Left img {
+    height: 40px;
+  }
+
+  .MenubarContent .Left svg {
+    font-size: 26px;
+    margin-right: 5px;
+  }
+
+  .MuiContainer-root {
+    padding: 0 15px !important;
+  }
+
+  .SupportTicket {
+    padding: 0 8px;
+  }
+
+  .Notification button i {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .SupportTicket i {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .MenubarContent .Profile .img img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .SideToggleMenu .Shop img {
+    height: 70px;
+    width: 70px;
+  }
+
+  .Notification button h6 {
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+  }
+
+  .MenubarContent .right {
+    gap: 10px;
+  }
+
+  .changeLogsBadge {
+    top: -13px;
+  }
+}

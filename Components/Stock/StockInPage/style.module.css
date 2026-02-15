@@ -1,0 +1,21 @@
+.uploadImage {
+    display: flex;
+    align-items: center;
+}
+
+.uploadImage img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.uploadImage h6 {
+    font-size: 18px;
+    margin-top: 10px;
+    line-height: 30px;
+    color: var(--header-color);
+}

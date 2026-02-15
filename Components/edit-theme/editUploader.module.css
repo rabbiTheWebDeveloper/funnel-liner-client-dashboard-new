@@ -1,0 +1,136 @@
+.header {
+  margin-top: 30px;
+}
+
+.header p {
+  margin-top: 0;
+}
+
+.FormValidation {
+  margin-top: 20px;
+  display: flex;
+  align-items: self-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.customInput {
+  margin-top: 20px;
+  width: 48%;
+}
+
+.mustBe {
+  color: var(--header-color);
+  font-size: 14px;
+}
+
+.imgUploader label {
+  width: 100%;
+}
+
+.SelectImgButton {
+  width: 100% !important;
+  border: 1px solid var(--main-color) !important;
+  color: var(--text-color) !important;
+  background: var(--white-color) !important;
+  padding: 12px 20px !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+  font-size: 15px !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
+}
+
+.Submit {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.Submit button {
+  background: var(--main-color);
+  border: 1px solid var(--main-color);
+  padding: 10px 50px;
+  color: var(--white-color);
+  font-size: 18px;
+  line-height: 24px;
+  border-radius: 30px;
+  display: inline-flex;
+  margin-top: 20px;
+  text-align: right;
+}
+
+.Submit button i {
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.Submit button:hover {
+  background: var(--main-hover-color);
+}
+
+.duelInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.duelInput .customInput {
+  width: 48%;
+}
+
+.imgUploader {
+  width: 50%;
+}
+
+.close i {
+  font-size: 30px;
+  color: var(--red-color);
+}
+
+.SliderUploaderContent {
+  display: flex;
+  align-items: self-start;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- 
+Media 
+---------------------------------------------------  ---------------------------------------------------  */
+@media (max-width: 1399px) {
+  .SelectImgButton {
+    padding: 8px 20px !important;
+    font-size: 13px !important;
+  }
+
+  .Submit button {
+    padding: 10px 50px !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .header {
+    margin-top: 10px;
+  }
+
+  .customInput {
+    margin-top: 10px;
+  }
+
+  .Submit {
+    margin-top: 0px;
+  }
+
+  .Submit button {
+    padding: 10px 30px !important;
+  }
+}
+
+@media (max-width: 550px) {
+  .customInput {
+    width: 100%;
+  }
+}

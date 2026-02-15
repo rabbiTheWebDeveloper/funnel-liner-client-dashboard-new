@@ -1,0 +1,1356 @@
+/* // X-Large devices (large desktops, less than 1400px) */
+@media (max-width: 1700px) {
+
+  .WebsiteLinkItem ul li {
+    width: 30%;
+  }
+
+  .WebsiteLinkItem ul li:first-child {
+    width: 38%;
+  }
+
+  .WebsiteLinkItem ul li:last-child {
+    width: 35%;
+  }
+
+  .WebsiteLinkItem ul li a {
+    padding: 0;
+  }
+
+  .WebsiteLinkItem ul li .Btn {
+    padding: 5px 15px;
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  .WebsiteLinkItem ul li {
+    font-size: 15px;
+    margin-right: 10px;
+  }
+
+  .WebsiteLinkItem .img {
+    margin-right: 20px;
+  }
+
+  .WebsiteLinkItem ul li a {
+    margin-top: 5px;
+  }
+
+  .WebsiteLinkItem ul li .SocialLink {
+    font-size: 18px;
+    padding: 0 8px;
+  }
+
+  .NoticeBoardContent h3 {
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  .NoticeBoardTabs .MuiTab-root {
+    font-size: 15px;
+  }
+
+  .TotalOrderItem .Main ul li {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .TotalOrderItem .Main h3 {
+    font-size: 65px;
+    line-height: 70px;
+  }
+
+  .TotalOrderItem .Main ul {
+    margin-top: 10px;
+  }
+
+  .TotalOrderItem .Main {
+    margin-bottom: 0;
+  }
+
+  .MoveToComplete h6 {
+    padding: 4px 14px;
+    font-size: 11px;
+    line-height: 15px;
+    padding-top: 4px;
+  }
+
+  .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+    font-size: 14px;
+  }
+
+  .MoveToComplete a.AddProduct,
+  .MoveToComplete .MuiButtonBase-root.AddProduct {
+    padding: 7px 40px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .CustomeInput label {
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  .TotalOrder.TotalSMSSent .TotalOrderItem h5 {
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 5px;
+  }
+
+  .TotalOrder.TotalSMSSent .TotalOrderItem .Header {
+    display: block;
+  }
+
+  .ChooseDomainSidebarLeft {
+    padding: 25px;
+  }
+  
+  .TotalOrderItem {
+    height: 200px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .TotalOrderItem .Main {
+    margin-top: 25px;
+  }
+
+  .TotalSMSSentRight {
+    padding: 20px;
+  }
+
+  .TotalSMSSentRight h5 {
+    font-size: 14px;
+    line-height: 22px;
+    margin-right: 15px;
+  }
+
+
+  .Order .MuiButtonBase-root {
+    /* font-size: 11px; */
+  }
+
+
+  .Order .MuiInputBase-root .MuiSelect-select.MuiSelect-outlined {
+    padding: 6px 10px;
+    font-size: 12px;
+    padding-right: 27px;
+  }
+
+  .Order .date-range input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .Order .date-range .MuiInputBase-root {
+    /* height: 35px; */
+    /* margin-right: 10px; */
+    /* width: 200px; */
+  }
+
+
+  .LandingWebsite a {
+    font-size: 14px;
+  }
+
+  .WebPages .MuiButtonBase-root a {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .DashboardSetting .MuiSwitch-switchBase {
+    padding: 9px;
+  }
+  
+  .TopSellingProducts.Subscription .TotalOrderItem .Main h3 {
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .TopSellingProducts.Subscription .TotalOrderItem .Main {
+    margin-top: 10px;
+    line-height: 10px;
+  }
+
+  .TopSellingProducts.Subscription .TotalOrderItem a {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h5 {
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h4 {
+    font-size: 16px;
+  }
+
+  .TotalOrderItem .Main ul li {
+    margin-right: 0;
+  }
+
+  .TopSellingItem .Product {
+    display: block;
+  }
+
+  .TopSellingItem {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .TopSellingItem .Product .img {
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+
+  .TopSellingItem .Product li {
+    margin-bottom: 0;
+  }
+
+  .TotalOrderItem h6 {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .MiddleSectionContent img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .FollowUpOrderFilter h4 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .TotalSMSSent .TotalOrderItem {
+    padding: 20px;
+    height: 170px;
+  }
+
+  .TotalSMSSent .SMSBalance .Main li .MuiButtonBase-root a {
+    font-size: 16px;
+    padding: 2px;
+  }
+
+
+  .Form.OrderModal ul li .CustomeInput {
+    width: 95%;
+  }
+}
+
+@media (max-width: 1399px) {
+
+
+  .InvoiceModal {
+    width: auto;
+    height: 80%;
+  }
+
+  .WebsiteLinkItem ul li .Btn {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+
+  .TotalOrder.TotalSMSSent .TotalOrderItem h5 {
+    font-size: 14px;
+  }
+
+  .TotalOrderItem {
+    padding: 15px;
+    height: 200px;
+  }
+
+  .TotalSMSSent .SMSBalance .Main li .MuiButtonBase-root {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .ChooseDomainItem .MuiButtonBase-root {
+    padding: 14px 20px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h5 {
+    font-size: 16px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h4 {
+    font-size: 16px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem button {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+
+  .NoticeBoardTabs .TabsItem h5 a {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .NoticeBoardTabs .TabsItem h5 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .NoticeBoardContent h3 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .TopSellingProducts .DashboardForm .CustomeInput {
+    width: 80%;
+  }
+
+  .DashboardSetting .MuiSwitch-switchBase {
+    padding: 9px;
+  }
+
+
+  .WebsiteSettingCashOnDelivary .img img {
+    height: 65px;
+  }
+
+  .WebsiteSettingCashOnDelivary h4 {
+    font-size: 16px;
+  }
+
+  .DashboardForm h5 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .TopSellingProducts .DashboardForm .CustomeInput .Item {
+    margin-top: 20px;
+  }
+
+  .TopSellingProducts .DashboardForm .CustomeInput {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .CustomeInput select {
+    padding: 15px 10px;
+    font-size: 14px;
+  }
+
+  .TotalSMSSent .SMSBalance .Main li .MuiButtonBase-root a {
+    font-size: 14px;
+    padding: 0px;
+  }
+
+  .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+    font-size: 14px !important;
+  }
+
+  .WebPages .MuiButtonBase-root a {
+    font-size: 15px;
+  }
+
+  .nice-dates .date-range .MuiFormControl-root {
+    /* height: 36px; */
+    margin-right: 10px;
+    /* width: 200px; */
+  }
+
+  .nice-dates .date-range .MuiFormControl-root .MuiInputBase-root {
+    width: 100%;
+  }
+
+  .date-range .MuiInputBase-input {
+    padding: 0px 20px;
+    font-size: 14px;
+  }
+
+  .TopSellingProducts .MuiSelect-select {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .nice-dates-day {
+    height: 40px !important;
+  }
+
+  .nice-dates-grid {
+    height: 255px !important;
+  }
+
+  .nice-dates-day_date {
+    font-size: 12px;
+  }
+
+  .nice-dates-week-header_day {
+    font-size: 12px;
+  }
+
+  .TotalSMSSent .TotalOrderItem {
+    height: 175px;
+  }
+
+  .MoveToComplete h6 {
+    font-size: 11px;
+    line-height: 15px;
+    padding: 6px 10px;
+  }
+
+  .TopSellingProducts .MoveToComplete .svg svg {
+    font-size: 13px;
+  }
+
+  .CustomeInput label {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .CustomeInput p {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .dropzone {
+    padding: 36px 20px;
+  }
+
+  .OrderModal ul li span {
+    font-size: 12px;
+    line-height: 16px;
+    width: 90%;
+  }
+
+  .OrderModal ul li h6,
+  .OrderModal ul li label {
+    font-size: 12px;
+    line-height: 16px;
+    width: 130px;
+  }
+
+  .Form.OrderModal ul li .CustomeInput {
+    width: 96%;
+  }
+}
+
+@media (max-width: 1280px) {
+
+  .MenubarContent .right .CustomeInput {
+    width: 60%;
+  }
+
+  .TopSellingProducts .Header {
+    padding: 15px;
+  }
+
+  .Header p {
+    font-size: 13px;
+    line-height: 19px;
+  }
+
+  .TopSellingProducts.Subscription .TotalOrderItem {
+    margin-top: 20px;
+  }
+
+  .SubscriptionInvoice h4 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h5 {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h4 {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h6 span {
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem button {
+    font-size: 11px;
+    line-height: 15px;
+    padding: 5px 17px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h6 {
+    width: 120px;
+  }
+
+  .WebsiteLink .MuiPaper-root {
+    padding: 15px;
+  }
+
+  .WebsiteLinkItem .img {
+    margin-right: 15px;
+  }
+
+  .WebsiteLinkItem .img img {
+    height: 60px;
+  }
+
+  .WebsiteLinkItem h4 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .WebsiteLinkItem ul li {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  .WebsiteLinkItem ul li a {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .WebsiteLinkItem ul li .Btn {
+    padding: 5px 12px;
+    font-size: 11px;
+    line-height: 20px;
+  }
+
+  .WebsiteLinkItem ul li:last-child {
+    width: 40%;
+  }
+
+  .WebsiteLinkItem ul li:nth-child(2) {
+    width: 18%;
+  }
+
+  .WebsiteLinkItem .MuiBox-root ul {
+    padding-bottom: 0;
+  }
+
+  .WebsiteLink .MuiCollapse-root {
+    margin-top: 20px;
+  }
+
+  .NoticeBoardContent h3 {
+    font-size: 18px;
+    line-height: 30px;
+    padding: 15px;
+    padding-bottom: 0;
+  }
+
+  .NoticeBoardTabs {
+    margin-top: 0;
+  }
+
+  .NoticeBoardTabs .MuiButtonBase-root {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .NoticeBoardTabs .TabsItem {
+    padding: 10px;
+  }
+
+  .NoticeBoardTabs .TabsItem h5 {
+    font-size: 12px;
+    line-height: 18px;
+    padding-left: 15px;
+  }
+
+  .NoticeBoardTabs .TabsItem h5:after {
+    top: 6px;
+    width: 6px;
+    height: 6px;
+  }
+
+  .NoticeBoardTabs .TabsItem h5 a {
+    font-size: 11px;
+  }
+
+  .TotalOrderItem h6 {
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 10px;
+  }
+
+  .TotalOrderItem h6 .svg {
+    line-height: 25px;
+  }
+
+  .TotalOrderItem .Header {
+    display: block;
+  }
+
+  .TotalOrderItem .Main h3 {
+    font-size: 45px;
+    line-height: 55px;
+  }
+
+  .TotalOrderItem {
+    padding: 15px;
+    height: 200px;
+  }
+
+  .CustomeInput input {
+    font-size: 14px;
+    line-height: 20px;
+    height: 12px;
+  }
+
+  .CustomeInput .MuiInputLabel-root {
+    font-size: 14px;
+    line-height: 12px;
+  }
+
+  .CustomeInput label {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .DuelButton .MuiButtonBase-root {
+    background: var(--bg_color);
+    padding: 5px 30px;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .WebsiteLinkItem ul {
+    margin-bottom: 0;
+  }
+
+  .MiddleSectionContent img {
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  .MiddleSectionContent p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .TopSellingProducts.Order .CustomeInput .MuiFormLabel-root {
+    top: 0;
+  }
+
+  .TopSellingProducts .DashboardForm .CustomeInput .svg {
+    top: 40px;
+  }
+
+  .TopSellingProducts .DashboardForm .CustomeInput {
+    width: 80%;
+  }
+
+  .TopSellingProducts .DashboardForm .CustomeInput .Item {
+    margin-top: 20px;
+  }
+
+  .TopSellingProducts .DashboardForm .CustomeInput button.Update {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 30px;
+  }
+
+  .TopSellingProducts .Header .Right {
+    width: 60%;
+  }
+
+  .TopSellingProducts .Header .Left {
+    width: 40%;
+  }
+
+  .TopSellingProducts .Header .CustomeInput {
+    width: 215px;
+  }
+
+  .TotalSMSSentRight {
+    padding: 15px;
+  }
+
+  .TotalOrderItem .Main {
+    font-size: 50px;
+    line-height: 55px;
+  }
+
+  .TopSellingProducts .Header .Right {
+    justify-content: flex-end;
+  }
+
+  .DashboardSetting .MuiSwitch-switchBase {
+    padding: 9px;
+  }
+
+  .css-zow5z4-MuiGrid-root>.MuiGrid-item {
+    padding-left: 20px;
+  }
+
+  .TotalSMSSent .TotalOrderItem {
+    padding: 15px;
+  }
+
+  .TotalSMSSent .SMSBalance .Main h3 {
+    font-size: 35px;
+    line-height: 40px;
+  }
+
+  .TotalSMSSent .SMSBalance .Main li {
+    font-size: 13px;
+    line-height: 18px;
+    padding-top: 0px;
+  }
+
+  .TotalSMSSent .SMSBalance .Main li .MuiButtonBase-root {
+    font-size: 12px;
+    line-height: 20px;
+    margin-top: 7px;
+    padding: 1px;
+  }
+
+  .TotalSMSSent .SMSBalance .Main li span {
+    font-size: 15px;
+    line-height: 20px;
+    margin-left: 8px;
+  }
+
+  .TotalOrderItem .Main h3 {
+    font-size: 35px;
+    line-height: 40px;
+  }
+
+  .TotalSMSSentRight h6 .MuiButtonBase-root {
+    line-height: 20px;
+    padding: 5px 12px;
+    margin-left: 10px;
+    width: 160px;
+  }
+
+
+  .WebPages .MuiButtonBase-root a {
+    font-size: 12px;
+    line-height: 20px;
+    padding: 5px 20px;
+  }
+
+  .ChooseDomainSidebarLeft {
+    padding: 15px;
+  }
+
+  .DomainPartItem {
+    width: 58px;
+    margin-top: 20px;
+    margin-right: 10px;
+    padding: 10px 15px;
+  }
+
+  .DomainPartItem a {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .ChooseDomainItem .left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px 20px;
+  }
+
+  .ChooseDomainItem .DropDown h6 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .ChooseDomainItem .DropDown {
+    right: 115px;
+  }
+
+  .TopSellingProducts .DashboardForm .CustomeInput {
+    width: 90%;
+  }
+
+  .CustomeInput .Item.Upload .MuiButtonBase-root {
+    padding: 14px 15px;
+  }
+
+  .TopSellingProducts .DashboardForm .CustomeInput .svg {
+    top: 45px;
+  }
+
+
+  .MenubarContent .CustomeInput button {
+    right: 0px;
+  }
+
+  .MenubarContent .right .CustomeInput .MuiInputLabel-root {
+    top: 0px;
+  }
+
+  .LoginContent .Logo img {
+    height: 90px;
+  }
+
+  .LoginContent {
+    width: 500px;
+    padding: 25px;
+    max-height: 600px;
+  }
+
+  .Login h5 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  a.bg,
+  .MuiButtonBase-root.bg {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px;
+  }
+
+  .LandingWebsite a,
+  .LandingWebsite .MuiButtonBase-root {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .CustomeInput .Item.Upload .MuiButtonBase-root {
+    padding: 10px 15px;
+  }
+
+  .FollowUpOrderFilterSection {
+    justify-content: flex-start;
+  }
+
+  .FollowUpOrderFilter {
+    margin-top: 0;
+  }
+
+  .FollowUpOrderFilter .InputDate {
+    right: unset;
+  }
+
+  .TopSellingItem .Product img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .TopSellingItem {
+    padding: 15px;
+  }
+
+  .TopSellingItem .Product li span {
+    font-size: 13px;
+    line-height: 21px;
+  }
+
+  .AccountingFirstOpen .Circle {
+    top: 290px;
+  }
+
+  .AccountingFirstOpen .Circle .img img {
+    height: 300px;
+  }
+
+  .AccountingFirstOpen .Circle .img {
+    margin-top: -210px;
+  }
+
+}
+
+@media (max-width: 1023px) {
+  .DedsktopMenu {
+    display: none;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  h4 {
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  .CustomeInput .eye {
+    top: 47px;
+  }
+
+  .DedsktopMenu {
+    display: none !important;
+  }
+
+  .MobileMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .MenubarContent .CustomeInput {
+    width: 200px;
+    position: relative;
+    margin: 0;
+  }
+
+  .Iconbar svg {
+    font-size: 35px;
+    margin-right: 20px;
+  }
+
+  .Logo img {
+    height: 50px;
+  }
+
+
+
+  .MenuItem a svg {
+    margin-right: 10px;
+  }
+
+  .MenuItem .MuiButtonBase-root {
+    padding: 0;
+    display: flex;
+  }
+
+  .MenuItem a,
+  .MenuItem h6 {
+    width: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: relative;
+    color: var(--header_color);
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .MenuItem a.active,
+  .MenuItem h6.active {
+    background: var(--bg_color);
+    color: var(--white);
+  }
+
+  .MenuItem a svg,
+  .MenuItem h6 svg {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+
+  .MenuItem a span,
+  .MenuItem h6 span {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 4px;
+  }
+
+  .MenuItemContent {
+    margin-top: 20px;
+    padding: 0 15px;
+    padding-bottom: 25px;
+    height: 75vh;
+  }
+
+  .TopSellingProducts .Header .Left {
+    width: 50%;
+  }
+
+  .Menubar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
+
+  .WebsiteLink {
+    /* margin-top: 100px; */
+  }
+
+  .MenubarContent {
+    margin-top: 10px;
+  }
+
+  .WebsiteLink .MuiPaper-root {
+    width: -webkit-fill-available;
+  }
+
+  .TopGaps {
+    /* margin-top: 70px; */
+  }
+
+  .MenuItem .MuiCollapse-wrapperInner a {
+    padding: 10px 15px;
+    padding-left: 45px;
+    font-size: 14px;
+  }
+
+  .MenuItem .MuiCollapse-wrapperInner a::after {
+    position: absolute;
+    content: "";
+    top: 20px;
+    left: 30px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--text_color);
+    z-index: 9;
+  }
+
+  .TopSellingProducts .DashboardForm .CustomeInput {
+    width: 100%;
+  }
+
+  .TopSellingProducts .Header {
+    width: -webkit-fill-available;
+  }
+
+  .TopSellingProducts .Header h4 {
+    font-size: 20px;
+  }
+
+  .TotalOrder.TotalSMSSent .TotalOrderItem .Header {
+    display: flex;
+  }
+
+  .TotalOrder.TotalSMSSent .TotalOrderItem h5 {
+    font-size: 15px;
+  }
+
+  .TotalOrderItem .Main h3 {
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .TotalSMSSent .SMSBalance .Main li .MuiButtonBase-root {
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 10px;
+    padding: 5px;
+  }
+
+  .TotalSMSSentRight .img {
+    width: 55%;
+    margin-top: -10px;
+    text-align: right;
+  }
+
+  .TotalSMSSentRight .Left {
+    justify-content: space-between;
+  }
+
+  .TotalSMSSentRight h5 {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .TotalSMSSentRight h5 span {
+    font-size: 25px;
+  }
+
+  .TotalSMSSentRight h6 {
+    position: relative;
+    z-index: 9;
+  }
+
+  .DomainVerification .AddDelete .MuiButtonBase-root {
+    width: 35px;
+    height: 35px;
+    margin-right: 15px;
+  }
+
+  .DomainVerification .AddDelete .MuiButtonBase-root:last-child {
+    margin-right: 0;
+  }
+
+  .DomainVerification .AddDelete .MuiButtonBase-root svg {
+    font-size: 20px;
+  }
+
+  .DomainVerification .AddDelete {
+    margin-top: 12px;
+    width: 30%;
+    margin-left: 20px;
+  }
+
+  .UpdateStockModal {
+    width: 80%;
+    height: 50%;
+  }
+
+  .UpdateStockModalContent .Item .svg {
+    top: 40px;
+  }
+
+  .UpdateStockModalContent .Item .svg svg {
+    font-size: 20px;
+  }
+
+}
+
+  @media (max-width: 767.9px) {
+
+  .MenubarContent {
+    padding: 5px 15px;
+  }
+
+  .MenubarContent .CustomeInput {
+    display: none;
+  }
+
+  .Logo img {
+    height: 45px;
+  }
+
+  .Iconbar svg {
+    font-size: 30px;
+    margin-right: 14px;
+  }
+
+  .WebsiteLinkItem {
+    display: block;
+    text-align: center;
+  }
+
+  .WebsiteLinkItem ul {
+    display: block;
+    padding-bottom: 0;
+  }
+
+  .WebsiteLinkItem ul li {
+    width: 100% !important;
+    margin-right: 0;
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .WebsiteLinkItem ul li a {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .WebsiteLinkItem ul li .Btn {
+    padding: 7px 22px;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .TotalOrderItem .Header {
+    display: flex;
+  }
+
+  .TotalOrderItem {
+    padding: 20px;
+    height: 170px;
+    margin-bottom: 0;
+  }
+
+  .TopSellingProducts .Header .Left {
+    width: 100%;
+  }
+
+  .NoticeBoardTabs .TabsItem h5 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .NoticeBoardTabs .TabsItem h5 a {
+    font-size: 14px;
+  }
+
+  #DropDown .MuiMenu-list {
+    padding: 5px 0;
+  }
+
+  #DropDown .MuiButtonBase-root {
+    min-height: 40px;
+  }
+
+  .TotalOrderItem h5 {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .TotalOrderItem h6 {
+    font-size: 15px;
+    line-height: 21px;
+    margin-top: 0;
+  }
+
+  .SideToggleMenu .Logo {
+    padding: 10px 0;
+    padding-bottom: 0;
+  }
+
+  .SideToggleMenu .Shop img {
+    height: 90px;
+  }
+
+  .SideToggleMenu .Shop h4 {
+    font-size: 20px;
+  }
+
+  .MuiDrawer-paper {
+    width: 280px;
+  }
+
+  .MenuItemContent {
+    height: 95vh;
+  }
+
+  .MuiTabs-flexContainer {
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .CustomeInput select {
+    padding: 14px 10px;
+  }
+
+  .TopSellingProducts .Header {
+    display: block;
+  }
+
+  .TopSellingProducts .Header .Left {
+    width: 100%;
+  }
+
+  .TopSellingProducts .Header .Right {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  .Order .FilterItem {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .TopSellingProducts .Header .CustomeInput {
+    width: 100%;
+  }
+
+  .MoveToComplete a.AddProduct,
+  .MoveToComplete .MuiButtonBase-root.AddProduct {
+    padding: 7px 25px;
+  }
+
+  .CustomeInput .Item.Upload .MuiButtonBase-root {
+    padding: 10px 15px;
+  }
+
+  .TopSellingProducts .Header h4 {
+    font-size: 18px;
+  }
+
+  .TopSellingProducts .svg svg {
+    font-size: 30px;
+  }
+
+  .TotalSMSSentRight h5 {
+    width: 40%;
+  }
+
+
+  .DomainRequest .Header h5 {
+    margin-top: 0;
+  }
+
+  .ChooseDomainSidebarLeft {
+    padding: 20px;
+    height: auto;
+  }
+
+  .WebsiteSettingCashOnDelivary {
+    padding: 15px;
+  }
+
+  .WebsiteSettingCashOnDelivary h4 {
+    font-size: 16px;
+    margin-top: 0;
+    line-height: 24px;
+  }
+
+  .ChooseDomainItem .left {
+    padding: 10px 8px;
+  }
+
+  .ChooseDomainItem .left h5 {
+    font-size: 11px;
+  }
+
+  .ChooseDomainItem .DropDown {
+    right: 65px;
+  }
+
+  .ChooseDomainItem .DropDown h6 {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .DomainPart {
+    flex-wrap: wrap;
+  }
+
+  .TotalOrderItem .Main ul li {
+    margin-right: 10px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem {
+    width: 100%;
+    overflow-x: auto;
+    display: -webkit-inline-box;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h5 {
+    font-size: 14px;
+    line-height: 20px;
+    width: 150px;
+    margin-right: 20px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem svg {
+    font-size: 40px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem h4 {
+    font-size: 14px;
+    line-height: 20px;
+    width: 100px;
+  }
+
+  #Profile li.MuiButtonBase-root {
+    min-height: 40px;
+  }
+
+  .UpdateStockModal {
+    padding: 20px;
+  }
+
+  .UpdateStockModalContent .CheckPaymentContent.d_flex {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .CheckPaymentContent .CheckPayment {
+    margin-right: 0;
+    margin-top: 20px;
+  }
+
+  .UpdateStockModalContent p {
+    padding: 20px 0;
+  }
+
+  .UpdateStockModalContent {
+    margin-top: 10px;
+  }
+
+  .UpdateStockModal {
+    height: 40%;
+  }
+
+
+}

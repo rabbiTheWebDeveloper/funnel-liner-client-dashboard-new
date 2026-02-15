@@ -1,0 +1,2348 @@
+.imgUploader img {
+  height: 80px;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+.custom-dropdown
+  .css-1itpi5-MuiFormControl-root-MuiTextField-root
+  .MuiInputBase-root {
+  height: auto !important;
+}
+
+.text-custom-green {
+  color: #009721;
+}
+
+.ghost {
+  padding: 0 !important;
+}
+.ghost.cardContent,
+.ghost.cardContent .card {
+  background: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border-right: 1px solid var(--border-color);
+}
+.ghost.cardContent .card:last-child {
+  border-right: none;
+}
+.ghost.cardContent .card:nth-child(1) {
+  border-right: 1px solid var(--border-color);
+}
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+SidebarMenu 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+.Sidebar {
+  border-radius: 0px 32px 32px 0px;
+  background: var(--white-color);
+  box-shadow: 0px 22px 39px 9px rgba(74, 34, 141, 0.3);
+  padding: 30px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 130px;
+  height: 100vh;
+  z-index: 999;
+  transition: all linear 0.2s;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.Sidebar .Logo {
+  text-align: center;
+  padding: 0px 0;
+  padding-bottom: 10px;
+}
+
+.Sidebar .Logo i {
+  font-size: 35px;
+  color: var(--main-color);
+}
+
+.Sidebar .Logo h4 {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 30px;
+  text-transform: capitalize;
+}
+
+.Sidebar .Logo p {
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.Sidebar .LongLogo {
+  display: none;
+}
+
+.Sidebar .Logo img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.react_Select_custom_date_select {
+  margin-right: 15px;
+}
+
+/* SideMenu */
+
+.Sidebar .SidebarMenu {
+  height: 75%;
+  overflow-y: auto;
+  position: relative;
+  margin-top: 12px;
+}
+
+.Sidebar .SidebarMenu ul li {
+  text-align: center;
+  position: relative;
+  transition: all linear 0.2s;
+}
+
+.Sidebar .SidebarMenu ul li :where(a, h6) {
+  background: var(--white-color);
+  border-radius: 25px 0 0 25px;
+  padding: 10px 0;
+  margin: 2px 0;
+  margin-left: 10px;
+  width: -webkit-fill-available;
+  color: var(--text-color);
+  font-size: 14px;
+  line-height: 20px;
+  transition: all linear 0.2s;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.Sidebar .SidebarMenu ul li :where(a, h6):hover {
+  background: var(--main-bg-color-2);
+  color: var(--main-color);
+}
+
+.Sidebar .SidebarMenu :where(a, h6) i {
+  font-size: 30px;
+  line-height: 0;
+}
+
+.Sidebar .SidebarMenu span {
+  display: none;
+}
+
+.Sidebar .SidebarMenu .active :where(a, h6) {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+/* Submenu */
+
+.Sidebar .Submenu {
+  /* margin-top: -10px; */
+  margin-bottom: 10px;
+  display: none;
+}
+
+.Sidebar li.active .Submenu {
+  margin-top: 5px;
+}
+
+.Sidebar .Submenu li a {
+  background: var(--white-color);
+  padding: 5px 0;
+  position: relative;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 20px 0 0 20px;
+}
+
+.LongSidebar .SidebarMenu .Submenu li a {
+  padding-left: 60px;
+}
+
+.LongSidebar .Submenu li a::after {
+  position: absolute;
+  content: "";
+  top: 13px;
+  left: 35px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-color);
+}
+
+.Sidebar .SidebarMenu .active li a {
+  background: var(--white-color);
+  color: var(--text-color);
+}
+
+.Sidebar .SidebarMenu .active a:hover {
+  background: var(--main-bg-color);
+  color: var(--main-color);
+}
+
+.Sidebar .SidebarMenu .active a.active {
+  background: var(--main-bg-color);
+  color: var(--main-color);
+  border-radius: 20px 0 0 20px;
+}
+
+.Sidebar .SidebarMenu .active a.active::after {
+  background: var(--main-color);
+}
+
+/* longSidebar */
+
+.LongSidebar {
+  width: 225px;
+}
+
+.LongSidebar .SidebarMenu ul li :where(a, h6) {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.LongSidebar .SidebarMenu span {
+  display: block;
+  margin-left: 10px;
+}
+
+.LongSidebar .LongLogo {
+  display: block;
+  margin: 0 auto;
+}
+
+.LongSidebar .Logo img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+
+.LongSidebar .ShortLogo {
+  /* display: none; */
+}
+
+.LongSidebar .Submenu {
+  display: block;
+}
+
+/* MobileFooterMenu */
+.MobileFooterMenu {
+  display: none;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+ PopupModal 
+ ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+*/
+
+/* --------------------------------------------------- 
+editModal
+--------------------------------------------------- */
+
+:where(.viewModal, .updateModal) {
+  /* width: 100%; */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:where(.viewModal, .updateModal) .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+:where(.viewModal, .updateModal) .header .left {
+  display: flex;
+  align-items: center;
+}
+
+:where(.viewModal, .updateModal) .header i {
+  margin-right: 10px;
+  font-size: 25px;
+  line-height: 25px;
+  color: var(--main-color);
+}
+
+:where(.viewModal, .updateModal) .header .right i {
+  cursor: pointer;
+  font-size: 25px;
+  color: var(--red-color);
+}
+
+:where(.viewModal, .updateModal) .header h4 {
+  color: var(--main-color);
+}
+
+:where(.viewModal, .updateModal) .modalBox {
+  width: 60%;
+}
+
+:where(.viewModal, .updateModal) .modalContent {
+  background: var(--white-color);
+  width: -webkit-fill-available;
+  margin: 0 auto;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.small_main_button {
+  margin: 10px auto !important;
+  display: flex !important;
+  background: #7b43b5 !important;
+  color: #fff !important;
+  padding: 8px 30px !important;
+}
+
+.viewModal .modalContent table {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.viewModal .modalContent table tr :where(th, td) {
+  border: 1px solid var(--main-color);
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.viewModal .modalContent table tr th {
+  color: var(--header-color);
+  width: 150px;
+}
+
+.viewModal .modalContent table tr td {
+  color: var(--text-color);
+}
+
+.viewModal .modalContent table tr td img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.viewModal .modalContent table tr:nth-child(even) {
+  background: #ffffffb7;
+}
+
+.viewModal .modalContent table tr:nth-child(odd) {
+  background: #d4ebffc4;
+}
+
+.modalBox .CustomeInput {
+  margin-top: 0;
+}
+
+.modalBox .CustomeInput select {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+.ViewModalNote {
+  margin-top: 15px;
+}
+
+.ViewModalNote label {
+  font-weight: 700;
+  color: var(--header-color);
+}
+
+.ViewModalNote textarea {
+  border: 1px solid var(--main-color);
+}
+
+/* --------------------------------------------------- 
+updateModal
+--------------------------------------------------- */
+.updateModalForm {
+  display: flex;
+  align-items: self-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: -webkit-fill-available;
+  max-height: 490px;
+  overflow-y: auto;
+}
+
+.updateModalForm .customInput {
+  width: 48%;
+  margin-top: 30px;
+}
+
+.updateModalForm .customInput.fullWidth {
+  width: 100%;
+}
+
+.updateModalForm .customInput.fullWidth button {
+  width: 100%;
+  background: var(--border-color);
+  color: var(--header-color);
+  padding: 12px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+.updateModalForm .customInput.fullWidth strong {
+  color: var(--main-color);
+}
+
+.updateModalForm .customInput.fullWidth .fullWidthLabel {
+  width: 100%;
+}
+
+.updateModalForm .uploadImage {
+  position: relative;
+}
+
+.updateModalForm .uploadImage input {
+  opacity: 0;
+  z-index: 9;
+  position: relative;
+  cursor: pointer;
+}
+
+.updateModalForm .uploadImage button {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.updateModalForm .uploadImage img {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+}
+
+.customInput .customInput input {
+  margin: 0 2px;
+}
+
+.websiteSettingImg {
+  margin: 0 auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.websiteSettingImg img {
+  height: 500px;
+}
+
+.OrderModal .customInput {
+  width: 100%;
+  margin-top: 0;
+}
+
+/* OrderAddProductModal */
+.OrderAddProductModal {
+  margin: 0 10px;
+  margin-top: 20px;
+  background: var(--white-color);
+  box-shadow: 0px 10px 49px 0px rgba(0, 0, 0, 0.13);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.OrderAddProductModal .HeaderButton {
+  text-align: right;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.OrderAddProductModal .customInput {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.OrderAddProductModal .HeaderButton button {
+  background: var(--main-bg-color);
+  color: var(--main-color);
+  gap: 10px;
+  margin-top: 17px;
+}
+
+.OrderAddProductModal .HeaderButton button i {
+  line-height: 0;
+}
+
+.OrderAddProductModal .HeaderButton button:hover {
+  color: var(--white-color);
+}
+
+.OrderAddProductModal .DeleteModalButton {
+  border-radius: 8px;
+  background: #fdeced;
+  padding: 12px 20px;
+  margin-top: 50px;
+  min-width: auto;
+}
+
+.OrderAddProductModal .DeleteModalButton i {
+  font-size: 20px;
+  color: var(--red-color);
+  line-height: 0;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+Table 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+*/
+
+.Order {
+  overflow: hidden;
+}
+
+.Table {
+  overflow: auto;
+  margin-top: 30px;
+  padding-bottom: 10px;
+  height: auto;
+  max-height: 500px;
+  transition: all linear 0.2s;
+}
+
+.Table::-webkit-scrollbar-track {
+  background: var(--main-color);
+  transition: all linear 0.2s;
+  border-radius: 30px;
+}
+
+.Table::-webkit-scrollbar-track {
+  background: var(--cart-color-1);
+}
+
+.Table table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+.Table table thead th {
+  background: var(--main-hover-color);
+  font-weight: 700;
+  color: var(--white-color);
+  white-space: nowrap;
+}
+
+.Table table :where(th, td) {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  padding: 6px 10px;
+  color: var(--main-color);
+  text-align: center;
+}
+
+.Table table p {
+  margin-top: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.Table table p span {
+  font-weight: 400;
+}
+
+.Table table th {
+  padding: 15px 10px;
+}
+
+.Table table tr:nth-child(odd) {
+  background: #f1e6fd;
+}
+
+.Table table tr:nth-child(even) {
+  background: #ffffffb7;
+}
+
+.Table table tr :where(th, td):first-child {
+  text-align: left;
+  padding-left: 30px;
+  min-width: 20px;
+}
+
+.Table table tr :where(th, td):last-child {
+  text-align: right;
+  padding-right: 30px;
+}
+
+/* border radius */
+
+.Table table tr:first-child th:first-child {
+  border-radius: 20px 0 0 0;
+}
+
+.Table table tr:first-child th:last-child {
+  border-radius: 0 20px 0 0;
+}
+
+.Table table tr:last-child td:last-child {
+  border-radius: 0 0 20px 0;
+}
+
+.Table table tr:last-child td:first-child {
+  border-radius: 0 0 0 20px;
+}
+
+/* img */
+.Table table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--main-color);
+}
+
+.Table table input {
+  width: 50px;
+  text-align: center;
+  padding: 8px 10px;
+}
+
+.Table table input.time {
+  width: 110px;
+}
+
+.Table table select {
+  width: 140px;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.Table button {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--text-color);
+  padding: 8px 20px;
+  border: 1px solid var(--main-hover-color);
+}
+
+.Table .viewNoteModal {
+  position: relative;
+  cursor: pointer;
+}
+
+.Table input.note {
+  width: 100px;
+}
+
+.Table .viewNote {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all linear 0.2s;
+  border-radius: 8px;
+  opacity: 0;
+}
+
+.Table .viewNoteModal:hover .viewNote {
+  opacity: 1;
+}
+
+.Table input.note .viewNote span {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.Table button.invoice {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.Table button.invoice a {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  padding: 8px 20px;
+}
+
+.Table button.invoice i {
+  margin-left: 10px;
+  margin-bottom: -5px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.Table td .action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.Table td .action :where(button, a) {
+  border: 0;
+  padding: 6px 15px;
+  min-width: unset;
+  text-align: center;
+  margin: 0 5px;
+  border-radius: 5px;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.Table td .action button:last-child {
+  margin-right: 0;
+}
+
+.Table td .action button i {
+  font-size: 18px;
+  color: var(--white-color);
+  line-height: 18px;
+}
+
+.Table td .action a i {
+  font-size: 15px;
+  color: var(--white-color);
+  line-height: 10px;
+}
+
+.Table td .action button:hover {
+  background: unset;
+}
+
+.Table td .action button.viewActionBtn {
+  background: #b27aee;
+}
+
+.Table td .action a.viewActionBtn {
+  background: #b27aee;
+}
+
+.Table td .action button.updateActionBtn,
+.Table td .action a.updateActionBtn {
+  background: var(--main-color);
+  padding: 6px 15px;
+}
+
+.Table td button.updateActionBtn {
+  padding: 0;
+}
+
+.Table td .action button.deleteActionBtn {
+  background: var(--red-color);
+}
+
+.Table td button.followUpDate {
+  padding: 0;
+  border: 0;
+  width: 140px;
+}
+
+.Table td button.followUpDate input {
+  width: 100%;
+}
+
+/* tableUpdateModal */
+
+.tableModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tableModal .modalBox {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.tableModal .tableModalContent {
+  background: var(--white-color);
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.tableModalContent .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tableModalContent .header .left {
+  display: flex;
+  align-items: center;
+}
+
+.tableModalContent .header .left h4 {
+  color: var(--main-color);
+}
+
+.tableModalContent .header .left i {
+  margin-right: 10px;
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--main-color);
+}
+
+.tableModalContent .header .right i {
+  font-size: 25px;
+  color: var(--red-color);
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+CommonTab 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+*/
+
+.Order {
+  margin-top: 30px;
+  align-items: self-start;
+}
+
+.CommonTab button {
+  font-size: 12px;
+  line-height: 20px;
+  padding: 7px 20px;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  margin-right: 10px;
+  min-height: unset;
+  border-radius: 20px;
+  border: 1px solid var(--main-color);
+}
+
+.CommonTab .MuiTabs-root {
+  min-height: unset;
+}
+
+.CommonTab button:last-child {
+  margin-right: 0;
+}
+
+.CommonTab button.Mui-selected {
+  background: var(--main-color);
+  color: var(--white-color);
+  border-bottom: 0;
+}
+
+.CommonTab button.filterActive {
+  background: var(--main-color);
+  color: var(--white-color);
+  /* border-bottom: 0; */
+}
+
+.CommonTab .MuiTabs-indicator {
+  display: none;
+}
+
+.CommonTab .MuiBox-root {
+  border-bottom: 0;
+}
+
+.CommonTab .MuiTabPanel-root {
+  padding: 0;
+}
+
+.Order .duelSelect {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--main-bg-color);
+  margin-bottom: 5px;
+}
+
+.Order .duelSelect select {
+  width: 200px;
+}
+
+.Order .duelSelect select:nth-child(2) {
+  margin-left: 20px;
+}
+
+.Order .duelSelect select {
+  padding: 10px 15px;
+  border-radius: 30px;
+}
+
+section.DashboardSetting.BulkSms .commonCart .middle {
+  margin: 10px 0;
+}
+
+.Order .duelSelect .MuiInputBase-root {
+  border-radius: 30px;
+  border: 1px solid var(--main-color);
+  width: 200px !important;
+}
+
+.Order .duelSelect .MuiInputBase-root .MuiInputBase-input {
+  height: auto;
+  padding: 8px 20px;
+  border-radius: 30px;
+  color: var(--header-color);
+  background: var(--white-color);
+}
+
+.Order .duelSelect .MuiInputBase-root .MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+toggle 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+*/
+.toggle .MuiSwitch-thumb.Mui-checked {
+  color: var(--main-color);
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+commonBox 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+*/
+.commonBox {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  background: var(--white-color);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.commonBox .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.commonBox .header h4 {
+  font-size: 18px;
+}
+
+.commonBox .header .left {
+  width: 80%;
+  display: flex;
+}
+
+.commonBox .header .left i {
+  font-size: 18px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.commonBox .header .right {
+  width: 20%;
+  text-align: right;
+}
+
+.commonBox .header .right button {
+  font-size: 14px;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--main-color);
+  font-weight: 700;
+}
+
+.commonBox .header .right button i {
+  margin-left: 8px;
+  margin-top: 5px;
+}
+
+.commonBox .middle {
+  padding: 30px 0;
+}
+
+.commonBox .middle h3 {
+  font-size: 40px;
+  line-height: 50px;
+  color: var(--main-color);
+  letter-spacing: 1px;
+}
+
+.NoteHover button.note {
+  width: 120px;
+  position: relative;
+  border-radius: 8px;
+}
+
+.NoteHover .viewNote {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all linear 0.2s;
+  border-radius: 8px;
+  opacity: 0;
+}
+
+.NoteHover button.note:hover .viewNote {
+  opacity: 1;
+}
+
+.NoteHover input.note .viewNote span {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+Image Upload 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+
+.PhotoUploader {
+  width: 50%;
+}
+
+.dropzone {
+  border: 2px dashed var(--main-color);
+  padding: 10px 30px;
+  border-radius: 10px;
+  text-align: center;
+  transition: all linear 0.2s;
+  cursor: pointer;
+}
+
+.dropzone:hover {
+  background: #f3f1f5;
+  border: 2px solid var(--main-color);
+}
+
+.dropzone p {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+Empty Img 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+
+.MiddleSectionContent {
+  text-align: center;
+  width: 90vw;
+}
+
+.MiddleSectionContent img {
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 5px !important;
+  object-fit: cover;
+  padding: 5px;
+}
+
+.MiddleSectionContent p {
+  color: var(--main-color);
+  text-align: center !important;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+Pagination 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+.MuiPagination-ul button {
+  background: #ffffff;
+  box-shadow: 0px 22px 113.46px rgba(0, 0, 0, 0.03);
+  color: var(--main-color);
+  width: 25px;
+  height: 25px;
+  padding: 8px 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.MuiPagination-ul button.Mui-selected {
+  color: var(--white-color);
+  background: var(--main-color);
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+CreateNewBtn 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+.CreateNewBtn {
+  font-size: 12px !important;
+  line-height: 20px !important;
+  padding: 7px 15px !important;
+  color: var(--white-color) !important;
+  min-height: unset !important;
+  border-radius: 20px !important;
+  border: 1px solid var(--main-color) !important;
+  background: var(--main-color) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 185px;
+}
+
+.CreateNewBtn i {
+  font-size: 11px;
+  margin-left: 10px;
+  margin-right: 10px;
+  line-height: 0;
+}
+
+.submitButtonForPages button:hover {
+  background: var(--main-hover-color);
+}
+
+.Order .OrderTabs {
+  /* display: flex; */
+  /* align-items: flex-start;
+  justify-content: space-between; */
+}
+
+.Order .OrderTabs button {
+  padding: 5px 15px;
+  padding-right: 10px;
+  border-radius: 30px;
+  justify-content: center;
+  width: auto;
+}
+
+.Order .OrderTabs button h6 {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--main-bg-color-2);
+  color: var(--main-color);
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 10px;
+  padding: 4px;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+Profile Menu Popup 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+#Profile .MuiPaper-root.MuiPaper-elevation {
+  top: 90px !important;
+  border-radius: 15px;
+  width: 350px;
+  left: unset !important;
+  right: 30px;
+}
+
+div#Profile.ProfileMenu .MuiPaper-root.MuiPaper-elevation {
+  width: 250px;
+}
+
+div#Profile.ProfileMenu .MuiPaper-root.MuiPaper-elevation ul {
+  padding: 20px 10px;
+}
+
+div#Profile.ProfileMenu .MuiPaper-root.MuiPaper-elevation ul li a {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+}
+
+div#Profile.ProfileMenu .MuiPaper-root.MuiPaper-elevation ul li a i {
+  font-size: 16px;
+  line-height: 16px;
+  margin-right: 10px;
+  margin-bottom: -2px;
+}
+
+div#Profile.ProfileMenu .MuiPaper-root.MuiPaper-elevation ul li:last-child a {
+  color: var(--red-color);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+commonCart 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+.commonCart.cart-1 {
+  background: var(--cart-color-1);
+}
+
+.commonCart.cart-2 {
+  background: var(--cart-color-2);
+}
+
+.commonCart.cart-3 {
+  background: var(--cart-color-3);
+}
+
+.commonCart.cart-4 {
+  background: var(--cart-color-4);
+}
+
+.commonCart.cart-5 {
+  background: var(--cart-color-5);
+}
+.commonCart.cart-6 {
+  background: var(--cart-color-6);
+}
+
+.commonCart .header h4 {
+  color: var(--header-color);
+  font-size: 16px;
+}
+
+.commonCart .header h4 i {
+  margin-right: 10px;
+}
+
+.commonCart .middle {
+  margin: 20px 0;
+}
+
+.commonCart .middle h3 {
+  color: var(--main-color);
+  font-size: 45px;
+  line-height: 55px;
+  display: flex;
+  align-items: center;
+}
+
+.commonCart .middle i {
+  line-height: 50px;
+  margin-right: 10px;
+}
+
+.commonCart .middle h5 {
+  font-size: 25px;
+  line-height: 35px;
+  color: var(--text-color);
+}
+
+.commonCart .list li {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.commonCart .list li:last-child {
+  margin-bottom: 0;
+}
+
+.commonCart .list li span {
+  font-weight: 700;
+}
+
+.commonCart .nextPayment span {
+  color: var(--red-color);
+}
+
+.commonCart .DuelButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.commonCart .DuelButton button {
+  width: 48%;
+  padding: 7px;
+  margin-top: 30px;
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: 400;
+}
+
+.commonCart .DuelButton button:last-child {
+  background: var(--cart-color-1);
+}
+
+.btn_spinner {
+  width: 15px;
+  height: 15px;
+  border: 3px solid var(--white-color);
+  border-top: 3px solid var(--cart-color-1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.commonDropdown button {
+  font-size: 12px;
+  line-height: 20px;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 30px;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.commonDropdown button i {
+  margin-right: 0;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.commonDropdownUl ul {
+  padding: 0 !important;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.commonDropdownUl ul li {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.commonDropdownUl ul li:hover {
+  background: var(--main-bg-color-2);
+}
+
+.commonDropdownUl ul li a {
+  padding: 5px 10px;
+}
+
+.commonDropdownUl .MuiPaper-root {
+  box-shadow: none;
+}
+
+.commonDropdownUl ul li button {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.commonDropdownUl ul li button i {
+  margin-bottom: -2px;
+  margin-right: 5px;
+}
+
+.commonDropdownUl ul li button:hover {
+  color: var(--main-color);
+}
+
+.ActionMenu ul li {
+  padding: 0;
+}
+
+.ActionMenu ul li a,
+.ActionMenu ul li button {
+  padding: 5px 10px;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+Footer 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+*/
+
+.Footer {
+  border-radius: 0;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 0;
+}
+
+.Footer img {
+  height: 20px;
+  margin: 0 10px;
+}
+
+.Footer p {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+dataTable 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+*/
+
+.DataTable {
+  margin-top: 30px;
+}
+
+.DataTable .DataTableRow:first-child {
+  background: var(--main-bg-color);
+  padding: 15px;
+}
+
+.DataTable .DataTableRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background: var(--white-color);
+  box-shadow: 0px 4px 39px 9px rgba(81, 69, 159, 0.09);
+  margin-bottom: 10px;
+}
+
+.DataTable .DataTableColum {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  min-width: 5%;
+  width: 10%;
+}
+
+.DataTable .DataTableColum .MuiCheckbox-root {
+  padding: 0;
+  color: var(--main-color);
+}
+
+.DataTable .DataTableColum.Address {
+  width: 15%;
+}
+
+.DataTable .DataTableColum:first-child {
+  width: 20px;
+  min-width: auto;
+}
+
+.DataTable .DataTableColum:nth-child(2) {
+  width: 20px;
+  min-width: auto;
+}
+
+.DataTable .DataTableColum.Address:nth-child(2) {
+  width: 15%;
+}
+
+.DataTable .DataTableColum:last-child {
+  width: 20px;
+  text-align: right;
+}
+
+.DataTable .icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--main-bg-color-2);
+  color: var(--main-color);
+  margin-right: 5px;
+}
+
+.DataTable .icon i {
+  margin-right: 0;
+}
+
+.DataTable i {
+  line-height: 0px;
+  margin-right: 5px;
+}
+
+.DataTable .DataTableColum h3 {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--main-color);
+}
+
+.DataTable .DataTableColum .number {
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.DataTable .DataTableColum p {
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 0;
+}
+
+.DataTable .orderColor {
+  background: #fff4e5;
+  text-align: center;
+  padding: 4px 10px;
+  border-radius: 30px;
+  font-weight: 600;
+  color: var(--main-color-2);
+  display: inline-block;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.DataTable .Name {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.DataTable .Name:last-child {
+  margin-bottom: 0;
+}
+
+.DataTable .PhoneNumber {
+  color: var(--main-color);
+}
+
+.DataTable .PhoneNumber a {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.DataTable .Price {
+  background: var(--main-bg-color-2);
+  padding: 5px 15px;
+  padding-left: 1px;
+  border-radius: 30px;
+  color: var(--main-color);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.DataTable .Quantity {
+  margin-top: 5px;
+}
+
+.DataTable .Quantity span {
+  font-weight: 700;
+}
+
+.DataTable .Discount {
+  position: relative;
+}
+
+.DataTable .Discount .inputTaka {
+  position: absolute;
+  top: 7px;
+  left: 8px;
+  background: var(--white-color);
+  color: var(--text-color);
+}
+
+.DataTable .Discount input {
+  width: 70px;
+  border-radius: 30px;
+  padding: 9px 5px;
+  /* padding-left: 10px; */
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  line-height: 14px;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.DataTable .TotalPrice {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  font-weight: 600;
+  word-break: break-word;
+  font-size: 13px;
+}
+
+.DataTable .PaymentInfo .TotalPrice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.DataTable .PaymentInfo .TotalPrice span {
+  width: 35px;
+  font-weight: 700;
+}
+
+.DataTable .TotalPrice .TrackingId {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 5px 8px;
+  color: var(--main-color);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.DataTable .TotalPrice .TrackingId span {
+  width: 90%;
+}
+
+.DataTable .TotalPrice .TrackingId button {
+  min-width: auto;
+  width: 10px;
+}
+
+.DataTable .TotalPrice input {
+  padding: 5px 10px;
+  border-radius: 30px;
+}
+
+.DataTable .TotalPrice button input {
+  padding: 10px;
+  border-radius: 30px;
+  font-size: 12px;
+}
+
+.DataTable .TotalPrice .invoice {
+  padding: 0;
+}
+
+.DataTable .TotalPrice .invoice a {
+  border: 1px solid var(--border-color);
+  padding: 5px 15px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--text-color);
+}
+
+.DataTable .TotalPrice .invoice a i {
+  margin-right: 10px;
+}
+
+.DataTable .Note textarea {
+  border: 1px solid var(--border-color);
+  padding: 5px 10px;
+  width: 150px;
+}
+
+.DataTable .Action {
+  text-align: right;
+}
+
+.DataTable .Action button {
+  min-width: unset;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white-color);
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0 auto;
+  margin-right: 0;
+}
+
+.DataTable .DataTableColum select {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 7px 10px;
+  border-radius: 30px;
+  padding-right: 1px;
+  border: 1px solid var(--border-color);
+}
+
+.DataTable .DataTableColum .Note button {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 5px 10px;
+  color: var(--text-color);
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  font-weight: 400;
+  white-space: break-spaces;
+  word-break: break-all;
+  position: relative;
+}
+
+.DataTable .DataTableColum .Note button h6 {
+  font-size: 10px;
+  line-height: 16px;
+  padding: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--white-color);
+  box-shadow: 0px 22px 113.46px rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--main-color);
+  font-weight: 700;
+  position: absolute;
+  top: -12px;
+  right: -10px;
+}
+
+.DataTable .DataTableColum .Note button h6 i {
+  font-size: 7px;
+  margin-left: -2px;
+  margin-right: 0;
+}
+
+.DataTable .DataTableColum .Status .MuiFormControl-root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.DataTable .DataTableColum .Status .MuiInputBase-root {
+  border-radius: 30px;
+  line-height: 20px;
+  height: 35px;
+  border: 1px solid var(--border-color);
+}
+
+.DataTable .DataTableColum .Status .MuiSelect-select {
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--text-color);
+  border-radius: 30px;
+  padding: 5px 15px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.DataTable .DataTableColum .Status .MuiSvgIcon-root {
+  position: absolute;
+  top: 4px;
+  right: 0;
+}
+
+/* Media 1440 */
+@media (max-width: 1599px) {
+  .DataTable .DataTableColum {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .DataTable .DataTableColum h3 {
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--main-color);
+  }
+
+  .DataTable .DataTableColum .number {
+    font-size: 12px;
+    color: var(--text-color);
+    font-weight: 500;
+  }
+
+  .DataTable .DataTableColum p {
+    font-size: 12px;
+  }
+
+  .DataTable .orderColor {
+    font-size: 12px;
+  }
+
+  .DataTable .Name {
+    font-size: 12px;
+  }
+
+  .DataTable .DataTableColum .Note button {
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .DataTable .DataTableColum select {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .DataTable .Discount input {
+    padding: 7px 5px;
+    font-size: 12px;
+  }
+
+  .DataTable .PhoneNumber a {
+    font-size: 12px;
+  }
+}
+
+/* .DataTableColum.ColumNotes {
+  width: 12%;
+} */
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+commonCart 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+*/
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+AllDelete 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+*/
+
+.AllDelete {
+  margin-top: 15px;
+}
+
+.AllDelete button.bg {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  padding: 7px 20px;
+  border-radius: 30px;
+  margin-right: 10px;
+  background: var(--white-color);
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+}
+
+.AllDelete button.bg i {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.AllDelete button.bg:hover {
+  background: var(--main-hover-color);
+  color: var(--white-color);
+}
+
+.AllDelete .Status {
+  width: 180px;
+}
+
+.AllDelete .Status .commonDropdown button {
+  background: var(--white-color);
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  padding: 7px 20px;
+}
+
+.AllDelete .Status .commonDropdown button:hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+.commonDropdown button i {
+  line-height: 0;
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- --------------------------------------------------- 
+Media 
+---------------------------------------------------  --------------------------------------------------- --------------------------------------------------- 
+--------------------------------------------------- --------------------------------------------------- ---------------------------------------------------  */
+@media (max-width: 1399px) {
+  .CreateNewBtn {
+    padding: 7px 10px !important;
+    width: 160px;
+    margin-right: 0;
+  }
+
+  .DataTable .Discount input {
+    width: 50px;
+  }
+
+  .Table table :where(th, td) {
+    font-size: 13px;
+    padding: 4px 10px;
+  }
+
+  .Table table input {
+    padding: 6px 10px;
+  }
+
+  .Table table select {
+    width: 140px;
+    padding: 7px 10px;
+  }
+
+  .Table td .action button i {
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .commonCart .header h4 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .commonCart .middle h3 {
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .commonCart .list li {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .Table button {
+    padding: 6px 20px;
+  }
+
+  .DataTable .DataTableRow {
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .DataTable .DataTableColum .Status .MuiFormControl-root {
+    width: 100%;
+  }
+
+  .DataTable .DataTableColum .Status .MuiSelect-select {
+    font-size: 11px;
+    padding: 4px 12px;
+    padding-right: 18px;
+  }
+
+  .DataTable .Name {
+    font-size: 11px;
+  }
+
+  .DataTable .DataTableColum p {
+    font-size: 11px;
+  }
+
+  .DataTable .Discount .inputTaka {
+    top: 7px;
+  }
+
+  .DataTable .DataTableColum .Note button h6 {
+    font-size: 9px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .DataTable .DataTableColum .Note button h6 i {
+    font-size: 7px;
+  }
+
+  .DataTable .TotalPrice .invoice a {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .DataTable .TotalPrice .invoice a i {
+    margin-right: 5px;
+  }
+
+  .commonDropdown button {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .commonDropdown button i {
+    margin-right: 0;
+    margin-left: 5px;
+    font-size: 9px;
+  }
+
+  .Sidebar .SidebarMenu ul li :where(a, h6) {
+    font-size: 12px;
+  }
+
+  .Sidebar .SidebarMenu :where(a, h6) i {
+    font-size: 22px;
+  }
+
+  .Sidebar {
+    width: 115px;
+  }
+
+  .LongSidebar {
+    width: 200px;
+  }
+
+  .DataTable .DataTableColum .Status .MuiInputBase-root {
+    height: 30px;
+  }
+
+  .DataTable .DataTableColum .Status .MuiSvgIcon-root {
+    top: 2px;
+  }
+
+  .updateModalForm .customInput {
+    margin-top: 20px;
+  }
+
+  .SectionCustomize .Header {
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+
+  .SectionCustomize .Header h4 {
+    font-size: 18px;
+  }
+
+  .MiddleSectionContent img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .Sidebar .SidebarMenu {
+    height: 74%;
+  }
+  :where(.viewModal, .updateModal) .modalBox {
+    width: 80%;
+  }
+  .OrderAddProductModal .DeleteModalButton {
+    margin-top: 48px;
+    padding: 10px 15px;
+  }
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- 
+Media 
+---------------------------------------------------  ---------------------------------------------------  */
+@media (max-width: 1023px) {
+  .MenuItem a svg {
+    margin-right: 10px;
+  }
+
+  .MenuItem .MuiButtonBase-root {
+    padding: 0;
+    display: flex;
+  }
+
+  .MenuItem a,
+  .MenuItem h6 {
+    width: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: relative;
+    color: var(--header_color);
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .MenuItem a.active,
+  .MenuItem h6.active {
+    background: var(--bg_color);
+    color: var(--white);
+  }
+
+  .MenuItem a svg,
+  .MenuItem h6 svg {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+
+  .MenuItem a span,
+  .MenuItem h6 span {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 4px;
+  }
+
+  .MenuItemContent {
+    margin-top: 20px;
+    padding: 0 15px;
+    padding-bottom: 25px;
+    height: 75vh;
+  }
+
+  .MenuItem .MuiCollapse-wrapperInner a {
+    padding: 10px 15px;
+    padding-left: 45px;
+    font-size: 14px;
+  }
+
+  .MenuItem .MuiCollapse-wrapperInner a::after {
+    position: absolute;
+    content: "";
+    top: 20px;
+    left: 30px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--text_color);
+    z-index: 9;
+  }
+
+  .MenuItem a.active {
+    background: var(--main-color);
+    color: var(--white-color);
+  }
+
+  .MiddleSectionContent img {
+    width: 45px !important;
+    height: 45px !important;
+  }
+
+  .MiddleSectionContent {
+    width: 90vw;
+  }
+
+  #Profile .MuiPaper-root.MuiPaper-elevation {
+    top: 129px !important;
+    width: 350px;
+    right: 30px;
+  }
+
+  .commonCart .DuelButton button {
+    font-size: 13px;
+  }
+
+  .SubscriptionInvoice .InvoiceItem button {
+    width: 262px;
+  }
+
+  .modalContent .table {
+    overflow: scroll;
+  }
+
+  :where(.viewModal, .updateModal) .header i {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  :where(.viewModal, .updateModal) .modalBox {
+    width: 90%;
+  }
+
+  .Sidebar {
+    display: none;
+  }
+
+  .LongSidebar {
+    display: block;
+  }
+
+  .MuiContainer-root {
+    padding: 0 20px !important;
+  }
+
+  .LongSidebar .Logo {
+    display: block;
+  }
+
+  .LongSidebar .Logo img {
+    height: 50px;
+    width: 50px;
+    display: block;
+  }
+
+  .SalesTargetBox {
+    gap: 10px;
+  }
+
+  .HomePage .SalesTargetContent .SalesTargetItem h5 {
+    font-size: 12px;
+  }
+
+  .HomePage .SalesTargetContent .SalesTargetItem {
+    padding: 15px;
+    width: 30%;
+  }
+
+  .DataTableContent {
+    overflow-x: scroll;
+    width: 1100px;
+  }
+
+  .MiddleSectionContent {
+    width: 100vw;
+  }
+
+  .ColorSection .ColorSectionItem:first-child {
+    padding-right: 10px;
+  }
+
+  .ColorSection .ColorSectionItem:last-child {
+    padding-left: 10px;
+  }
+
+  .ColorSection {
+    align-items: self-start;
+  }
+
+  .Order .MuiContainer-root {
+    width: 1100px;
+    overflow-x: auto;
+  }
+
+  .HomePage .WebsiteLink .MuiContainer-root {
+    /* width: 500px; */
+    overflow-x: auto;
+  }
+
+  .OrderAddProductModal {
+    padding: 15px;
+  }
+  .OrderAddProductModal .DeleteModalButton {
+    margin-top: 50px;
+    padding: 8px 10px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .Order {
+    display: block;
+  }
+
+  .MiddleSectionContent {
+    width: 75vw;
+  }
+
+  .MiddleSectionContent img {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  #Profile .MuiPaper-root.MuiPaper-elevation {
+    top: 118px !important;
+    width: 350px;
+    right: 18px;
+  }
+
+  .Order .OrderTabs {
+    display: block;
+  }
+
+  .Order .OrderTabs .CreateNewBtn {
+    margin-top: 20px;
+  }
+
+  .updateModalForm {
+    display: block;
+  }
+
+  .updateModalForm .customInput {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .HomePage .Header {
+    padding-bottom: 15px;
+  }
+
+  .ChannelContent.d_flex.d_justify {
+    display: block;
+  }
+
+  .ChannelContent .left {
+    width: 100%;
+  }
+
+  .ChartJs.Channels {
+    height: auto;
+  }
+
+  .Channels .recharts-responsive-container {
+    width: auto !important;
+    height: auto !important;
+  }
+
+  .imgUploader img {
+    height: 40px;
+  }
+
+  .MobileFooterMenu {
+    display: block;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    padding: 15px;
+    background: var(--white-color);
+    box-shadow: 0px 22px 113.46px rgba(0, 0, 0, 0.03);
+  }
+
+  .OrderAddProductModal .DeleteModalButton {
+    margin-top: 0;
+  }
+  .updateModalForm .customInput {
+    margin-top: 0;
+  }
+  .OrderAddProductModal .HeaderButton button {
+    font-size: 14px;
+  }
+  .updateModalForm .customInput {
+    margin-top: 10px;
+  }
+}
+
+/* ---------------------------------------------------  --------------------------------------------------- 
+Media 
+---------------------------------------------------  ---------------------------------------------------  */

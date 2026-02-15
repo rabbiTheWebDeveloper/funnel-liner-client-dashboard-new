@@ -1,0 +1,122 @@
+/* ---------------------------------------------------------------------------------------------------------------------------
+Changelogs
+--------------------------------------------------------------------------------------------------------------------------- */
+
+.changes {
+  position: relative;
+  padding: 5px 1rem 3rem 4rem;
+}
+
+.changes::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: -10px;
+  left: 12px;
+  width: 4px;
+  background: #f1f1f1;
+}
+
+.changes::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 7px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--main-color);
+}
+
+.heading .badge {
+  display: inline-block;
+  padding: 4px 6px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  border-radius: 2px;
+}
+
+.changes .heading h3 {
+  font-size: 0.875rem;
+}
+
+.changes .heading h1 {
+  font-size: 2rem;
+  max-width: 580px;
+}
+
+.changes .heading h2 {
+  font-size: 14px;
+  color: var(--main-color);
+}
+
+.changes .changelog > div {
+  padding: 3rem 2.5rem;
+}
+
+.changes .changelog .newfeature,
+.changes .changelog .bugfixes {
+  display: inline-block;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0d2cce;
+  margin-bottom: 1.6rem;
+  padding: 4px 8px;
+  background-color: rgba(27, 0, 233, 0.15);
+}
+
+.changes .changelog .bugfixes {
+  color: var(--red-color);
+  background-color: rgba(233, 0, 0, 0.15);
+}
+.changes .changelog h1 {
+  font-size: 1rem;
+}
+
+.changes .changelog ul li {
+  position: relative;
+  padding: 5px 2rem 1.25rem;
+}
+
+.changes .changelog ul li::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: -10px;
+  left: 12px;
+  border-left: 1px dashed var(--border-color);
+}
+
+.changes .changelog ul li::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--main-color);
+}
+.changes .changelog .bug ul li::after {
+  background: var(--red-color);
+}
+
+@media (max-width: 550px) {
+  .changes {
+    padding: 5px 0rem 0rem 2rem;
+  }
+  .changes .changelog > div {
+    box-shadow: none;
+    padding: 1rem 0;
+    background: none;
+  }
+  .changes .heading h1 {
+    font-size: 1.35rem;
+    max-width: auto;
+  }
+}
