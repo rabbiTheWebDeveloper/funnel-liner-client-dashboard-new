@@ -127,13 +127,13 @@ const Index = () => {
       icon: "🚚",
       link: "/website-setting?tab=5",
     },
-    // {
-    //   title: "Payment Gateway",
-    //   desc: "Integrate and manage payment options to provide customers with secure and flexible transaction methods.",
-    //   icon: "🏦",
-    //   link: "/payment-gateway",
-    //   badge: "Essential",
-    // },
+    {
+      title: "Payment Gateway",
+      desc: "Integrate and manage payment options to provide customers with secure and flexible transaction methods.",
+      icon: "🏦",
+      link: "/payment-gateway",
+      badge: "Essential",
+    },
     {
       title: "Slider & banner",
       desc: "Enhance your shop's visibility by connecting SEO tools and marketing integrations for better engagement.",
