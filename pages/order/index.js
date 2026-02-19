@@ -1204,6 +1204,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                       onClose={() => handleClose1(0)}
                     >
                       {courierList.length > 0 ? (
+                         <>
                         <MenuItem
                           onClick={e => {
                             multiSelectOrdersCouriers("steadfast");
@@ -1221,7 +1222,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                           />
                           SteadFast
                         </MenuItem>
-     <MenuItem
+                        <MenuItem
                           onClick={e => {
                             multiSelectOrdersCouriers("redx");
                             handleClose();
@@ -1236,8 +1237,9 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                               margin: "5px",
                             }}
                           />
-                          SteadFast
+                          Redx
                         </MenuItem>
+                        </>
                       ) : (
                         <MenuItem
                           onClick={e => {
