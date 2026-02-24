@@ -651,13 +651,13 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
       setSelectedOrders([...selectedOrders, orderId]);
     }
   };
-  const multiSelectOrdersCouriers = (courierProvider) => {
+  const multiSelectOrdersCouriers = courierProvider => {
     SuperFetch.post(
       "/client/courier/send-order",
       {
         order_id: [...selectedOrders],
         provider: courierProvider,
-        request_type : "bulk"
+        request_type: "bulk",
       },
       { headers: headers }
     ).then(res => {
@@ -865,7 +865,15 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
       updateStatus();
     }
   };
+// Make sure courierList is an array before calling filter
+const activeCouriers = Array.isArray(courierList) 
+  ? courierList.filter(item => item.status === "active")
+  : [];
+  const hasSteadfast = activeCouriers?.some(
+    item => item.provider === "steadfast"
+  );
 
+  const hasRedx = activeCouriers?.some(item => item.provider === "redx");
   return (
     <div>
       <section className="DashboardSetting Order">
@@ -1203,46 +1211,43 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                       open={Boolean(anchorEls[0])}
                       onClose={() => handleClose1(0)}
                     >
-                      {courierList.length > 0 ? (
-                         <>
-                        <MenuItem
-                          onClick={e => {
-                            multiSelectOrdersCouriers("steadfast");
-                            handleClose();
-                          }}
-                        >
-                          <img
-                            src="https://funnelliner-bucket.s3.ap-southeast-1.amazonaws.com/media/steadfast.svg"
-                            alt=""
-                            style={{
-                              width: "20px",
-                              height: "auto",
-                              margin: "5px",
-                            }}
-                          />
-                          SteadFast
-                        </MenuItem>
-                        <MenuItem
-                          onClick={e => {
-                            multiSelectOrdersCouriers("redx");
-                            handleClose();
-                          }}
-                        >
-                          <img
-                            src="https://redx.com.bd//images/favicon.png"
-                            alt=""
-                            style={{
-                              width: "20px",
-                              height: "auto",
-                              margin: "5px",
-                            }}
-                          />
-                          Redx
-                        </MenuItem>
+                      {activeCouriers.length > 0 ? (
+                        <>
+                          {hasSteadfast && (
+                            <MenuItem
+                              onClick={() => {
+                                multiSelectOrdersCouriers("steadfast");
+                                handleClose();
+                              }}
+                            >
+                              <img
+                                src="https://funnelliner-bucket.s3.ap-southeast-1.amazonaws.com/media/steadfast.svg"
+                                alt=""
+                                style={{ width: "20px", margin: "5px" }}
+                              />
+                              SteadFast
+                            </MenuItem>
+                          )}
+
+                          {hasRedx && (
+                            <MenuItem
+                              onClick={() => {
+                                multiSelectOrdersCouriers("redx");
+                                handleClose();
+                              }}
+                            >
+                              <img
+                                src="https://redx.com.bd/images/favicon.png"
+                                alt=""
+                                style={{ width: "20px", margin: "5px" }}
+                              />
+                              Redx
+                            </MenuItem>
+                          )}
                         </>
                       ) : (
                         <MenuItem
-                          onClick={e => {
+                          onClick={() => {
                             courierReDriect();
                             handleClose();
                           }}

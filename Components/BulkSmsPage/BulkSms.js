@@ -84,7 +84,7 @@ const BulkSms = ({ busInfo, handelFetchBusInfo }) => {
     const banglaRegex = /[\u0980-\u09FF]+/;
     const isBangla = banglaRegex.test(smsContent);
     if (isBangla) {
-      setSmsLength(Math.ceil(smsContent.length / 70));
+      setSmsLength(Math.ceil(smsContent.length / 64));
     } else {
       setSmsLength(Math.ceil(smsContent.length / 160));
     }
@@ -337,10 +337,10 @@ const BulkSms = ({ busInfo, handelFetchBusInfo }) => {
           headerIcon={"flaticon-sms"}
           title={"SMS Content"}
           subTitle={
-            "*160 Characters are counted as 1 SMS in case of English language & 70 in other language."
+            "*160 Characters are counted as 1 SMS in case of English language & 64 in other language."
           }
           subTitle2={
-            "*One simple text message containing extended GSM character set (~^{}[]|) is of 70 characters long. Check your SMS count before pushing SMS."
+            "*One simple text message containing extended GSM character set (~^{}[]|) is of 64 characters long. Check your SMS count before pushing SMS."
           }
           search={false}
           order={false}

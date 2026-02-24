@@ -22,7 +22,7 @@ const RedxCourier = ({ merchantId, showToast, setOpenRedx, openRedx, redxData, s
       .then((res) => {
         if (res?.status === 200) {
           stopLoading();
-          showToast("Steadfast details have been successfully submitted.");
+          showToast("Redx details have been successfully submitted.");
         }
       });
   };
