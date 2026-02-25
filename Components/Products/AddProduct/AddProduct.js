@@ -484,20 +484,19 @@ const AddProduct = ({ busInfo }) => {
                     showToast("Product Created Failure", "error");
                   }
                 } catch (e) {
-                  if (e.response) {
-                    Object.keys(e?.response?.data?.errors).forEach(key => {
-                      const errorMessage = e?.response?.data?.errors[key][0];
+                  const err = e?.response;
+                  if (err?.data?.errors) {
+                    Object.keys(err.data.errors).forEach(key => {
+                      const errorMessage = err.data.errors[key]?.[0] || err.data.errors[key];
                       showToast(errorMessage, "error");
                     });
+                  } else if (err?.data?.message) {
+                    showToast(err.data.message, "error");
+                  } else if (err?.status === 413) {
+                    showToast("File too large! Please reduce image/video size.", "error");
                   } else {
-                    showToast(
-                      <>
-                        <h5>Error: Request Entity Too Large</h5>
-                      </>,
-                      "error"
-                    );
+                    showToast("Something went wrong! Please try again.", "error");
                   }
-                  // console.log(e.response.data);
                 } finally {
                   stopLoading();
                 }

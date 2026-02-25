@@ -60,10 +60,10 @@ const SubCategoryList = () => {
   const handleFetchSubCategories = useCallback(() => {
     axios
       .get(
-        `${API_ENDPOINTS.BASE_URL}${API_ENDPOINTS.CATEGORY.GET_CATEGORIES}`,
+        `${API_ENDPOINTS.BASE_URL}${API_ENDPOINTS.CATEGORY.GET_ALL_SUBCATEGORIES}`,
         {
           headers: headers,
-          params: { page: currentPage, perPage: perPage, type: "sub_category" },
+          params: { page: currentPage, perPage: perPage },
         }
       )
       .then(function (response) {

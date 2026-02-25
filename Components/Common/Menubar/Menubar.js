@@ -258,7 +258,7 @@ const Menubar = ({ busInfo, myAddonsList, pendingOrderCount }) => {
                 (openSubmenu.product && router.pathname === "/product") ||
                 (openSubmenu.product && router.pathname === "/category-list") ||
                 (openSubmenu.product && router.pathname === "/sub-category-list") ||
-                (openSubmenu.product && router.pathname === "/ad-campaign")
+                false
                   ? "active"
                   : ""
               }
@@ -295,14 +295,14 @@ const Menubar = ({ busInfo, myAddonsList, pendingOrderCount }) => {
                     >
                       Sub Category
                     </Link>
-                    <Link
+                    {/* <Link
                       href="/ad-campaign"
                       className={
                         router.pathname === "/ad-campaign" ? "active" : ""
                       }
                     >
                       Ad Campaign
-                    </Link>
+                    </Link> */}
                   </li>
                 </ul>
               )}

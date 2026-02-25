@@ -1,7 +1,7 @@
 import { Box, Button, Grid } from "@mui/material";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import useLoading from "../../../hook/useLoading";
 import { useToast } from "../../../hook/useToast";
 import Spinner from "../../commonSection/Spinner/Spinner";
@@ -9,6 +9,7 @@ import style from "../SubCategoryPage/addCategory.module.css";
 import axios from "axios";
 import { headers } from "../../../pages/api";
 import { API_ENDPOINTS } from "../../../config/ApiEndpoints";
+import Select from "react-select";
 
 const AddSubCategory = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -17,8 +18,13 @@ const AddSubCategory = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      parent_id: "",
+    },
+  });
   const [status, setStatus] = useState("0");
   const showToast = useToast();
   const [isLoading, startLoading, stopLoading] = useLoading();
@@ -41,7 +47,7 @@ const AddSubCategory = () => {
     fetchCategories();
   }, [fetchCategories]);
 
-  const onSubCategorySubmit = async (data) => {
+  const onSubCategorySubmit = async data => {
     try {
       // --- Validate ---
       if (selectedImage && selectedImage.size > 1024 * 1024) {
@@ -69,26 +75,38 @@ const AddSubCategory = () => {
 
       // --- Success ---
       if (res.data?.success) {
-        showToast(res.data.message, "success");
+        showToast(res.data.message, "Category added successfully!");
+        router.push("/sub-category-list");
       }
     } catch (error) {
       const err = error?.response;
 
-      if (err?.status === 422) {
-        showToast(err.data?.errors?.category?.[0], "error");
-      } else if (err?.status === 400) {
-        showToast(err.data?.message, "error");
+      if (err?.data?.errors) {
+        Object.keys(err.data.errors).forEach(key => {
+          const errorMessage =
+            err.data.errors[key]?.[0] || err.data.errors[key];
+          showToast(errorMessage, "error");
+        });
+      } else if (err?.data?.message) {
+        showToast(err.data.message, "error");
       } else {
-        showToast("Something went wrong!", "error");
+        showToast("Something went wrong! Please try again.", "error");
       }
     } finally {
       stopLoading();
     }
   };
 
-  const handleStatusChange = (event) => {
+  const handleStatusChange = event => {
     setStatus(event.target.value);
   };
+
+  const categoryOptions = Array.isArray(categories)
+    ? categories.map(cat => ({
+        value: cat.id,
+        label: cat.name,
+      }))
+    : [];
 
   useEffect(() => {
     if (selectedImage) {
@@ -131,31 +149,40 @@ const AddSubCategory = () => {
                     <label>
                       Category <span>*</span>
                     </label>
-                    <select
-                      {...register("parent_id", { required: true })}
-                      style={{
-                        width: "100%",
-                        padding: "12px 15px",
-                        borderRadius: "10px",
-                        border: "1px solid #ddd",
-                        fontSize: "15px",
-                        lineHeight: "20px",
-                        fontWeight: "400",
-                        color: "#333",
-                        backgroundColor: "#fff",
-                        outline: "none",
-                        marginTop: "8px",
-                        appearance: "auto",
-                      }}
-                    >
-                      <option value="">Select Category</option>
-                      {Array.isArray(categories) &&
-                        categories.map((cat) => (
-                          <option key={cat.id} value={cat.id}>
-                            {cat.name}
-                          </option>
-                        ))}
-                    </select>
+                    <Controller
+                      name="parent_id"
+                      control={control}
+                      rules={{ required: true }}
+                      render={({ field }) => (
+                        <Select
+                          options={categoryOptions}
+                          value={
+                            categoryOptions.find(
+                              option =>
+                                String(option.value) === String(field.value)
+                            ) || null
+                          }
+                          onChange={selectedOption =>
+                            field.onChange(selectedOption?.value || "")
+                          }
+                          isSearchable
+                          placeholder="Select Category"
+                          menuPosition="fixed"
+                          styles={{
+                            control: base => ({
+                              ...base,
+                              minHeight: "46px",
+                              borderRadius: "10px",
+                              marginTop: "8px",
+                            }),
+                            valueContainer: base => ({
+                              ...base,
+                              padding: "2px 12px",
+                            }),
+                          }}
+                        />
+                      )}
+                    />
                     {errors?.parent_id && (
                       <span style={{ color: "red", fontSize: "12px" }}>
                         Category is required
@@ -242,7 +269,7 @@ const AddSubCategory = () => {
                         type="file"
                         id="select-image"
                         style={{ display: "none" }}
-                        onChange={(e) => setSelectedImage(e.target.files[0])}
+                        onChange={e => setSelectedImage(e.target.files[0])}
                       />
                       <label htmlFor="select-image">
                         <Button

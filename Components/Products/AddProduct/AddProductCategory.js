@@ -47,23 +47,26 @@ const AddProductCategory = ({
         headers: headers,
       })
       .then(function (response) {
-        closeModal()
         if (response?.data?.success) {
           fetchCategoriesData();
-          showToast(response?.data?.message, "success");
-          handleCloseSuggestNote();
-          HandelFetchCategory();
+          showToast(response?.data?.message || "Category added successfully!", "success");
+          handleCloseSuggestNote?.();
+          HandelFetchCategory?.();
           setValue("name", "");
-          closeModal()
+          closeModal();
         }
       })
       .catch(function (error) {
-        if (error?.response?.status === 422) {
-          showToast("This category already exists!", "error");
-        } else if (error?.response?.status === 400) {
-          showToast("Category image is required!", "error");
+        const err = error?.response;
+        if (err?.data?.errors) {
+          Object.keys(err.data.errors).forEach(key => {
+            const errorMessage = err.data.errors[key]?.[0] || err.data.errors[key];
+            showToast(errorMessage, "error");
+          });
+        } else if (err?.data?.message) {
+          showToast(err.data.message, "error");
         } else {
-          // showToast("Something went wrong!", "error");
+          showToast("Something went wrong! Please try again.", "error");
         }
       });
   };

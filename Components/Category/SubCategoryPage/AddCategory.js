@@ -55,12 +55,15 @@ const AddCategory = () => {
     } catch (error) {
       const err = error?.response;
 
-      if (err?.status === 422) {
-        showToast(err.data?.errors?.category?.[0], "error");
-      } else if (err?.status === 400) {
-        showToast(err.data?.message, "error");
+      if (err?.data?.errors) {
+        Object.keys(err.data.errors).forEach(key => {
+          const errorMessage = err.data.errors[key]?.[0] || err.data.errors[key];
+          showToast(errorMessage, "error");
+        });
+      } else if (err?.data?.message) {
+        showToast(err.data.message, "error");
       } else {
-        showToast("Something went wrong!", "error");
+        showToast("Something went wrong! Please try again.", "error");
       }
     } finally {
       stopLoading();

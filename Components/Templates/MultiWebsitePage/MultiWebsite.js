@@ -140,7 +140,7 @@ const MultiWebsite = () => {
             {/* LandingWebsite */}
             <div className="LandingWebsiteContent">
               <Grid container spacing={3}>
-                {multiPageTemplate?.map((item, index) => {
+                {multiPageTemplate?.reverse().map((item, index) => {
                   return (
                     <Grid item key={index} xs={12} sm={6} md={3}>
                       <div
@@ -195,7 +195,7 @@ const MultiWebsite = () => {
                             }}
                           />
                           <h4 style={{ fontSize: 13.5, margin: "6px 0 0" }}>
-                            {item?.name}
+                            {item?.theme_name ?? "Default Theme"}
                           </h4>
                         </div>
 

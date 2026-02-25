@@ -16,6 +16,7 @@ const API_ENDPOINTS = {
   },
   CATEGORY: {
     GET_CATEGORIES: `/client/categories`,
+    GET_ALL_SUBCATEGORIES: `/client/all-subcategories`,
     GET_CATEGORY: `/client/categories`,
     UPDATE_CATEGORY: `/client/categories`,
     DELETE_CATEGORY: `/client/categories`,

@@ -1696,31 +1696,35 @@ span.MuiSkeleton-root.MuiSkeleton-text.MuiSkeleton-pulse.css-z7erpk {
   padding-bottom: 20px;
 }
 
-/* width */
+/* Hide scrollbar globally */
 ::-webkit-scrollbar {
   width: 0px;
-  height: 10px;
-  cursor: pointer;
-  border-radius: 30px;
+  height: 0px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: var(--border_color);
-  cursor: pointer;
-  border-radius: 30px;
+/* Main content scrollbar */
+main {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--bg_color);
-  cursor: pointer;
+main::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--main-color);
-  cursor: pointer;
+main::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+main::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 /* AnotherTarget */

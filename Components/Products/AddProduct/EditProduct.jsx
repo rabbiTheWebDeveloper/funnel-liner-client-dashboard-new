@@ -167,17 +167,15 @@ const EditProduct = ({ busInfo }) => {
       if (productDetailsRes?.data?.success) {
         setProductDetails(productDetailsRes?.data?.data);
 
-        const modifiedData = productDetailsRes?.data?.data?.variations.map(
-          item => {
-            // Change the field name "code" to "product_code"
-            return {
-              ...item,
-              product_code: item.code,
-              code: undefined, // Remove the old "code" field
-            };
-          }
-        );
-        setVariantTable(modifiedData);
+        const variations = productDetailsRes?.data?.data?.variations;
+        if (Array.isArray(variations)) {
+          const modifiedData = variations.map(item => ({
+            ...item,
+            product_code: item.code,
+            code: undefined,
+          }));
+          setVariantTable(modifiedData);
+        }
         setProductShortDescription(
           productDetailsRes?.data?.data?.short_description
         );
@@ -185,14 +183,17 @@ const EditProduct = ({ busInfo }) => {
           productDetailsRes?.data?.data?.long_description
         );
 
+        const attributes = productDetailsRes?.data?.data?.attributes;
         const makeVariantAttributesArr = [];
-        productDetailsRes?.data?.data?.attributes?.forEach(item => {
-          makeVariantAttributesArr.push({
-            variantType: item?.key,
-            variantTypeId: item?.id,
-            variantValues: item?.values,
+        if (Array.isArray(attributes)) {
+          attributes.forEach(item => {
+            makeVariantAttributesArr.push({
+              variantType: item?.key,
+              variantTypeId: item?.id,
+              variantValues: item?.values,
+            });
           });
-        });
+        }
 
         setSelectVariantTypes(makeVariantAttributesArr);
       }

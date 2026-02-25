@@ -1,15 +1,21 @@
 import {
   Box,
   Button,
+  Checkbox,
   Chip,
   Container,
   FormControlLabel,
   Grid,
+  IconButton,
+  InputAdornment,
+  ListSubheader,
   MenuItem,
   Switch,
   TextField,
   Typography,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
@@ -18,7 +24,13 @@ import { useForm } from "react-hook-form";
 import { API_ENDPOINTS } from "../../../config/ApiEndpoints";
 import withAuth from "../../../hook/PrivateRoute";
 import { useToast } from "../../../hook/useToast";
-import { shopId, userId, getSections, deleteSection, bulkSaveSections } from "../../api";
+import {
+  shopId,
+  userId,
+  getSections,
+  deleteSection,
+  bulkSaveSections,
+} from "../../api";
 
 const BrandColorSection = ({
   groupedPanelStyle,
@@ -97,6 +109,7 @@ const BannerSlidesSection = ({
   handleRemoveSlide,
   handleAddSlide,
   handleSaveSlides,
+  onSlideFocus,
 }) => (
   <Grid item xs={12}>
     <Box style={groupedPanelStyle}>
@@ -120,11 +133,13 @@ const BannerSlidesSection = ({
         {slides.map((slide, index) => (
           <Box
             key={slide.id}
+            onClick={() => onSlideFocus?.(slide.id)}
             style={{
               border: "1px solid #e0e0e0",
               borderRadius: 8,
               padding: 16,
               background: "#fff",
+              cursor: "pointer",
             }}
           >
             <Grid container spacing={2}>
@@ -182,8 +197,15 @@ const BannerSlidesSection = ({
                   }}
                 >
                   Slide image
-                  <span style={{ fontWeight: 400, fontSize: "0.75rem", color: "#888", marginLeft: 4 }}>
-                    [Max size 5 MB]
+                  <span
+                    style={{
+                      fontWeight: 400,
+                      fontSize: "0.75rem",
+                      color: "#888",
+                      marginLeft: 4,
+                    }}
+                  >
+                    [Recommended: 1024 x 800 px | Max size 2 MB]
                   </span>
                 </label>
                 <TextField
@@ -199,31 +221,47 @@ const BannerSlidesSection = ({
                   }}
                 />
                 {(slide.image.previewURL || slide.image.uploadUrl) && (
-                  <Box
-                    style={{
-                      marginTop: 8,
-                      padding: 8,
-                      background: "#f5f5f5",
-                      borderRadius: 4,
-                    }}
-                  >
-                    <Typography variant="caption" color="textSecondary">
-                      {slide.image.isUploading
-                        ? "Uploading image..."
-                        : slide.image.uploadUrl
-                          ? "Image ready"
-                          : "Image selected"}
-                    </Typography>
-                    <Box style={{ marginTop: 8 }}>
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        color="error"
-                        onClick={() => handleRemoveSlideImage(slide.id)}
-                        style={{ minHeight: 32, padding: "6px 12px" }}
+                  <Box style={{ marginTop: 10 }}>
+                    {slide.image.isUploading && (
+                      <Typography
+                        variant="caption"
+                        color="textSecondary"
+                        style={{ display: "block", marginBottom: 6 }}
                       >
-                        Remove image
-                      </Button>
+                        Uploading image...
+                      </Typography>
+                    )}
+                    <Box
+                      style={{ display: "inline-block", position: "relative" }}
+                    >
+                      <img
+                        src={slide.image.previewURL || slide.image.uploadUrl}
+                        alt={`Slide ${index + 1}`}
+                        style={{
+                          width: 120,
+                          height: 80,
+                          objectFit: "cover",
+                          borderRadius: 6,
+                          border: "1px solid #e0e0e0",
+                          display: "block",
+                        }}
+                      />
+                      <IconButton
+                        size="small"
+                        onClick={() => handleRemoveSlideImage(slide.id)}
+                        style={{
+                          position: "absolute",
+                          top: -8,
+                          right: -8,
+                          background: "#ff4d4f",
+                          color: "#fff",
+                          width: 22,
+                          height: 22,
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.18)",
+                        }}
+                      >
+                        <CloseIcon style={{ fontSize: 14 }} />
+                      </IconButton>
                     </Box>
                   </Box>
                 )}
@@ -320,6 +358,72 @@ const SECTION_TYPES = [
   { value: "custom", label: "Custom" },
 ];
 
+const ProductSearchSelect = ({
+  products,
+  isProductsLoading,
+  selectedIds,
+  onChange,
+}) => {
+  const [search, setSearch] = useState("");
+  const filtered = products.filter(p =>
+    (p?.product_name || "").toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <TextField
+      select
+      label="Select products"
+      fullWidth
+      size="small"
+      SelectProps={{
+        multiple: true,
+        value: selectedIds,
+        onChange: e => onChange(e.target.value),
+        renderValue: selected =>
+          selected.length ? `${selected.length} selected` : "",
+        MenuProps: {
+          autoFocus: false,
+          PaperProps: { style: { maxHeight: 320 } },
+        },
+        onClose: () => setSearch(""),
+      }}
+    >
+      <ListSubheader style={{ padding: "8px 12px", lineHeight: "normal" }}>
+        <TextField
+          size="small"
+          autoFocus
+          placeholder="Search products..."
+          fullWidth
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon style={{ fontSize: 20, color: "#999" }} />
+              </InputAdornment>
+            ),
+          }}
+          onKeyDown={e => e.stopPropagation()}
+        />
+      </ListSubheader>
+      {isProductsLoading && <MenuItem disabled>Loading products...</MenuItem>}
+      {!isProductsLoading && filtered.length === 0 && (
+        <MenuItem disabled>No products found</MenuItem>
+      )}
+      {filtered.map(product => (
+        <MenuItem key={product.id} value={product.id} style={{ gap: 6 }}>
+          <Checkbox
+            size="small"
+            checked={selectedIds.includes(product.id)}
+            style={{ padding: 2 }}
+          />
+          {product?.product_name || `#${product.id}`}
+        </MenuItem>
+      ))}
+    </TextField>
+  );
+};
+
 const SectionsSection = ({
   groupedPanelStyle,
   sections,
@@ -371,7 +475,11 @@ const SectionsSection = ({
                   size="small"
                   value={section.title}
                   onChange={e =>
-                    handleSectionFieldChange(section.id, "title", e.target.value)
+                    handleSectionFieldChange(
+                      section.id,
+                      "title",
+                      e.target.value
+                    )
                   }
                   placeholder="Featured / Eid sale / New Year sale"
                 />
@@ -529,7 +637,7 @@ const SectionsSection = ({
                       color="primary"
                     />
                   }
-                  label="Enable countdown (Flash Sale)"
+                  label="Enable countdown"
                 />
               </Grid>
               {section.hasCountdown === 1 && (
@@ -571,32 +679,12 @@ const SectionsSection = ({
                 </>
               )}
               <Grid item xs={12}>
-                <TextField
-                  select
-                  label="Select products"
-                  fullWidth
-                  size="small"
-                  SelectProps={{
-                    multiple: true,
-                    value: section.productIds,
-                    onChange: e =>
-                      handleSectionProductsChange(section.id, e.target.value),
-                    renderValue: selected =>
-                      selected.length ? `${selected.length} selected` : "",
-                  }}
-                >
-                  {isProductsLoading && (
-                    <MenuItem disabled>Loading products...</MenuItem>
-                  )}
-                  {!isProductsLoading && products.length === 0 && (
-                    <MenuItem disabled>No products found</MenuItem>
-                  )}
-                  {products.map(product => (
-                    <MenuItem key={product.id} value={product.id}>
-                      {product?.product_name || `#${product.id}`}
-                    </MenuItem>
-                  ))}
-                </TextField>
+                <ProductSearchSelect
+                  products={products}
+                  isProductsLoading={isProductsLoading}
+                  selectedIds={section.productIds}
+                  onChange={ids => handleSectionProductsChange(section.id, ids)}
+                />
                 {section.productIds.length > 0 && (
                   <Box
                     style={{
@@ -647,7 +735,11 @@ const SectionsSection = ({
           </Box>
         ))}
         {isSectionsLoading && (
-          <Typography variant="body2" color="textSecondary" style={{ marginTop: 8 }}>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            style={{ marginTop: 8 }}
+          >
             Loading sections...
           </Typography>
         )}
@@ -699,6 +791,7 @@ const RightFormPanel = ({
   handleRemoveSlide,
   handleAddSlide,
   handleSaveSlides,
+  onSlideFocus,
   sections,
   products,
   isProductsLoading,
@@ -769,6 +862,7 @@ const RightFormPanel = ({
             handleRemoveSlide={handleRemoveSlide}
             handleAddSlide={handleAddSlide}
             handleSaveSlides={handleSaveSlides}
+            onSlideFocus={onSlideFocus}
           />
           <SectionsSection
             groupedPanelStyle={groupedPanelStyle}
@@ -794,6 +888,9 @@ const PreviewPane = ({
   brandColor,
   activeSlide,
   activeSlideImage,
+  slides,
+  bannerSlideIndex,
+  onBannerDotClick,
   products,
   sections,
   sectionPreviewIndex,
@@ -955,6 +1052,7 @@ const PreviewPane = ({
               justifyContent: "center",
               padding: "60px 40px",
               position: "relative",
+              transition: "background 0.5s ease",
             }}
           >
             <Typography
@@ -1001,6 +1099,36 @@ const PreviewPane = ({
               >
                 {activeSlide?.buttonText}
               </Button>
+            )}
+            {slides.length > 1 && (
+              <Box
+                style={{
+                  position: "absolute",
+                  bottom: 16,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  display: "flex",
+                  gap: 8,
+                }}
+              >
+                {slides.map((_, i) => (
+                  <Box
+                    key={i}
+                    onClick={() => onBannerDotClick(i)}
+                    style={{
+                      width: i === bannerSlideIndex ? 24 : 10,
+                      height: 10,
+                      borderRadius: 5,
+                      background:
+                        i === bannerSlideIndex
+                          ? "#fff"
+                          : "rgba(255,255,255,0.5)",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                    }}
+                  />
+                ))}
+              </Box>
             )}
           </Box>
 
@@ -1468,7 +1596,7 @@ const PreviewPane = ({
           })}
 
           {/* Secondary CTA Banner - same hero text & button */}
-          <Box
+          {/* <Box
             style={{
               padding: "60px 24px",
               background: `linear-gradient(90deg, #ffd6e0 0%, #e8d4ff 25%, #ffe0c4 50%, #c8e6c9 100%)`,
@@ -1507,7 +1635,7 @@ const PreviewPane = ({
                 {activeSlide?.buttonText}
               </Button>
             )}
-          </Box>
+          </Box> */}
 
           {/* Footer - white/light background */}
           <Box
@@ -1719,7 +1847,7 @@ const PreviewPane = ({
                   ))}
                 </Box>
               </Grid>
-              <Grid
+              {/* <Grid
                 item
                 xs={12}
                 style={{
@@ -1740,7 +1868,7 @@ const PreviewPane = ({
                 >
                   📱 Download app
                 </Button>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </Box>
@@ -1807,11 +1935,26 @@ const MultiPageThemeEdit = () => {
     },
   });
   const [slides, setSlides] = useState([createEmptySlide()]);
+  const [bannerSlideIndex, setBannerSlideIndex] = useState(0);
 
   const brandColor = watch("brandColor");
-  const activeSlide = slides[0];
+
+  const slidesWithImages = slides.filter(
+    s => s.image?.previewURL || s.image?.uploadUrl
+  );
+  const safeIndex =
+    slidesWithImages.length > 0
+      ? bannerSlideIndex % slidesWithImages.length
+      : 0;
+  const activeSlide =
+    slidesWithImages.length > 0 ? slidesWithImages[safeIndex] : slides[0];
   const activeSlideImage =
     activeSlide?.image?.previewURL || activeSlide?.image?.uploadUrl || "";
+
+  const syncPreviewToSlide = slideId => {
+    const idx = slidesWithImages.findIndex(s => s.id === slideId);
+    if (idx !== -1) setBannerSlideIndex(idx);
+  };
   const groupedPanelStyle = {
     border: "1px solid #cfcfcf",
     borderRadius: 10,
@@ -1868,11 +2011,9 @@ const MultiPageThemeEdit = () => {
         }
         const fallbackBrandColor = "#894bca";
 
-        setValue(
-          "brandColor",
-          settings?.brand_color || fallbackBrandColor,
-          { shouldDirty: false }
-        );
+        setValue("brandColor", settings?.brand_color || fallbackBrandColor, {
+          shouldDirty: false,
+        });
 
         let bannerSlidesRaw =
           settings?.banner_slides ||
@@ -1908,7 +2049,8 @@ const MultiPageThemeEdit = () => {
               image: {
                 file: null,
                 previewURL: "",
-                uploadUrl: item?.image || item?.image_url || item?.image_link || "",
+                uploadUrl:
+                  item?.image || item?.image_url || item?.image_link || "",
                 isUploading: false,
               },
             }))
@@ -1970,8 +2112,7 @@ const MultiPageThemeEdit = () => {
       try {
         setIsSectionsLoading(true);
         const response = await getSections();
-        const sectionList =
-          response?.data?.data ?? response?.data ?? [];
+        const sectionList = response?.data?.data ?? response?.data ?? [];
         if (Array.isArray(sectionList) && sectionList.length > 0) {
           setSections(
             sectionList.map(section => ({
@@ -2010,6 +2151,7 @@ const MultiPageThemeEdit = () => {
         slide.id === id ? { ...slide, [field]: value } : slide
       )
     );
+    syncPreviewToSlide(id);
     requestAnimationFrame(() => {
       if (previewBannerRef.current) {
         previewBannerRef.current.scrollIntoView({
@@ -2058,6 +2200,7 @@ const MultiPageThemeEdit = () => {
         };
       })
     );
+    syncPreviewToSlide(id);
     requestAnimationFrame(() => {
       if (previewBannerRef.current) {
         previewBannerRef.current.scrollIntoView({
@@ -2398,8 +2541,7 @@ const MultiPageThemeEdit = () => {
         showToast("Sections saved successfully", "success");
         // Re-fetch sections to get updated ids from backend
         const fetchRes = await getSections();
-        const sectionList =
-          fetchRes?.data?.data ?? fetchRes?.data ?? [];
+        const sectionList = fetchRes?.data?.data ?? fetchRes?.data ?? [];
         if (Array.isArray(sectionList) && sectionList.length > 0) {
           setSections(
             sectionList.map(s => ({
@@ -2555,6 +2697,9 @@ const MultiPageThemeEdit = () => {
               brandColor={brandColor}
               activeSlide={activeSlide}
               activeSlideImage={activeSlideImage}
+              slides={slidesWithImages}
+              bannerSlideIndex={safeIndex}
+              onBannerDotClick={setBannerSlideIndex}
               products={products}
               sections={sections}
               sectionPreviewIndex={sectionPreviewIndex}
@@ -2582,6 +2727,7 @@ const MultiPageThemeEdit = () => {
               handleRemoveSlide={handleRemoveSlide}
               handleAddSlide={handleAddSlide}
               handleSaveSlides={handleSaveSlides}
+              onSlideFocus={syncPreviewToSlide}
               sections={sections}
               products={products}
               isProductsLoading={isProductsLoading}
@@ -2761,6 +2907,7 @@ const MultiPageThemeEdit = () => {
                           justifyContent: "center",
                           padding: "60px 40px",
                           position: "relative",
+                          transition: "background 0.5s ease",
                         }}
                       >
                         <Typography
@@ -2808,6 +2955,36 @@ const MultiPageThemeEdit = () => {
                           >
                             {activeSlide?.buttonText}
                           </Button>
+                        )}
+                        {slidesWithImages.length > 1 && (
+                          <Box
+                            style={{
+                              position: "absolute",
+                              bottom: 16,
+                              left: "50%",
+                              transform: "translateX(-50%)",
+                              display: "flex",
+                              gap: 8,
+                            }}
+                          >
+                            {slidesWithImages.map((_, i) => (
+                              <Box
+                                key={i}
+                                onClick={() => setBannerSlideIndex(i)}
+                                style={{
+                                  width: i === safeIndex ? 24 : 10,
+                                  height: 10,
+                                  borderRadius: 5,
+                                  background:
+                                    i === safeIndex
+                                      ? "#fff"
+                                      : "rgba(255,255,255,0.5)",
+                                  cursor: "pointer",
+                                  transition: "all 0.3s ease",
+                                }}
+                              />
+                            ))}
+                          </Box>
                         )}
                       </Box>
 
@@ -3582,7 +3759,7 @@ const MultiPageThemeEdit = () => {
                               ))}
                             </Box>
                           </Grid>
-                          <Grid
+                          {/* <Grid
                             item
                             xs={12}
                             style={{
@@ -3603,7 +3780,7 @@ const MultiPageThemeEdit = () => {
                             >
                               📱 Download app
                             </Button>
-                          </Grid>
+                          </Grid> */}
                         </Grid>
                       </Box>
                     </Box>
@@ -3749,11 +3926,13 @@ const MultiPageThemeEdit = () => {
                             {slides.map((slide, index) => (
                               <Box
                                 key={slide.id}
+                                onClick={() => syncPreviewToSlide(slide.id)}
                                 style={{
                                   border: "1px solid #e0e0e0",
                                   borderRadius: 8,
                                   padding: 16,
                                   background: "#fff",
+                                  cursor: "pointer",
                                 }}
                               >
                                 <Grid container spacing={2}>
@@ -3822,8 +4001,16 @@ const MultiPageThemeEdit = () => {
                                       }}
                                     >
                                       Slide image
-                                      <span style={{ fontWeight: 400, fontSize: "0.75rem", color: "#888", marginLeft: 4 }}>
-                                        [Max size 5 MB]
+                                      <span
+                                        style={{
+                                          fontWeight: 400,
+                                          fontSize: "0.75rem",
+                                          color: "#888",
+                                          marginLeft: 4,
+                                        }}
+                                      >
+                                        [Recommended: 1024 x 800 px | Max size 5
+                                        MB]
                                       </span>
                                     </label>
                                     <TextField
@@ -3843,39 +4030,61 @@ const MultiPageThemeEdit = () => {
                                     />
                                     {(slide.image.previewURL ||
                                       slide.image.uploadUrl) && (
-                                      <Box
-                                        style={{
-                                          marginTop: 8,
-                                          padding: 8,
-                                          background: "#f5f5f5",
-                                          borderRadius: 4,
-                                        }}
-                                      >
-                                        <Typography
-                                          variant="caption"
-                                          color="textSecondary"
+                                      <Box style={{ marginTop: 10 }}>
+                                        {slide.image.isUploading && (
+                                          <Typography
+                                            variant="caption"
+                                            color="textSecondary"
+                                            style={{
+                                              display: "block",
+                                              marginBottom: 6,
+                                            }}
+                                          >
+                                            Uploading image...
+                                          </Typography>
+                                        )}
+                                        <Box
+                                          style={{
+                                            display: "inline-block",
+                                            position: "relative",
+                                          }}
                                         >
-                                          {slide.image.isUploading
-                                            ? "Uploading image..."
-                                            : slide.image.uploadUrl
-                                              ? "Image ready"
-                                              : "Image selected"}
-                                        </Typography>
-                                        <Box style={{ marginTop: 8 }}>
-                                          <Button
+                                          <img
+                                            src={
+                                              slide.image.previewURL ||
+                                              slide.image.uploadUrl
+                                            }
+                                            alt={`Slide ${index + 1}`}
+                                            style={{
+                                              width: 120,
+                                              height: 80,
+                                              objectFit: "cover",
+                                              borderRadius: 6,
+                                              border: "1px solid #e0e0e0",
+                                              display: "block",
+                                            }}
+                                          />
+                                          <IconButton
                                             size="small"
-                                            variant="outlined"
-                                            color="error"
                                             onClick={() =>
                                               handleRemoveSlideImage(slide.id)
                                             }
                                             style={{
-                                              minHeight: 32,
-                                              padding: "6px 12px",
+                                              position: "absolute",
+                                              top: -8,
+                                              right: -8,
+                                              background: "#ff4d4f",
+                                              color: "#fff",
+                                              width: 22,
+                                              height: 22,
+                                              boxShadow:
+                                                "0 2px 6px rgba(0,0,0,0.18)",
                                             }}
                                           >
-                                            Remove image
-                                          </Button>
+                                            <CloseIcon
+                                              style={{ fontSize: 14 }}
+                                            />
+                                          </IconButton>
                                         </Box>
                                       </Box>
                                     )}
@@ -4015,46 +4224,17 @@ const MultiPageThemeEdit = () => {
                                     />
                                   </Grid>
                                   <Grid item xs={12} md={6}>
-                                    <TextField
-                                      select
-                                      label="Select products"
-                                      fullWidth
-                                      size="small"
-                                      SelectProps={{
-                                        multiple: true,
-                                        value: section.productIds,
-                                        onChange: e =>
-                                          handleSectionProductsChange(
-                                            section.id,
-                                            e.target.value
-                                          ),
-                                        renderValue: selected =>
-                                          selected.length
-                                            ? `${selected.length} selected`
-                                            : "",
-                                      }}
-                                    >
-                                      {isProductsLoading && (
-                                        <MenuItem disabled>
-                                          Loading products...
-                                        </MenuItem>
-                                      )}
-                                      {!isProductsLoading &&
-                                        products.length === 0 && (
-                                          <MenuItem disabled>
-                                            No products found
-                                          </MenuItem>
-                                        )}
-                                      {products.map(product => (
-                                        <MenuItem
-                                          key={product.id}
-                                          value={product.id}
-                                        >
-                                          {product?.product_name ||
-                                            `#${product.id}`}
-                                        </MenuItem>
-                                      ))}
-                                    </TextField>
+                                    <ProductSearchSelect
+                                      products={products}
+                                      isProductsLoading={isProductsLoading}
+                                      selectedIds={section.productIds}
+                                      onChange={ids =>
+                                        handleSectionProductsChange(
+                                          section.id,
+                                          ids
+                                        )
+                                      }
+                                    />
                                     {section.productIds.length > 0 && (
                                       <Box
                                         style={{
@@ -4095,7 +4275,9 @@ const MultiPageThemeEdit = () => {
                                       <Button
                                         variant="outlined"
                                         color="error"
-                                        disabled={deletingSectionId === section.id}
+                                        disabled={
+                                          deletingSectionId === section.id
+                                        }
                                         onClick={() =>
                                           handleRemoveSection(section.id)
                                         }
