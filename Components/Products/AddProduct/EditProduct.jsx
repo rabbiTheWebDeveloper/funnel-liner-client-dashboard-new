@@ -398,7 +398,7 @@ const EditProduct = ({ busInfo }) => {
                     : 0,
                   discount_type: productDetails?.discount_type
                     ? productDetails?.discount_type
-                    : "",
+                    : "fixed",
                   product_code: productDetails?.product_code
                     ? productDetails?.product_code
                     : "",
@@ -540,7 +540,38 @@ const EditProduct = ({ busInfo }) => {
                     }
                     // console.log(variantTable)
                     if (variantTable?.length > 0) {
-                      formData.append("variants", JSON.stringify(variantTable));
+                      const updatedData = variantTable.map(item => {
+                        if (item.price === 0) {
+                          const itemDiscountType =
+                            item.discount_type || data.discount_type;
+                          const itemDiscount =
+                            item.discount !== undefined &&
+                            item.discount !== null
+                              ? item.discount
+                              : data.discount;
+
+                          let calculatedPrice = data.selling_price;
+
+                          if (itemDiscount) {
+                            calculatedPrice =
+                              itemDiscountType === "fixed"
+                                ? data.selling_price - itemDiscount
+                                : data.selling_price -
+                                  data.selling_price * (itemDiscount / 100);
+                          }
+
+                          return {
+                            ...item,
+                            price: calculatedPrice,
+                            discount: itemDiscount,
+                            discount_type: itemDiscountType,
+                          };
+                        } else {
+                          return item;
+                        }
+                      });
+
+                      formData.append("variants", JSON.stringify(updatedData));
 
                       variantTable.forEach((variantValue, index) => {
                         formData.append(
@@ -649,7 +680,7 @@ const EditProduct = ({ busInfo }) => {
                                 <h6 tyle={{ color: "#4d4d4d" }}>
                                   Price: <i className="flaticon-taka" />{" "}
                                   {values.discount > 0
-                                    ? values.discount_type === "flat"
+                                ? values.discount_type === "fixed"
                                       ? values.selling_price - values.discount
                                       : values.selling_price -
                                         values?.selling_price *
@@ -687,20 +718,20 @@ const EditProduct = ({ busInfo }) => {
                               onChange={(event, newAlignment) => {
                                 setFieldValue("discount_type", newAlignment);
 
-                                // Update the default value of "discount" field
-                                if (newAlignment === "flat") {
-                                  setFieldValue("discount", "0");
-                                } else {
-                                  setFieldValue("discount", "%");
-                                }
+                              if (newAlignment === "fixed") {
+                                setFieldValue("discount", "0.00");
+                              }
+                              if (newAlignment === "percentage") {
+                                setFieldValue("discount", null);
+                              }
                               }}
                               aria-label="Platform"
                               className={style.ToggleButtonGroup}
                             >
-                              <ToggleButton value="percent">
+                            <ToggleButton value="percentage">
                                 Parcentage
                               </ToggleButton>
-                              <ToggleButton value="flat">
+                            <ToggleButton value="fixed">
                                 Fixed Amount
                               </ToggleButton>
                             </ToggleButtonGroup>
@@ -1224,10 +1255,12 @@ const EditProduct = ({ busInfo }) => {
                                   <tr>
                                     <th>Image</th>
                                     <th>Variant</th>
-                                    <th>Price</th>
-                                    <th>Product Code</th>
-                                    <th>Qty</th>
-                                    <th>Description</th>
+                                <th>Price</th>
+                                <th>Discount Type</th>
+                                <th>Discount Price</th>
+                                <th>Product Code</th>
+                                <th>Qty</th>
+                                <th>Description</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -1341,13 +1374,31 @@ const EditProduct = ({ busInfo }) => {
                                               placeholder="Price"
                                               value={
                                                 variant?.price === 0
-                                                  ? values.discount_type ===
-                                                    "flat"
-                                                    ? values.selling_price -
-                                                      values.discount
-                                                    : values.selling_price -
-                                                      values?.selling_price *
-                                                        (values.discount / 100)
+                                                  ? (() => {
+                                                      const rowDiscountType =
+                                                        variant?.discount_type ||
+                                                        values.discount_type;
+                                                      const rowDiscount =
+                                                        variant?.discount !==
+                                                          undefined &&
+                                                        variant?.discount !==
+                                                          null
+                                                          ? variant.discount
+                                                          : values.discount;
+
+                                                      if (!rowDiscount) {
+                                                        return values.selling_price;
+                                                      }
+
+                                                      return rowDiscountType ===
+                                                        "fixed"
+                                                        ? values.selling_price -
+                                                            rowDiscount
+                                                        : values.selling_price -
+                                                            values?.selling_price *
+                                                              (rowDiscount /
+                                                                100);
+                                                    })()
                                                   : variant?.price
                                               }
                                               onChange={e => {
@@ -1356,6 +1407,49 @@ const EditProduct = ({ busInfo }) => {
                                                 ];
 
                                                 newVariants[index].price =
+                                                  e.target.value;
+                                                setVariantTable(newVariants);
+                                              }}
+                                            />
+                                          </td>
+                                          <td>
+                                            <select
+                                              value={
+                                                variant?.discount_type ||
+                                                values.discount_type
+                                              }
+                                              onChange={e => {
+                                                const newVariants = [
+                                                  ...variantTable,
+                                                ];
+                                                newVariants[
+                                                  index
+                                                ].discount_type = e.target.value;
+                                                setVariantTable(newVariants);
+                                              }}
+                                            >
+                                              <option value="percentage">
+                                                Percentage
+                                              </option>
+                                              <option value="fixed">
+                                                Fixed
+                                              </option>
+                                            </select>
+                                          </td>
+                                          <td className={style.price}>
+                                            <input
+                                              type="number"
+                                              className={style.tk}
+                                              placeholder="Discount"
+                                              value={
+                                                variant?.discount ??
+                                                values.discount
+                                              }
+                                              onChange={e => {
+                                                const newVariants = [
+                                                  ...variantTable,
+                                                ];
+                                                newVariants[index].discount =
                                                   e.target.value;
                                                 setVariantTable(newVariants);
                                               }}

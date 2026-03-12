@@ -323,7 +323,7 @@ const AddProduct = ({ busInfo }) => {
                 product_name: "",
                 selling_price: 0,
                 category_id: "",
-                discount_type: "flat",
+                discount_type: "fixed",
                 delivery_charge: "",
                 discount: 0,
                 product_code: "",
@@ -399,13 +399,13 @@ const AddProduct = ({ busInfo }) => {
                     formData.append("category_id", selectedCategory[0]?.value);
                   }
                   formData.append("product_name", data.product_name);
-                  formData.append("packaging_cost", data.packaging_cost);
+                  formData.append("packaging_cost", data.packaging_cost || 0);
                   formData.append(
                     "transportation_cost",
-                    data.transportation_cost
+                    data.transportation_cost || 0
                   );
-                  formData.append("ad_budget_cost", data.ad_budget_cost);
-                  formData.append("buying_price", data.buying_price);
+                  formData.append("ad_budget_cost", data.ad_budget_cost || 0);
+                  formData.append("buying_price", data.buying_price || 0);
                   formData.append("price", data.selling_price);
                   formData.append("discount", data?.discount);
                   formData.append("discount_type", data?.discount_type);
@@ -433,18 +433,30 @@ const AddProduct = ({ busInfo }) => {
                   }
 
                   if (variantTable?.length) {
-                    // console.log( "sdsadsa",variantTable)
                     const updatedData = variantTable.map(item => {
                       if (item.price === 0) {
-                        const calculatedPrice =
-                          data.discount_type === "flat"
-                            ? data.selling_price - data.discount
-                            : data.selling_price -
-                              data.selling_price * (data.discount / 100);
+                        const itemDiscountType =
+                          item.discount_type || data.discount_type;
+                        const itemDiscount =
+                          item.discount !== undefined && item.discount !== null
+                            ? item.discount
+                            : data.discount;
+
+                        let calculatedPrice = data.selling_price;
+
+                        if (itemDiscount) {
+                          calculatedPrice =
+                            itemDiscountType === "fixed"
+                              ? data.selling_price - itemDiscount
+                              : data.selling_price -
+                                data.selling_price * (itemDiscount / 100);
+                        }
 
                         return {
                           ...item,
                           price: calculatedPrice,
+                          discount: itemDiscount,
+                          discount_type: itemDiscountType,
                         };
                       } else {
                         return item;
@@ -555,7 +567,7 @@ const AddProduct = ({ busInfo }) => {
                               <h6 tyle={{ color: "#4d4d4d" }}>
                                 Price: <i className="flaticon-taka" />
                                 {values.discount > 0
-                                  ? values.discount_type === "flat"
+                                  ? values.discount_type === "fixed"
                                     ? values.selling_price - values.discount
                                     : values.selling_price -
                                       values?.selling_price *
@@ -592,20 +604,20 @@ const AddProduct = ({ busInfo }) => {
                             onChange={(event, newAlignment) => {
                               setFieldValue("discount_type", newAlignment);
 
-                              if (newAlignment === "flat") {
+                              if (newAlignment === "fixed") {
                                 setFieldValue("discount", "0.00");
                               }
-                              if (newAlignment === "percent") {
+                              if (newAlignment === "percentage") {
                                 setFieldValue("discount", null);
                               }
                             }}
                             aria-label="Platform"
                             className={style.ToggleButtonGroup}
                           >
-                            <ToggleButton value="percent">
+                            <ToggleButton value="percentage">
                               Parcentage
                             </ToggleButton>
-                            <ToggleButton value="flat">
+                            <ToggleButton value="fixed">
                               Fixed Amount
                             </ToggleButton>
                           </ToggleButtonGroup>
@@ -629,7 +641,7 @@ const AddProduct = ({ busInfo }) => {
                               onWheel={e => e.target.blur()}
                             />
                             <span>
-                              {values.discount_type === "percent" ? "%" : ""}
+                              {values.discount_type === "percentage" ? "%" : ""}
                             </span>
                           </div>
                           <div>
@@ -1087,6 +1099,8 @@ const AddProduct = ({ busInfo }) => {
                                   <th>Image</th>
                                   <th>Variant</th>
                                   <th>Price</th>
+                                  <th>Discount Type</th>
+                                  <th>Discount Price</th>
                                   <th>Product Code</th>
                                   <th>Qty</th>
                                   <th>Description</th>
@@ -1153,13 +1167,30 @@ const AddProduct = ({ busInfo }) => {
                                             placeholder="Price"
                                             value={
                                               variant?.price === 0
-                                                ? values.discount_type ===
-                                                  "flat"
-                                                  ? values.selling_price -
-                                                    values.discount
-                                                  : values.selling_price -
-                                                    values?.selling_price *
-                                                      (values.discount / 100)
+                                                ? (() => {
+                                                    const rowDiscountType =
+                                                      variant?.discount_type ||
+                                                      values.discount_type;
+                                                    const rowDiscount =
+                                                      variant?.discount !==
+                                                        undefined &&
+                                                      variant?.discount !== null
+                                                        ? variant.discount
+                                                        : values.discount;
+
+                                                    if (!rowDiscount) {
+                                                      return values.selling_price;
+                                                    }
+
+                                                    return rowDiscountType ===
+                                                      "fixed"
+                                                      ? values.selling_price -
+                                                          rowDiscount
+                                                      : values.selling_price -
+                                                          values?.selling_price *
+                                                            (rowDiscount /
+                                                              100);
+                                                  })()
                                                 : variant?.price
                                             }
                                             onChange={e => {
@@ -1169,6 +1200,46 @@ const AddProduct = ({ busInfo }) => {
                                               newVariants[index].price =
                                                 e.target.value;
 
+                                              setVariantTable(newVariants);
+                                            }}
+                                          />
+                                        </td>
+                                        <td>
+                                          <select
+                                            value={
+                                              variant?.discount_type ||
+                                              values.discount_type
+                                            }
+                                            onChange={e => {
+                                              const newVariants = [
+                                                ...variantTable,
+                                              ];
+                                              newVariants[index].discount_type =
+                                                e.target.value;
+                                              setVariantTable(newVariants);
+                                            }}
+                                          >
+                                            <option value="percentage">
+                                              Percentage
+                                            </option>
+                                            <option value="fixed">Fixed</option>
+                                          </select>
+                                        </td>
+                                        <td className={style.price}>
+                                          <input
+                                            type="number"
+                                            className={style.tk}
+                                            placeholder="Discount"
+                                            value={
+                                              variant?.discount ??
+                                              values.discount
+                                            }
+                                            onChange={e => {
+                                              const newVariants = [
+                                                ...variantTable,
+                                              ];
+                                              newVariants[index].discount =
+                                                e.target.value;
                                               setVariantTable(newVariants);
                                             }}
                                           />
@@ -1379,36 +1450,6 @@ const AddProduct = ({ busInfo }) => {
                                     />
                                   </div>
                                 </Grid>
-
-                                {deliverChargeType[0]?.value ===
-                                  "Paid Delivery Charge" && (
-                                  <Grid item xs={12}>
-                                    <div className="">
-                                      <div className={style.duelInput}>
-                                        <div className={style.customInput}>
-                                          <label>
-                                            Delivery Cost Inside Dhaka
-                                          </label>
-                                          <Field
-                                            type="number"
-                                            placeholder="Delivery cost inside Dhaka"
-                                            name="delivery_cost_inside"
-                                          />
-                                        </div>
-                                        <div className={style.customInput}>
-                                          <label>
-                                            Delivery Cost Outside Dhaka
-                                          </label>
-                                          <Field
-                                            type="number"
-                                            placeholder="Delivery cost outside Dhaka"
-                                            name="delivery_cost_outside"
-                                          />
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </Grid>
-                                )}
                               </Grid>
                             </div>
                           </div>
