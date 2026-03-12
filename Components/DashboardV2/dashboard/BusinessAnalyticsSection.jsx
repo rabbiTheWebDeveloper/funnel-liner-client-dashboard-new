@@ -18,6 +18,7 @@ import {
   RotateCcw,
   Users,
   ClipboardList,
+  History ,
   CheckSquare,
   Package,
   Clock,
@@ -32,8 +33,9 @@ import { useState } from "react";
 const baseUrl = `/client/analytics`;
 import { fetcher } from "../App/reports/_reports";
 import useSWR from "swr";
+import DailyAnalytics from "./DailyAnalytics";
 const formatDate = date => date.toISOString().split("T")[0];
-export const BusinessAnalyticsSection = () => {
+export const BusinessAnalyticsSection = ({ busInfo }) => {
   const today = new Date();
   const past = new Date(today); // Create a copy of today
   past.setDate(today.getDate() - 6); // Set to 7 days ago
@@ -364,7 +366,9 @@ export const BusinessAnalyticsSection = () => {
       {/* Traffic & Orders Section */}
       <div className={styles.section_label}>Traffic & Orders</div>
       <Grid container spacing={2} sx={{ mt: 0 }}>
-        <Grid item xs={12} sm={6} lg={3}>
+
+      <DailyAnalytics />
+        <Grid item xs={12} sm={6} lg={2.4}>
           <Card className={styles.dashboard_card}>
             <CardHeader>
               <CardTitle>
@@ -379,6 +383,8 @@ export const BusinessAnalyticsSection = () => {
                 </div>
               </CardTitle>
             </CardHeader>
+
+            
             <CardContent className={styles["flex-between"]}>
               <Box
                 sx={{
@@ -437,7 +443,9 @@ export const BusinessAnalyticsSection = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12} sm={6} lg={3}>
+        
+
+        <Grid item xs={12} sm={6} lg={2.4}>
           <Card className={styles.dashboard_card}>
             <CardHeader>
               <CardTitle>
@@ -492,7 +500,7 @@ export const BusinessAnalyticsSection = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid item xs={12} sm={6} lg={2.4}>
           <Card className={styles.dashboard_card}>
             <CardHeader>
               <CardTitle>
@@ -548,7 +556,7 @@ export const BusinessAnalyticsSection = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid item xs={12} sm={6} lg={2.4}>
           <Card className={styles.dashboard_card}>
             <CardHeader>
               <CardTitle>
@@ -721,10 +729,8 @@ export const BusinessAnalyticsSection = () => {
                 className={styles["flex-items-center"]}
                 style={{ gap: "8px" }}
               >
-                <h1 className={styles.card_value}>৳ 00</h1>
-                <div className={cls(styles["card-analytics"])}>
-                  <Minus />
-                </div>
+                <h1 className={styles.card_value}>৳ {busInfo?.courier_balance ? busInfo?.courier_balance : 0}</h1>
+              
               </div>
             </CardContent>
           </Card>

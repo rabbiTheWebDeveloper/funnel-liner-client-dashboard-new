@@ -5,7 +5,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BsCheckAll, BsSearch } from "react-icons/bs";
 import { MdDashboardCustomize } from "react-icons/md";
 import { TbPlugConnectedX } from "react-icons/tb";
@@ -18,11 +18,42 @@ import HeaderDescription from "../../Components/Common/HeaderDescription/HeaderD
 
 const Plugin = ({ setFetch }) => {
   const showToast = useToast();
+  const router = useRouter();
+  const didInitFromQueryRef = useRef(false);
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const tabFromQuery =
+      typeof router.query?.tab === "string" ? router.query.tab : null;
+    const allowedTabs = new Set(["1", "2"]);
+
+    if (tabFromQuery && allowedTabs.has(tabFromQuery)) {
+      setValue(tabFromQuery);
+    }
+
+    didInitFromQueryRef.current = true;
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    if (!didInitFromQueryRef.current) return;
+
+    const currentTab =
+      typeof router.query?.tab === "string" ? router.query.tab : null;
+    if (currentTab === value) return;
+
+    const nextQuery = { ...router.query, tab: value };
+    router.replace({ pathname: router.pathname, query: nextQuery }, undefined, {
+      shallow: true,
+      scroll: false,
+    });
+  }, [router, value]);
   const [addonsUpdate, setAddonsUpdate] = useState(false);
   const [addonsList, setAddonsList] = useState([]);
   const handleFetchAddonsList = async () => {
@@ -216,7 +247,6 @@ const Plugin = ({ setFetch }) => {
   const [paymentValue, setPaymentValue] = useState(0);
   const [openModal, setModalOpen] = useState(false);
   const handleCloseNote = () => setModalOpen(false);
-  const router = useRouter();
   const [selectedPayment, setSelectedPayment] = useState("");
   const [selectedAddons, setAddonsId] = useState();
 

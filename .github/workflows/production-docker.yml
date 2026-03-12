@@ -1,0 +1,45 @@
+name: Docker-Deploy-Production
+
+on:
+  push:
+    branches:
+      - Production-docker
+
+jobs:
+  deploy:
+    name: Build & Deploy via Docker Compose
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ Setup SSH
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      # 3️⃣ Deploy using Docker Compose on server
+      - name: Deploy to Production Server
+        run: |
+          ssh -i ~/.ssh/id_rsa ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << 'EOF'
+            set -e
+
+            APP_DIR="${{ secrets.DOCKER_TARGET_DIR }}"
+
+            cd $APP_DIR
+
+            echo "📥 Pulling latest code"
+            git pull origin Production-docker
+
+            echo "🐳 Building & starting container"
+            docker compose down
+            docker compose up -d --build
+
+            echo "📊 Running containers"
+            docker ps
+          EOF

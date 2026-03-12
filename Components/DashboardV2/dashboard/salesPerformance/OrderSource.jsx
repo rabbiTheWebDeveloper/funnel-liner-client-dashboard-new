@@ -34,7 +34,7 @@ const colorMapping = {
 const OrderSource = () => {
   const today = new Date();
   const past = new Date(today);
-  past.setDate(today.getDate() - 6);
+  past.setDate(today.getDate() - 1);
 
   const [dateRange, setDateRange] = useState({
     from: formatDate(past),
@@ -110,7 +110,7 @@ const OrderSource = () => {
           {/* ✅ Date Selector */}
           <DateSelector
             placeholder="Today"
-            defaultValue="today"
+            defaultValue="yesterday"
             showCalender
             onValueChange={handlePeriodChange}
           >

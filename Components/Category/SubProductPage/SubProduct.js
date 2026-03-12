@@ -43,7 +43,7 @@ const SubProduct = () => {
     axios
       .get(
         `${API_ENDPOINTS.BASE_URL}${API_ENDPOINTS.CATEGORY.GET_CATEGORIES}`,
-        { headers: headers, params: { page: currentPage, perPage: perPage } }
+        { headers: headers, params: { page: currentPage, per_page: perPage } }
       )
       .then(function (response) {
         let allProduct = response.data.data;

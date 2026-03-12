@@ -50,7 +50,7 @@ const Product = ({ busInfo }) => {
         API_ENDPOINTS.BASE_URL + "/client/products",
         {
           headers: headers,
-          params: { page: currentPage, perPage: perPage },
+          params: { page: currentPage, per_page: perPage },
         }
       );
       setProducts(response.data.data);

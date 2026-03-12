@@ -39,7 +39,7 @@ export const Dashboard = ({ busInfo: data ,currentDashboard }) => {
         <WebsiteLink busInfo={data} />
         <SalesPerformanceSection />
         <SalesAnalyticsSection />
-        <BusinessAnalyticsSection />
+        <BusinessAnalyticsSection busInfo={data} />
         <SalesTargetSection />
         <OrderAnalyticsSection />
       </Container>

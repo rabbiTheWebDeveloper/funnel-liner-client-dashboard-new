@@ -459,13 +459,13 @@ const EditProduct = ({ busInfo }) => {
                     const formData = new FormData();
                     formData.append("_method", "patch");
 
-                    formData.append("packaging_cost", data.packaging_cost);
+                    formData.append("packaging_cost", data.packaging_cost ||0);
                     formData.append(
                       "transportation_cost",
-                      data.transportation_cost
+                      data.transportation_cost || 0
                     );
-                    formData.append("ad_budget_cost", data.ad_budget_cost);
-                    formData.append("buying_price", data.buying_price);
+                    formData.append("ad_budget_cost", data.ad_budget_cost || 0);
+                    formData.append("buying_price", data.buying_price || 0);
                     // if (selectProductImage === undefined) {
                     //   formData.append("main_image", productDetails?.main_image);
                     // } else {

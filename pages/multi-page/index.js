@@ -1,10 +1,10 @@
 import MultiWebsite from "../../Components/Templates/MultiWebsitePage/MultiWebsite";
 import withAuth from "../../hook/PrivateRoute";
 
-const index = () => {
+const index = ({busInfo}) => {
   return (
     <>
-      <MultiWebsite />
+      <MultiWebsite busInfo={busInfo} />
     </>
   );
 };

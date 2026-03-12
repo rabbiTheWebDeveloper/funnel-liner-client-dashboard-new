@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    image: funnelliner-client-dashboard
+    container_name: funnelliner-client-dashboard
+
+    # Load environment variables from file
+    env_file:
+      - .env.production
+
+    # Runtime environment
+    environment:
+      NODE_ENV: production
+
+    ports:
+      - "3001:3000"
+
+    restart: unless-stopped
+
+    mem_limit: 500m
+    cpus: 1

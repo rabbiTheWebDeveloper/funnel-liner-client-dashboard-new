@@ -20,7 +20,7 @@ import { enGB } from "date-fns/locale";
 import moment from "moment";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { DateRangePicker } from "react-nice-dates";
 import "react-nice-dates/build/style.css";
@@ -69,6 +69,7 @@ import {
 const OrderPage = ({ myAddonsList, busInfo }) => {
   const showToast = useToast();
   const router = useRouter();
+  const didInitFromQueryRef = useRef(false);
   const [isLoading, startLoading, stopLoading] = useLoading();
   const [enableGlobalSearch, setEnableGlobalSearch] = useState(false);
   const [active, setDefault] = useState("all");
@@ -109,6 +110,77 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
   const [followUpDate, setFollowUpDate] = useState();
   const [pendingOrderCount, setPendingOrderCount] = useState([]);
   const [perPage, setPerPage] = useState(10);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const statusFromQuery =
+      typeof router.query?.status === "string" ? router.query.status : null;
+    const pageFromQuery =
+      typeof router.query?.page === "string" ? parseInt(router.query.page, 10) : NaN;
+    const limitFromQuery =
+      typeof router.query?.limit === "string" ? parseInt(router.query.limit, 10) : NaN;
+
+    const allowedStatuses = new Set([
+      "all",
+      "pending",
+      "unverified",
+      "confirmed",
+      "shipped",
+      "delivered",
+      "cancelled",
+      "returned",
+      "follow_up",
+      "hold_on",
+      "trashed",
+      "incomplete",
+    ]);
+
+    if (statusFromQuery && allowedStatuses.has(statusFromQuery) && statusFromQuery !== active) {
+      setDefault(statusFromQuery);
+    }
+
+    if (Number.isFinite(pageFromQuery) && pageFromQuery > 0 && pageFromQuery !== currentPage) {
+      setCurrentPage(pageFromQuery);
+    }
+
+    if (Number.isFinite(limitFromQuery) && limitFromQuery > 0 && limitFromQuery !== perPage) {
+      setPerPage(limitFromQuery);
+    }
+
+    didInitFromQueryRef.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    if (!didInitFromQueryRef.current) return;
+
+    const currentStatus = typeof router.query?.status === "string" ? router.query.status : null;
+    const currentPageQuery = typeof router.query?.page === "string" ? router.query.page : null;
+    const currentLimitQuery = typeof router.query?.limit === "string" ? router.query.limit : null;
+
+    if (
+      currentStatus === active &&
+      currentPageQuery === String(currentPage) &&
+      currentLimitQuery === String(perPage)
+    ) {
+      return;
+    }
+
+    const nextQuery = {
+      ...router.query,
+      status: active,
+      page: String(currentPage),
+      limit: String(perPage),
+    };
+
+    router.replace({ pathname: router.pathname, query: nextQuery }, undefined, {
+      shallow: true,
+      scroll: false,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady, active, currentPage, perPage]);
   //order note functionality
   const [isOpenOrderNoteModal, setIsOpenOrderNoteModal] = useState(false);
   const [orderIdOfModal, setOrderIdOfModal] = useState(null);

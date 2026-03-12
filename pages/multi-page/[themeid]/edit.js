@@ -1315,65 +1315,6 @@ const PreviewPane = ({
             </Grid>
           </Box> */}
 
-          {/* Categories Section - 2x2 grid, white background */}
-          <Box style={{ padding: "32px 24px", background: "#fff" }}>
-            <Typography
-              variant="h5"
-              style={{ fontWeight: 700, marginBottom: 20, color: "#000" }}
-            >
-              Categories
-            </Typography>
-            <Grid container spacing={2}>
-              {["SHIRTS", "KURTA", "BURQAS", "SAREE"].map((cat, idx) => (
-                <Grid item xs={6} key={idx}>
-                  <Box
-                    style={{
-                      borderRadius: 8,
-                      overflow: "hidden",
-                      position: "relative",
-                      paddingTop: "75%",
-                      background: "#e8e8e8",
-                    }}
-                  >
-                    <Box
-                      style={{
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        padding: 16,
-                        background:
-                          "linear-gradient(transparent, rgba(0,0,0,0.5))",
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        style={{
-                          color: "#fff",
-                          fontWeight: 700,
-                          marginBottom: 8,
-                        }}
-                      >
-                        {cat}
-                      </Typography>
-                      <Button
-                        size="small"
-                        style={{
-                          background: "#fff",
-                          color: "#000",
-                          textTransform: "none",
-                          fontWeight: 600,
-                        }}
-                      >
-                        View All
-                      </Button>
-                    </Box>
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-
           {/* Sections */}
           {sections.map(section => {
             const sectionProducts = products.filter(product =>
@@ -1462,7 +1403,10 @@ const PreviewPane = ({
                 <Grid container spacing={2}>
                   {showFallback
                     ? visibleItems.map(item => (
-                        <Grid item xs={6} sm={3} key={item}>
+                        <Grid item xs={6} sm={3} key={item} sx={{
+                          flexBasis: { md: "20%" },
+                          maxWidth: { md: "20%" },
+                        }}>
                           <Box
                             style={{
                               background: "#fff",
@@ -1524,7 +1468,10 @@ const PreviewPane = ({
                         </Grid>
                       ))
                     : visibleItems.map(product => (
-                        <Grid item xs={6} sm={3} key={product.id}>
+                        <Grid item xs={6} sm={3} key={product.id}    sx={{
+                          flexBasis: { md: "20%" },
+                          maxWidth: { md: "20%" },
+                        }} >
                           <Box
                             style={{
                               background: "#fff",

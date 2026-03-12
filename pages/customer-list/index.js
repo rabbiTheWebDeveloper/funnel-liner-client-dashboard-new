@@ -18,7 +18,8 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import _ from "lodash";
 import moment from "moment";
-import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useRef, useState } from "react";
 import * as XLSX from "xlsx";
 import withAuth from "../../hook/PrivateRoute";
 import { headers } from "../api";
@@ -40,43 +41,77 @@ const BootstrapButton = styled(Button)({
   },
 });
 
-const FilterDateInput = styled(TextField)({
-  "& .MuiInputBase-root": {
-    height: "42px",
-    marginRight: "10px",
-    width: "250px",
-  },
-});
-
-const Paginator = styled(Pagination)({
-  "& .MuiPagination-ul": {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    marginTop: "10px",
-  },
-});
-
-const menuItemHoverStyle = {
-  "&:hover": {
-    backgroundColor: "#894bca",
-    color: "#fff",
-  },
-  "&.Mui-selected": {
-    backgroundColor: "#894bca",
-    color: "#fff",
-  },
-};
-
 const CustomerListPage = () => {
+  const router = useRouter();
+  const didInitFromQueryRef = useRef(false);
   const [search, setSearch] = useState("");
   const [active, setDefault] = useState("all");
   const [customers, setCustomers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
-  const [callCount, setCount] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
   const [perPage, setPerPage] = useState(10);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const statusFromQuery = typeof router.query?.status === "string" ? router.query.status : null;
+    const pageFromQuery = typeof router.query?.page === "string" ? parseInt(router.query.page, 10) : NaN;
+    const limitFromQuery = typeof router.query?.limit === "string" ? parseInt(router.query.limit, 10) : NaN;
+
+    const allowedStatuses = new Set([
+      "all",
+      "follow_up",
+      "confirmed",
+      "delivered",
+      "cancelled",
+      "returned",
+    ]);
+
+    if (statusFromQuery && allowedStatuses.has(statusFromQuery) && statusFromQuery !== active) {
+      setDefault(statusFromQuery);
+    }
+
+    if (Number.isFinite(pageFromQuery) && pageFromQuery > 0 && pageFromQuery !== currentPage) {
+      setCurrentPage(pageFromQuery);
+    }
+
+    if (Number.isFinite(limitFromQuery) && limitFromQuery > 0 && limitFromQuery !== perPage) {
+      setPerPage(limitFromQuery);
+    }
+
+    didInitFromQueryRef.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    if (!didInitFromQueryRef.current) return;
+
+    const currentStatus = typeof router.query?.status === "string" ? router.query.status : null;
+    const currentPageQuery = typeof router.query?.page === "string" ? router.query.page : null;
+    const currentLimitQuery = typeof router.query?.limit === "string" ? router.query.limit : null;
+
+    if (
+      currentStatus === active &&
+      currentPageQuery === String(currentPage) &&
+      currentLimitQuery === String(perPage)
+    ) {
+      return;
+    }
+
+    const nextQuery = {
+      ...router.query,
+      status: active,
+      page: String(currentPage),
+      limit: String(perPage),
+    };
+
+    router.replace({ pathname: router.pathname, query: nextQuery }, undefined, {
+      shallow: true,
+      scroll: false,
+    });
+  }, [router, active, currentPage, perPage]);
   const handleFetchCustomer = useCallback(async () => {
     try {
       const params = {

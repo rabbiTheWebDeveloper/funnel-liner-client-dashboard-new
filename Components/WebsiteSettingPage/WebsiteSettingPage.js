@@ -2,7 +2,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Button, Container, Grid, Tab, Tooltip } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import Switch from "@mui/material/Switch";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { getWebsiteSettings, headers, shopId } from "../../pages/api";
@@ -42,8 +42,9 @@ const handleTabLink = value => {
 };
 
 const WebsiteSettingPage = ({ response, myAddonsList }) => {
-  const [active, setActive] = useState(1);
   const router = useRouter();
+  const didInitFromQueryRef = useRef(false);
+  const [active, setActive] = useState("1");
   const showToast = useToast();
   const [desc, setDesc] = useState("");
   const [reFatch, setReFatch] = useState(false);
@@ -81,6 +82,7 @@ const WebsiteSettingPage = ({ response, myAddonsList }) => {
   };
   const handleChangeTab = (event, newValue) => {
     setValue(newValue);
+    setActive(newValue);
   };
   const handleChangeTab2 = (event, newValue) => {
     setValue2(newValue);
@@ -279,8 +281,45 @@ const WebsiteSettingPage = ({ response, myAddonsList }) => {
   }, []);
 
   useEffect(() => {
-    setValue(router?.query?.domain ? router?.query?.domain : "1");
-  }, []);
+    if (!router.isReady) return;
+
+    const tabFromQuery =
+      typeof router.query?.tab === "string"
+        ? router.query.tab
+        : typeof router.query?.domain === "string"
+          ? router.query.domain
+          : null;
+
+    const allowedTabs = new Set(["1", "2", "3", "4", "5", "7"]);
+
+    if (tabFromQuery && allowedTabs.has(tabFromQuery)) {
+      setValue(tabFromQuery);
+      setActive(tabFromQuery);
+    }
+
+    didInitFromQueryRef.current = true;
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    if (!didInitFromQueryRef.current) return;
+
+    const currentTab =
+      typeof router.query?.tab === "string"
+        ? router.query.tab
+        : typeof router.query?.domain === "string"
+          ? router.query.domain
+          : null;
+
+    if (currentTab === value) return;
+
+    const nextQuery = { ...router.query, tab: value };
+    router.replace({ pathname: router.pathname, query: nextQuery }, undefined, {
+      shallow: true,
+      scroll: false,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady, value]);
 
   useEffect(() => {
     getWebsiteSettings()

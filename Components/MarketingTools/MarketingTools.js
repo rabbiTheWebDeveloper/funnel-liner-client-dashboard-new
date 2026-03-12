@@ -1,6 +1,6 @@
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Container, Tab } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { headers } from "../../pages/api";
 import axios from "axios";
 import FacebookPixel from "./FacebookPixel";
@@ -10,6 +10,7 @@ import { useCallback } from "react";
 import GoogleAnalytics from "./GoogleAnalytics";
 import GoogleTagManager from "./GoogleTagManager";
 import DomainVerification from "./DomainVerification";
+import { useRouter } from "next/router";
 
 
 const handleTabLink = (value) => {
@@ -22,12 +23,43 @@ const handleTabLink = (value) => {
 }
 
 const MarketingTools = ({ response }) => {
-  const [active, setActive] = useState(1);
+  const router = useRouter();
+  const didInitFromQueryRef = useRef(false);
+  const [active, setActive] = useState("1");
   const [googleTagManager, setGoogleTagManager] = useState({});
   const [value, setValue] = useState("1");
   const handleChangeTab = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const tabFromQuery = typeof router.query?.tab === "string" ? router.query.tab : null;
+    const allowedTabs = new Set(["1", "3", "4"]);
+
+    if (tabFromQuery && allowedTabs.has(tabFromQuery)) {
+      setValue(tabFromQuery);
+      setActive(tabFromQuery);
+    }
+
+    didInitFromQueryRef.current = true;
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    if (!didInitFromQueryRef.current) return;
+
+    const currentTab = typeof router.query?.tab === "string" ? router.query.tab : null;
+    if (currentTab === value) return;
+
+    const nextQuery = { ...router.query, tab: value };
+    router.replace({ pathname: router.pathname, query: nextQuery }, undefined, {
+      shallow: true,
+      scroll: false,
+    });
+  }, [router, value]);
+
   const handleFetchGoogleTagManager = useCallback(async () => {
     try {
       if (active === "3" || active === "4") {
@@ -70,10 +102,10 @@ const MarketingTools = ({ response }) => {
                       onChange={handleChangeTab}
                       aria-label="lab API tabs example"
                     >
-                      <Tab label="Domain Verification" value="1" onClick={() => setActive('1')} />
+                      <Tab label="Domain Verification" value="1" onClick={() => setActive("1")} />
                       {/* <Tab label="Facebook Pixel" value="2" onClick={() => setActive('1')} /> */}
-                      <Tab label="Google Tag Manager" value="3" onClick={() => setActive('3')} />
-                      <Tab label="Google Analytics" value="4" onClick={() => setActive('4')} /> 
+                      <Tab label="Google Tag Manager" value="3" onClick={() => setActive("3")} />
+                      <Tab label="Google Analytics" value="4" onClick={() => setActive("4")} /> 
 
                     </TabList>
                   </Box>

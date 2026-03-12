@@ -22,7 +22,7 @@ import { useToast } from "../../../hook/useToast";
 import SmallLoader from "../../SmallLoader/SmallLoader";
 import { shopId, userId } from "../../../pages/api";
 
-const MultiWebsite = () => {
+const MultiWebsite = ({busInfo}) => {
   const showToast = useToast();
   const router = useRouter();
   // ViewPreviewModel
@@ -101,7 +101,23 @@ const MultiWebsite = () => {
         importTheme("multiple", Number(themeId)).then(res => {
           if (res.status === 200) {
             showToast("Theme activate successfully");
+
             setSelectedThemeId(themeId);
+
+            // Trigger revalidation of the public site
+            axios
+              .get(`/api/revalidate-proxy`, {
+                params: { domain: busInfo?.domain_request },
+              })
+              .then(response => {
+                if (response?.data?.revalidated === true) {
+                  showToast("Website cache revalidated successfully", "success");
+                }
+              })
+              .catch(() => {
+                // Optional: ignore revalidation errors to avoid blocking UI flow
+              });
+
             if (router.query.redirect_from === "panel3") {
               router.push("/?current_steap=panel4");
             }
