@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HeaderDescription from "../../Components/Common/HeaderDescription/HeaderDescription";
 import { headers } from "../api";
 import { API_ENDPOINTS } from "../../config/ApiEndpoints";
@@ -11,6 +11,39 @@ const ChatPage = ({ busInfo }) => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
+
+  useEffect(() => {
+    const fetchChatSupportInfo = async () => {
+      try {
+        const res = await fetch(
+          API_ENDPOINTS.BASE_URL + "/client/get_whatsapp_fb_page_id_data",
+          {
+            method: "GET",
+            headers: headers,
+          }
+        );
+
+        if (!res.ok) throw new Error("Failed to load chat support info");
+
+        const data = await res.json();
+
+        setFormData({
+          fb_page_id: data.fb_page_id || "",
+          whatsapp: data.whatsapp || "",
+        });
+
+        if (data.whatsapp) {
+          setSelected("whatsapp");
+        } else if (data.fb_page_id) {
+          setSelected("fb_page_id");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchChatSupportInfo();
+  }, []);
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -45,7 +78,7 @@ const ChatPage = ({ busInfo }) => {
         type: "success",
       });
 
-      setFormData({ facebookPageId: "", whatsappNumber: "" });
+      setFormData({ fb_page_id: "", whatsapp: "" });
     } catch (error) {
       setMessage({
         text: error.message || "An error occurred while updating",

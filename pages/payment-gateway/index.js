@@ -1,11 +1,28 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import { API_ENDPOINTS } from "../../config/ApiEndpoints";
 import { headers } from "../api";
 import useSWR from "swr";
 import { fetcher } from "../../Components/DashboardV2/App/reports/_reports";
 import { useToast } from "../../hook/useToast";
 import HeaderDescription from "../../Components/Common/HeaderDescription/HeaderDescription";
+
+const GATEWAY_TABS = ["bkash", "sslcommerz"];
+const DEFAULT_CONFIG = {
+  bkash: {
+    username: "",
+    password: "",
+    app_key: "",
+    app_secret: "",
+    sandbox: true,
+  },
+  sslcommerz: {
+    store_id: "",
+    store_password: "",
+    sandbox: true,
+  },
+};
 const containerStyle = {
   maxWidth: "1000px",
   margin: "0 auto",
@@ -90,23 +107,20 @@ const labelStyle = {
   marginBottom: "8px",
 };
 const PaymentGateway = () => {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("bkash");
   const { data, error } = useSWR(
     `/client/payment_gateway/credentials/${activeTab}`,
     fetcher
   );
+  const [configByProvider, setConfigByProvider] = useState(() => ({
+    bkash: { ...DEFAULT_CONFIG.bkash },
+    sslcommerz: { ...DEFAULT_CONFIG.sslcommerz },
+  }));
+  const loadedFromApiRef = useRef({ bkash: false, sslcommerz: false });
   const [formData, setFormData] = useState({
     provider: "bkash",
     status: "active",
-    config: {
-      username: "",
-      password: "",
-      app_key: "",
-      app_secret: "",
-      store_id: "your_demo_store_id",
-      store_password: "your_demo_store_password",
-      sandbox: true,
-    },
     full_payment: 1,
     delivery_charge_only: 0,
     percentage: 1.5,
@@ -114,7 +128,26 @@ const PaymentGateway = () => {
   });
   const [loading, setLoading] = useState(false);
   const showToast = useToast();
-  console.log("data payment getway", data);
+
+  // Restore tab from URL on load/reload
+  useEffect(() => {
+    if (!router.isReady) return;
+    const gateway = router.query.gateway;
+    if (gateway && GATEWAY_TABS.includes(gateway)) {
+      setActiveTab(gateway);
+    }
+  }, [router.isReady, router.query.gateway]);
+
+  const handleTabClick = p => {
+    setActiveTab(p);
+    handleChange("provider", p);
+    router.push(
+      { pathname: "/payment-gateway", query: { gateway: p } },
+      undefined,
+      { shallow: true }
+    );
+  };
+
   const handleChange = (key, value) => {
     setFormData(prev => ({
       ...prev,
@@ -123,13 +156,18 @@ const PaymentGateway = () => {
   };
 
   const handleConfigChange = (key, value) => {
-    setFormData(prev => ({
+    setConfigByProvider(prev => ({
       ...prev,
-      config: {
-        ...prev.config,
+      [activeTab]: {
+        ...prev[activeTab],
         [key]: value,
       },
     }));
+  };
+
+  const currentConfig = {
+    ...DEFAULT_CONFIG[activeTab],
+    ...configByProvider[activeTab],
   };
 
   const handleSubmit = async e => {
@@ -139,7 +177,7 @@ const PaymentGateway = () => {
       const payload = {
         ...formData,
         provider: activeTab,
-        config: JSON.stringify(formData.config),
+        config: JSON.stringify(currentConfig),
       };
       const { data } = await axios.post(
         `${API_ENDPOINTS.BASE_URL}/client/payment_gateway/save`,
@@ -160,50 +198,67 @@ const PaymentGateway = () => {
   };
 
   const handleReset = () => {
+    setConfigByProvider(prev => ({
+      ...prev,
+      [activeTab]: { ...DEFAULT_CONFIG[activeTab] },
+    }));
     setFormData({
-      provider: "bkash",
+      provider: activeTab,
       status: "active",
-      config: {
-        store_id: "your_demo_store_id",
-        store_password: "your_demo_store_password",
-        sandbox: true,
-      },
       full_payment: 1,
       delivery_charge_only: 0,
       percentage: 1.5,
       fixed_amount: 10,
     });
   };
+
   useEffect(() => {
-    if (data) {
-      // parse config safely
+    if (!data) return;
+    const provider = data.provider || activeTab;
+    const alreadyLoaded = loadedFromApiRef.current[provider];
+
+    if (!alreadyLoaded) {
       let parsedConfig = {};
       try {
         parsedConfig = JSON?.parse(data?.config || "{}");
       } catch (err) {
         console.error("Invalid JSON in config:", err);
       }
-
-      // update state with API data
-      setFormData({
-        provider: data.provider || "bkash",
-        status: data.status || "active",
-        config: {
-          username: parsedConfig.username || "",
-          password: parsedConfig.password || "",
-          app_key: parsedConfig.app_key || "",
-          app_secret: parsedConfig.app_secret || "",
-          store_id: parsedConfig.store_id || "",
-          store_password: parsedConfig.store_password || "",
-          sandbox:
-            parsedConfig.sandbox === "true" || parsedConfig.sandbox === true,
+      setConfigByProvider(prev => ({
+        ...prev,
+        [provider]: {
+          ...DEFAULT_CONFIG[provider],
+          ...(provider === "bkash"
+            ? {
+                username: parsedConfig.username || "",
+                password: parsedConfig.password || "",
+                app_key: parsedConfig.app_key || "",
+                app_secret: parsedConfig.app_secret || "",
+                sandbox:
+                  parsedConfig.sandbox === "true" ||
+                  parsedConfig.sandbox === true,
+              }
+            : {
+                store_id: parsedConfig.store_id || "",
+                store_password: parsedConfig.store_password || "",
+                sandbox:
+                  parsedConfig.sandbox === "true" ||
+                  parsedConfig.sandbox === true,
+              }),
         },
-        full_payment: data.full_payment ? 1 : 0,
-        delivery_charge_only: data.delivery_charge_only ? 1 : 0,
-        percentage: data.percentage ?? 1.5,
-        fixed_amount: data.fixed_amount ?? 10,
-      });
+      }));
+      loadedFromApiRef.current[provider] = true;
     }
+
+    setFormData(prev => ({
+      ...prev,
+      provider: provider,
+      status: data.status || "active",
+      full_payment: data.full_payment ? 1 : 0,
+      delivery_charge_only: data.delivery_charge_only ? 1 : 0,
+      percentage: data.percentage ?? 1.5,
+      fixed_amount: data.fixed_amount ?? 10,
+    }));
   }, [data]);
 
   const handleChangePaymentSetting = (field, value, type) => {
@@ -281,14 +336,11 @@ const PaymentGateway = () => {
               paddingBottom: "16px",
             }}
           >
-            {["bkash", "sslcommerz"].map(p => (
+            {GATEWAY_TABS.map(p => (
               <div
                 key={p}
                 style={activeTab === p ? activeTabStyle : tabStyle}
-                onClick={() => {
-                  setActiveTab(p);
-                  handleChange("provider", p);
-                }}
+                onClick={() => handleTabClick(p)}
               >
                 {p.toUpperCase()}
               </div>
@@ -309,7 +361,7 @@ const PaymentGateway = () => {
                     <input
                       type="text"
                       style={inputStyle}
-                      value={formData.config.username}
+                      value={currentConfig.username}
                       onChange={e =>
                         handleConfigChange("username", e.target.value)
                       }
@@ -320,7 +372,7 @@ const PaymentGateway = () => {
                     <input
                       type="password"
                       style={inputStyle}
-                      value={formData.config.password}
+                      value={currentConfig.password}
                       onChange={e =>
                         handleConfigChange("password", e.target.value)
                       }
@@ -332,7 +384,7 @@ const PaymentGateway = () => {
                     <input
                       type="text"
                       style={inputStyle}
-                      value={formData.config.app_key}
+                      value={currentConfig.app_key}
                       onChange={e =>
                         handleConfigChange("app_key", e.target.value)
                       }
@@ -343,7 +395,7 @@ const PaymentGateway = () => {
                     <input
                       type="text"
                       style={inputStyle}
-                      value={formData.config.app_secret}
+                      value={currentConfig.app_secret}
                       onChange={e =>
                         handleConfigChange("app_secret", e.target.value)
                       }
@@ -358,7 +410,7 @@ const PaymentGateway = () => {
                     <input
                       type="text"
                       style={inputStyle}
-                      value={formData.config.store_id}
+                      value={currentConfig.store_id}
                       onChange={e =>
                         handleConfigChange("store_id", e.target.value)
                       }
@@ -369,7 +421,7 @@ const PaymentGateway = () => {
                     <input
                       type="password"
                       style={inputStyle}
-                      value={formData.config.store_password}
+                      value={currentConfig.store_password}
                       onChange={e =>
                         handleConfigChange("store_password", e.target.value)
                       }
@@ -383,7 +435,7 @@ const PaymentGateway = () => {
                   <input
                     type="checkbox"
                     style={checkboxStyle}
-                    checked={formData.config.sandbox}
+                    checked={currentConfig.sandbox}
                     onChange={e =>
                       handleConfigChange("sandbox", e.target.checked)
                     }
