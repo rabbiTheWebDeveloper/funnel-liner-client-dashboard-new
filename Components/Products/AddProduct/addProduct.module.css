@@ -1,38 +1,145 @@
+/* ===== Add Product – Modern UI ===== */
+.AddProduct {
+  --ap-radius: 12px;
+  --ap-radius-sm: 8px;
+  --ap-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --ap-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --ap-border: 1px solid #e8eaed;
+  --ap-label: #374151;
+  --ap-input-bg: #fff;
+  --ap-focus-ring: 0 0 0 2px rgba(var(--main-color-rgb, 99, 102, 241), 0.2);
+}
+
+.AddProduct ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.AddProduct ::-webkit-scrollbar-track {
+  background: #f1f3f4;
+  border-radius: 4px;
+}
+
 .AddProduct ::-webkit-scrollbar-thumb {
   background: var(--main-color);
+  border-radius: 4px;
 }
 
-.My__parsentens span{
-    text-align: right !important;
-    width: 100%;
-    display: block;
-    margin-top: -31px;
-    margin-bottom: 33px;
-    margin-left: -10px;
+/* ----- Page wrapper & sections ----- */
+.AddProduct .sectionCard {
+  background: #fff;
+  border: var(--ap-border);
+  border-radius: var(--ap-radius);
+  box-shadow: var(--ap-shadow);
+  padding: 24px;
+  margin-bottom: 24px;
 }
 
-.SelectDropdown {
-  z-index: 9;
-  position: relative;
-  background: var(--white-color) !important;
+.AddProduct .sectionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--header-color, #111827);
+  margin: 0 0 4px 0;
+  letter-spacing: -0.01em;
+}
+
+.AddProduct .sectionSubtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 20px 0;
+  line-height: 1.4;
+}
+
+/* ----- Page wrapper (optional) ----- */
+.addProductPage {
+  padding: 0;
+}
+
+/* ----- Header ----- */
+.headerSection {
+  padding-bottom: 8px;
 }
 
 .header {
-  margin-top: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.header h4 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--header-color, #111827);
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
 }
 
 .header p {
-  margin-top: 0;
+  margin: 0;
+  font-size: 0.9375rem;
+  color: #6b7280;
+  line-height: 1.45;
 }
 
+/* ----- Form layout ----- */
 .FormValidation {
-  margin-top: 0px;
+  margin-top: 0;
   display: flex;
-  align-items: self-start;
+  align-items: flex-start;
   gap: 20px;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+}
+
+/* ----- Generic form group (used by Grid children) ----- */
+.AddProduct .formGroup {
+  margin-bottom: 0;
+}
+
+.AddProduct .formGroup label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ap-label);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.AddProduct .formGroup label span {
+  color: #dc2626;
+}
+
+.AddProduct .formGroup input[type="text"],
+.AddProduct .formGroup input[type="number"],
+.AddProduct .formGroup select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--text-color, #374151);
+  background: var(--ap-input-bg);
+  border: var(--ap-border);
+  border-radius: var(--ap-radius-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.AddProduct .formGroup input:focus,
+.AddProduct .formGroup select:focus {
+  outline: none;
+  border-color: var(--main-color);
+  box-shadow: var(--ap-focus-ring);
+}
+
+.AddProduct .formGroup input::placeholder {
+  color: #9ca3af;
+}
+
+.AddProduct .formGroup .error {
+  font-size: 0.8125rem;
+  color: #dc2626;
+  margin-top: 6px;
 }
 
 .customInput {
@@ -45,90 +152,164 @@
   font-size: 14px;
 }
 
+/* ----- Discount block ----- */
+.My__parsentens {
+  position: relative;
+}
+
+.My__parsentens span {
+  position: absolute;
+  right: 14px;
+  top: 38px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.My__parsentens label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.SelectDropdown {
+  z-index: 9;
+  position: relative;
+  background: var(--white-color) !important;
+}
+
+/* ----- Image upload ----- */
+.imgUploader {
+  border: 2px dashed #e5e7eb;
+  border-radius: var(--ap-radius-sm);
+  padding: 20px;
+  text-align: center;
+  background: #fafafa;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.imgUploader:hover {
+  border-color: var(--main-color);
+  background: #f8f9ff;
+}
+
 .imgUploader label {
   width: 100%;
+  cursor: pointer;
 }
 
 .SelectImgButton {
   width: 100% !important;
   border: 1px solid var(--main-color) !important;
-  color: var(--text-color) !important;
+  color: var(--main-color) !important;
   background: var(--white-color) !important;
   padding: 12px 20px !important;
   box-shadow: none !important;
-  border-radius: 10px !important;
-  font-size: 15px !important;
-  line-height: 20px !important;
-  font-weight: 400 !important;
+  border-radius: var(--ap-radius-sm) !important;
+  font-size: 0.9375rem !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  transition: background 0.2s ease, color 0.2s ease !important;
 }
 
+.SelectImgButton:hover {
+  background: var(--main-color) !important;
+  color: var(--white-color) !important;
+}
+
+/* ----- Submit ----- */
 .Submit {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: var(--ap-border);
 }
 
 .Submit button {
   background: var(--main-color);
   border: 1px solid var(--main-color);
-  padding: 10px 50px;
+  padding: 12px 48px;
   color: var(--white-color);
-  font-size: 18px;
-  line-height: 24px;
-  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  border-radius: var(--ap-radius-sm);
   display: inline-flex;
-  margin-top: 20px;
-  text-align: right;
-}
-
-.Submit button i {
-  font-size: 25px;
-  margin-right: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  box-shadow: var(--ap-shadow);
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .Submit button:hover {
   background: var(--main-hover-color);
 }
 
+.Submit button:active {
+  transform: scale(0.98);
+}
+
+.Submit button i {
+  font-size: 1.25rem;
+}
+
+/* ----- Delivery (dual inputs) ----- */
 .duelInput {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .duelInput .customInput {
   width: 48%;
+  min-width: 140px;
 }
 
-/* ProductsVariantContent */
+/* ===== Products Variant Section ===== */
+.ProductsVariant {
+  border: var(--ap-border);
+  margin-top: 24px;
+  border-radius: var(--ap-radius);
+  padding: 24px;
+  background: #fff;
+  box-shadow: var(--ap-shadow);
+}
 
-.ProductsVariantContent {
-  border-radius: 8px;
-  border: 1px solid #e6e8ec;
-  padding: 20px;
+.ProductsVariant h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--header-color, #111827);
+  border-bottom: var(--ap-border);
+  padding-bottom: 12px;
+  margin: 0 0 16px 0;
 }
 
 .ProductsVariant .fullWidth {
   width: 100%;
 }
 
-.ProductsVariant {
-  border: 1px solid var(--border-color);
-  margin-top: 30px;
-  border-radius: 10px;
+.ProductsVariantContent {
+  border-radius: var(--ap-radius-sm);
+  border: var(--ap-border);
   padding: 20px;
-}
-
-.ProductsVariant h4 {
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  background: #fafbfc;
 }
 
 .ProductsVariant .empty {
   text-align: center;
-  margin: 20px 0;
-  margin-bottom: 0;
+  margin: 24px 0;
+  margin-bottom: 16px;
+}
+
+.ProductsVariant .empty img {
+  max-height: 80px;
+  opacity: 0.85;
 }
 
 .ProductsVariantBox {
@@ -137,116 +318,103 @@
 }
 
 .ProductsVariantBox label {
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--header-color);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--ap-label);
   font-weight: 500;
 }
 
+/* ----- Variant type row (input + delete) ----- */
+.inputPlusDelete {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .inputPlusDelete .delete {
-  width: 40px;
-  height: 48px;
-  border-radius: 8px;
-  background: #fdeced;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: var(--ap-radius-sm);
+  background: #fef2f2;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  overflow: hidden;
+  border: 1px solid #fecaca;
+  transition: background 0.2s ease;
 }
 
 .inputPlusDelete .delete:hover {
-  background: #fdeced;
-}
-
-.inputPlusDelete {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  background: #fee2e2;
 }
 
 .inputPlusDelete .delete i {
-  color: var(--red-color);
-  font-size: 25px;
-  line-height: 20px;
-  transform: scale(1);
+  color: #dc2626;
+  font-size: 1.25rem;
 }
 
-.inputPlusDelete .delete:hover i {
-  transform: scale(1.1);
-}
-
-/* ProductsVariantsLists */
+/* ----- Variant chips list ----- */
 .ProductsVariantsLists {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .ProductsVariantsListsItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 15px;
+  gap: 16px;
+  padding: 14px 16px;
+  background: #fff;
+  border: var(--ap-border);
+  border-radius: var(--ap-radius-sm);
+  margin-bottom: 12px;
 }
 
 .ProductsVariantsListsItemLeft {
   display: flex;
   align-items: center;
   width: 85%;
-  gap: 15px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
-.ProductsVariantsListsItem {
-  margin-bottom: 20px;
-}
-
-.ProductsVariantsListsItem h5 {
-  font-size: 16px;
-  line-height: 20px;
+.ProductsVariantsListsItemLeft h5 {
+  font-size: 0.9375rem;
   font-weight: 600;
   color: var(--header-color);
+  margin: 0;
 }
 
-.ProductsVariantsListsItem span {
-  border-radius: 4px;
-  background: #f7f0ff;
-  padding: 5px;
-  font-size: 14px;
-  line-height: 20px;
+.ProductsVariantsListsItemLeft span {
+  border-radius: 6px;
+  background: #ede9fe;
+  padding: 4px 10px;
+  font-size: 0.8125rem;
+  font-weight: 500;
   color: var(--main-color);
 }
 
 .ProductsVariantsListsItemRight .delete {
-  border-radius: 4px;
-  background: #fdeced;
-  padding: 6px 10px;
+  border-radius: var(--ap-radius-sm);
+  background: #fef2f2;
+  padding: 8px 12px;
   min-width: unset;
-  color: var(--red-color);
-  line-height: 0;
-}
-
-.ProductsVariantsListsItemRight .delete i {
-  font-size: 20px;
-  transform: scale(1);
+  color: #dc2626;
+  border: 1px solid #fecaca;
 }
 
 .ProductsVariantsListsItemRight .delete:hover {
-  background: #fdeced;
+  background: #fee2e2;
 }
 
-.ProductsVariantsListsItemRight .delete:hover i {
-  transform: scale(1.1);
+.ProductsVariantsListsItemRight .delete i {
+  font-size: 1.125rem;
 }
 
-.ProductsVariantsListsItemRight .delete span {
-  background: none;
-}
-
-/* AddNewProduct */
-
-/* AddNewProduct */
+/* ----- Add variant button ----- */
 .AddNewProduct {
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 .ProductsVariantBox .AddNewProduct {
@@ -254,341 +422,359 @@
 }
 
 .AddNewProduct button {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 0.9375rem;
+  font-weight: 500;
   color: var(--main-color);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  text-align: center;
-  margin: 0 auto;
   width: 100%;
-  border-radius: 8px;
-  background: #f2e9ff;
-  padding: 12px 20px;
+  border-radius: var(--ap-radius-sm);
+  background: #ede9fe;
+  padding: 14px 20px;
+  border: 1px dashed var(--main-color);
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .AddNewProduct button:hover {
-  background: #f2e9ff;
+  background: #ddd6fe;
+  border-color: var(--main-color);
 }
 
 .AddNewProduct button i {
-  line-height: 0;
+  font-size: 1.125rem;
 }
 
-/* ProductVarientTable */
-
+/* ===== Variant table ===== */
 .ProductVarientTable {
-  border-radius: 8px;
-  border: 1px solid #e6e8ec;
-  padding: 2px;
-  overflow: scroll;
-  height: 500px;
-  min-height: auto;
+  border-radius: var(--ap-radius-sm);
+  border: var(--ap-border);
+  overflow: auto;
+  max-height: 520px;
+  background: #fff;
+  box-shadow: var(--ap-shadow);
 }
 
 .ProductVarientTable table {
   width: 100%;
-  margin: 0;
-  padding: 0;
   border-collapse: collapse;
-  border-spacing: 0;
-  overflow: hidden;
+  font-size: 0.875rem;
+}
+
+.ProductVarientTable table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f8fafc;
 }
 
 .ProductVarientTable table thead tr {
-  background: #f6f8fa;
+  border-bottom: 2px solid #e2e8f0;
 }
 
 .ProductVarientTable table th {
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
-  padding: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  padding: 12px 10px;
   text-align: left;
+  white-space: nowrap;
+}
+
+.ProductVarientTable table tbody tr {
+  border-bottom: var(--ap-border);
+  transition: background 0.15s ease;
+}
+
+.ProductVarientTable table tbody tr:hover {
+  background: #f8fafc;
 }
 
 .ProductVarientTable table td {
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
-  padding: 10px;
-  position: relative;
+  font-size: 0.875rem;
+  padding: 12px 10px;
+  vertical-align: middle;
 }
 
-.ProductVarientTable table td i {
+.ProductVarientTable table td i.flaticon-taka {
   position: absolute;
-  top: 24px;
-  left: 15px;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
   color: var(--text-color);
+  font-size: 0.75rem;
 }
 
 .ProductVarientTable table td .img {
   position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--ap-radius-sm);
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.ProductVarientTable table td .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .ProductVarientTable table td .img .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 50px;
-  height: 40px;
-  cursor: pointer;
-}
-
-.ProductVarientTable table td .img .overlay input {
-  width: 50px;
-  height: 100%;
-  opacity: 0;
-  padding: 0;
-  cursor: pointer;
-  z-index: 9;
-}
-
-.ProductVarientTable table td .img button {
-  padding: 0;
-  position: absolute;
-  top: -7px;
-  right: -7px;
-  background: var(--red-color);
-  width: 18px;
-  height: 18px;
-  border-radius: 50px;
-  min-width: unset;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
-.ProductVarientTable table td .img button i {
-  position: unset;
-  color: var(--white-color);
-  font-size: 8px;
+.ProductVarientTable table td .img:hover .overlay {
+  opacity: 1;
+}
+
+.ProductVarientTable table td .img .overlay input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
 }
 
 .ProductVarientTable table td img {
-  width: 50px;
-  height: 40px;
-  object-fit: fill;
-  cursor: pointer;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: var(--ap-radius-sm);
 }
 
 .ProductVarientTable table td input {
-  font-size: 14px;
-  line-height: 20px;
-  width: 60px;
+  font-size: 0.875rem;
   padding: 8px 10px;
+  border: var(--ap-border);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .ProductVarientTable table td input.tk {
-  padding-left: 25px;
+  padding-left: 28px;
+  position: relative;
 }
 
 .ProductVarientTable table td:first-child {
-  width: 50px;
+  width: 60px;
 }
 
 .ProductVarientTable table td.varient {
-  width: 110px;
+  min-width: 100px;
 }
 
 .ProductVarientTable table td.varient input {
-  width: 110px;
+  min-width: 90px;
 }
 
 .ProductVarientTable table td.price {
-  width: 90px;
+  min-width: 90px;
 }
 
 .ProductVarientTable table td.price input {
-  width: 90px;
+  min-width: 80px;
 }
 
 .ProductVarientTable table td.code {
-  width: 70px;
+  min-width: 80px;
 }
 
 .ProductVarientTable table td.code input {
-  width: 70px;
+  min-width: 60px;
 }
 
 .ProductVarientTable table td.lastChild {
-  width: 150px;
+  min-width: 140px;
 }
 
 .ProductVarientTable table td.lastChild input {
-  width: 150px;
+  min-width: 120px;
+}
+
+.ProductVarientTable table td select {
+  padding: 8px 10px;
+  border: var(--ap-border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background: #fff;
+  min-width: 100px;
 }
 
 .ProductVarientTable table td .DhakaInCharge {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
-.ProductVarientTable table td .DhakaInCharge button {
+.ProductVarientTable table td .DhakaInCharge input.Dhaka {
+  flex: 1;
   min-width: 0;
-  width: 50px;
-  height: 38px;
-  border-radius: 10px;
-  background: #fdeced;
-  text-align: center;
-  line-height: 0;
 }
 
-.ProductVarientTable table td .DhakaInCharge button i {
-  line-height: 0;
-  font-size: 18px;
-  color: var(--red-color);
-  transform: scale(1);
-  position: unset;
-}
-
-.ProductVarientTable table td .DhakaInCharge button:hover i {
-  transform: scale(1.1);
-}
-
-/* ToggleButtonGroup */
-
+/* ===== Toggle (Discount type) ===== */
 .ToggleButtonGroupDiv label {
-  width: 100%;
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ap-label);
+  margin-bottom: 8px;
 }
 
 .ToggleButtonGroup {
-  border-radius: 10px !important;
+  border-radius: var(--ap-radius-sm) !important;
   width: 100% !important;
+  overflow: hidden;
+  border: var(--ap-border) !important;
 }
 
 .ToggleButtonGroup button {
-  border-radius: 10px;
-  width: 50%;
-  /* padding: 10px 20px; */
+  border-radius: 0 !important;
+  width: 50% !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  padding: 10px 16px !important;
 }
 
+/* ===== Regular price & calculated price ===== */
 .regularPrice {
   position: relative;
 }
 
+.absulatePrice {
+  margin-top: 8px;
+}
+
 .absulatePrice h6 {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-color);
-  line-height: 20px;
-  margin-top: 2px;
+  line-height: 1.4;
+  margin: 0;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .absulatePrice h6 i {
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
-/* ---------------------------------------------------  --------------------------------------------------- 
-Media 
----------------------------------------------------  ---------------------------------------------------  */
+.absulatePrice h6 del {
+  margin-left: 8px;
+  color: #9ca3af;
+}
+
+/* ===== Status / Product type selects in JS use .formGroup or global select ----- */
+.AddProduct select.w-full {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.9375rem;
+  border: var(--ap-border);
+  border-radius: var(--ap-radius-sm);
+  background: #fff;
+  color: var(--text-color);
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 1399px) {
+  .AddProduct .sectionCard {
+    padding: 20px;
+  }
+
+  .ProductsVariant {
+    padding: 20px;
+  }
+
   .SelectImgButton {
-    padding: 8px 20px !important;
-    font-size: 13px !important;
+    padding: 10px 16px !important;
+    font-size: 0.875rem !important;
   }
 
   .Submit button {
-    padding: 10px 50px !important;
-  }
-
-  .inputPlusDelete .delete i {
-    font-size: 18px;
-    line-height: 20px;
-  }
-
-  .ProductsVariantContent .empty img {
-    height: 40px;
-  }
-
-  .ProductsVariant h4 {
-    font-size: 18px;
-  }
-
-  .ProductsVariant {
-    padding: 15px;
-  }
-
-  .ProductsVariantContent {
-    padding: 0px;
-    border: 0;
+    padding: 10px 36px;
   }
 
   .AddNewProduct button {
-    font-size: 12px;
-    line-height: 20px;
-    gap: 6px;
-    padding: 12px;
+    font-size: 0.875rem;
+    padding: 12px 16px;
+  }
+
+  .ProductsVariantContent .empty img {
+    max-height: 56px;
+  }
+
+  .ProductsVariant h4 {
+    font-size: 1rem;
   }
 
   .inputPlusDelete .delete {
-    min-width: 0;
-    width: 50px;
-    height: 38px;
-  }
-
-  .inputPlusDelete .delete i {
-    font-size: 18px;
-    line-height: 20px;
-  }
-
-  .ProductsVariantContent .empty img {
+    width: 40px;
     height: 40px;
-  }
-
-  .ProductsVariant h4 {
-    font-size: 18px;
-  }
-
-  .ProductsVariant {
-    padding: 15px;
-  }
-
-  .ProductsVariantContent {
-    padding: 15px;
-  }
-
-  .AddNewProduct button {
-    font-size: 12px;
-    line-height: 20px;
-    gap: 6px;
-    padding: 12px;
+    min-width: 40px;
   }
 
   .ToggleButtonGroup button {
-    font-size: 13px;
-    padding: 8px 5px;
+    font-size: 0.8125rem !important;
+    padding: 8px 12px !important;
   }
 }
 
 @media (max-width: 1023px) {
   .header {
-    margin-top: 10px;
+    margin-bottom: 16px;
   }
 
   .customInput {
-    margin-top: 10px;
+    margin-top: 16px;
+  }
+
+  .duelInput .customInput {
+    width: 100%;
   }
 
   .Submit {
-    margin-top: 0px;
+    margin-top: 24px;
   }
 
   .Submit button {
-    padding: 10px 30px !important;
+    padding: 10px 28px;
+    font-size: 0.9375rem;
+  }
+
+  .ProductVarientTable {
+    max-height: 400px;
   }
 }
 
 @media (max-width: 550px) {
   .customInput {
     width: 100%;
+  }
+
+  .AddProduct .sectionCard {
+    padding: 16px;
+  }
+
+  .ProductsVariant {
+    padding: 16px;
   }
 }

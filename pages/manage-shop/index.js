@@ -7,40 +7,19 @@ const Index = () => {
   const containerStyle = {
     maxWidth: "1200px",
     margin: "0 auto",
-    padding: "32px 24px",
+    padding: "24px 20px 48px",
     fontFamily:
       "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-    backgroundColor: "#fafafa",
-    minHeight: "100vh",
-  };
-
-  const headerStyle = {
-    marginBottom: "12px",
-    fontSize: "32px",
-    fontWeight: "700",
-    color: "#111827",
-    background: "linear-gradient(135deg, #111827 0%, #374151 100%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    backgroundClip: "text",
-  };
-
-  const subHeaderStyle = {
-    marginBottom: "40px",
-    color: "#6b7280",
-    fontSize: "18px",
-    lineHeight: "1.6",
-    maxWidth: "600px",
   };
 
   const gridStyle = {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
     gap: "24px",
   };
 
   const cardStyle = {
-    border: "1px solid #f3f4f6",
+    border: "1px solid #e5e7eb",
     borderRadius: "16px",
     padding: "28px 24px",
     backgroundColor: "#ffffff",
@@ -51,6 +30,7 @@ const Index = () => {
     display: "block",
     position: "relative",
     overflow: "hidden",
+    color: "inherit",
   };
 
   const cardHover = {
@@ -146,12 +126,12 @@ const Index = () => {
       icon: "💬",
       link: "/bulk-sms",
     },
-    // {
-    //   title: "Chat Support",
-    //   desc: "Provide instant communication and assistance to customers with chat support system.",
-    //   icon: "💭",
-    //   link: "/chat-support",
-    // },
+    {
+      title: "Chat Support",
+      desc: "Provide instant communication and assistance to customers with chat support system.",
+      icon: "💭",
+      link: "/chat-support",
+    },
     {
       title: "Social Links",
       desc: "Connect your shop with social media platforms to enhance visibility and engagement.",
@@ -170,18 +150,8 @@ const Index = () => {
         }
         search={false}
         order={false}
-        // backbutton={true}
       />
       <div style={containerStyle}>
-        <div style={{ marginBottom: "48px" }}>
-          <h1 style={headerStyle}>Manage Shop</h1>
-          <p style={subHeaderStyle}>
-            Set up and customize your shop to ensure a smooth and efficient
-            experience. Configure all aspects of your online store from one
-            centralized dashboard.
-          </p>
-        </div>
-
         <div style={gridStyle}>
           {cards.map((card, index) => (
             <Link href={card.link} key={index} legacyBehavior>

@@ -377,9 +377,9 @@ const EditProduct = ({ busInfo }) => {
           order={false}
           backbutton={true}
         />
-        <Container maxWidth="sm">
+        <Container maxWidth="lg">
           <div className="DashboardSettingTabs">
-            <Box className="boxShadow">
+            <Box className={`boxShadow ${style.addProductPage}`}>
               <Formik
                 enableReinitialize={true}
                 initialValues={{
@@ -636,14 +636,19 @@ const EditProduct = ({ busInfo }) => {
                 {({ values, setFieldValue }) => (
                   <Form>
                     <div className={style.AddProduct}>
-                      <div className={style.header}>
-                        <h4>Add Products</h4>
-                        <p>This will be displayed on your product page</p>
+                      <div className={`${style.sectionCard} ${style.headerSection}`}>
+                        <div className={style.header}>
+                          <h4>Edit Product</h4>
+                          <p>Update your product details below</p>
+                        </div>
                       </div>
-                      <div className={style.FormValidation}>
+                      <div className={style.sectionCard}>
+                        <h5 className={style.sectionTitle}>Basic information</h5>
+                        <p className={style.sectionSubtitle}>Name, pricing, category and delivery</p>
+                        <div className={style.FormValidation}>
                         <Grid container spacing={2}>
                           <Grid item xs={12} sm={4}>
-                            <div className="">
+                            <div className={style.formGroup}>
                               <label>
                                 Product Name <span>*</span>
                               </label>
@@ -660,7 +665,7 @@ const EditProduct = ({ busInfo }) => {
                             </div>
                           </Grid>
                           <Grid item xs={12} sm={3}>
-                            <div className="">
+                            <div className={`${style.formGroup} ${style.regularPrice}`}>
                               <label>
                                 Regular Price <span>*</span>
                               </label>
@@ -677,7 +682,7 @@ const EditProduct = ({ busInfo }) => {
                                 className="error"
                               />
                               <div className={style.absulatePrice}>
-                                <h6 tyle={{ color: "#4d4d4d" }}>
+                                <h6 style={{ color: "#4d4d4d" }}>
                                   Price: <i className="flaticon-taka" />{" "}
                                   {values.discount > 0
                                 ? values.discount_type === "fixed"
@@ -739,7 +744,7 @@ const EditProduct = ({ busInfo }) => {
 
                           {/* {console.log(values)} */}
                           <Grid item xs={12} sm={2}>
-                            <div className="">
+                            <div className={`${style.formGroup} ${style.My__parsentens}`}>
                               <label>Discount</label>
                               <Field
                                 name="discount"
@@ -756,7 +761,7 @@ const EditProduct = ({ busInfo }) => {
                             />
                           </Grid>
                           <Grid item xs={12} sm={4}>
-                            <div className="">
+                            <div className={style.formGroup}>
                               <label>
                                 Product Code <span>*</span>
                               </label>
@@ -773,7 +778,7 @@ const EditProduct = ({ busInfo }) => {
                             </div>
                           </Grid>
                           <Grid item xs={12} sm={4}>
-                            <div className="">
+                            <div className={style.formGroup}>
                               <label>
                                 Available Quantity <span>*</span>
                               </label>
@@ -806,7 +811,7 @@ const EditProduct = ({ busInfo }) => {
                             </div>
                           </Grid>
                           <Grid item xs={12} sm={4}>
-                            <div className={style.SelectDropdown}>
+                            <div className={`${style.formGroup} ${style.SelectDropdown}`}>
                               <label>
                                 Category Name <span>*</span>
                               </label>
@@ -856,7 +861,7 @@ const EditProduct = ({ busInfo }) => {
                             </div>
                           </Grid>
                           <Grid item xs={12} sm={4}>
-                            <div className="">
+                            <div className={style.formGroup}>
                               <label>
                                 Delivery Charge <span>*</span>
                               </label>
@@ -944,9 +949,9 @@ const EditProduct = ({ busInfo }) => {
                             </div>
                           </Grid>
                           <Grid item xs={12} sm={4}>
-                            <div className="">
+                            <div className={style.formGroup}>
                               <label>
-                                Main Image(Recommended Size 600px * 600px){" "}
+                                Main Image (Recommended Size 600×600px){" "}
                                 <span>*</span>
                               </label>
                               <div className={style.imgUploader}>
@@ -981,7 +986,7 @@ const EditProduct = ({ busInfo }) => {
                                     <img
                                       src={productPreviewImage}
                                       alt={selectProductImage.name}
-                                      Height="100px"
+                                      height="100px"
                                     />
                                   </Box>
                                 )}
@@ -993,7 +998,7 @@ const EditProduct = ({ busInfo }) => {
                                     <img
                                       src={productDetails?.main_image}
                                       alt={productDetails?.product_name}
-                                      Height="100px"
+                                      height="100px"
                                     />
                                   </Box>
                                 )}
@@ -1015,11 +1020,10 @@ const EditProduct = ({ busInfo }) => {
                             </div>
                           </Grid>
                           <Grid item xs={12} sm={4}>
-                            <div className="">
-                              <div className="EditTheme  CustomeInput">
+                            <div className={style.formGroup}>
+                              <div className="EditTheme CustomeInput">
                                 <label>
-                                  Gallery Images (Maximum 5, Recommended Size
-                                  600px * 600px)
+                                  Gallery Images (Max 5, 600×600px)
                                 </label>
                                 <ProductImage
                                   productImage={productGalleryImage}
@@ -1032,11 +1036,10 @@ const EditProduct = ({ busInfo }) => {
                           </Grid>
 
                           <Grid item xs={12} sm={4}>
-                            <div className="">
-                              <div className="EditTheme  CustomeInput">
+                            <div className={style.formGroup}>
+                              <div className="EditTheme CustomeInput">
                                 <label>
-                                  Gallery Video Link (Maximum 5, Youtube Video
-                                  Link)
+                                  Gallery Video (Max 5, YouTube links)
                                 </label>
                                 <ProductVideo
                                   productVideoLinks={productGalleryVideos}
@@ -1075,11 +1078,14 @@ const EditProduct = ({ busInfo }) => {
                           </Grid>
                         </Grid>
                       </div>
-                      <div className={style.ProductsVariant}>
-                        <Grid container spacing={2}>
-                          <Grid item xs={12} sm={6}>
-                            <div className={style.ProductsVariantContent}>
-                              <h4>Products Variants</h4>
+                    </div>
+                    <div className={`${style.sectionCard} ${style.ProductsVariant}`}>
+                      <h5 className={style.sectionTitle}>Product variants</h5>
+                      <p className={style.sectionSubtitle}>Add size, color, weight or other options</p>
+                      <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6}>
+                          <div className={style.ProductsVariantContent}>
+                            <h4>Products Variants</h4>
 
                               {isOpenVariationOption ? (
                                 <>
@@ -1534,11 +1540,12 @@ const EditProduct = ({ busInfo }) => {
                         </Grid>
                       </div>
                     </div>
-                    <div className={style.ProductsVariant}>
+                    <div className={`${style.sectionCard} ${style.ProductsVariant}`}>
+                      <h5 className={style.sectionTitle}>Status & type</h5>
+                      <p className={style.sectionSubtitle}>Set product visibility and type</p>
                       <Grid container spacing={2}>
                         <Grid item xs={12} sm={12}>
                           <div className={style.ProductsVariantContent}>
-                            {/* <h4>Product Cost</h4> */}
                             <div className={style.FormValidation}>
                               <Grid container spacing={2}>
                                 {/* <Grid item xs={12} sm={6}>

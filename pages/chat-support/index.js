@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import HeaderDescription from "../../Components/Common/HeaderDescription/HeaderDescription";
 import { headers } from "../api";
 import { API_ENDPOINTS } from "../../config/ApiEndpoints";
 
+/** Build request headers for FormData: omit Content-Type so fetch sets multipart boundary */
+const getFormDataHeaders = () => {
+  const { "Content-Type": _ct, ...rest } = headers;
+  return rest;
+};
+
 const ChatPage = ({ busInfo }) => {
+  const router = useRouter();
   const [selected, setSelected] = useState("fb_page_id");
   const [formData, setFormData] = useState({
     fb_page_id: "",
@@ -26,10 +34,9 @@ const ChatPage = ({ busInfo }) => {
         if (!res.ok) throw new Error("Failed to load chat support info");
 
         const data = await res.json();
-
         setFormData({
-          fb_page_id: data.fb_page_id || "",
-          whatsapp: data.whatsapp || "",
+          fb_page_id: data?.data?.fb_page_id || "",
+          whatsapp: data?.data?.whatsapp || "",
         });
 
         if (data.whatsapp) {
@@ -56,18 +63,17 @@ const ChatPage = ({ busInfo }) => {
     setMessage({ text: "", type: "" });
 
     try {
-      const payload = {
-        // platform: selected,
-        [selected === "fb_page_id" ? "fb_page_id" : "whatsapp"]:
-          selected === "fb_page_id" ? formData.fb_page_id : formData.whatsapp,
-      };
+      const formDataToSend = new FormData();
+      const key = selected === "fb_page_id" ? "fb_page_id" : "whatsapp";
+      const value = selected === "fb_page_id" ? formData.fb_page_id : formData.whatsapp;
+      formDataToSend.append(key, value);
 
       const response = await fetch(
         API_ENDPOINTS.BASE_URL + "/client/save_whatsapp_fb_page_id",
         {
           method: "POST",
-          headers: headers,
-          body: JSON.stringify(payload),
+          headers: getFormDataHeaders(),
+          body: formDataToSend,
         }
       );
 
@@ -101,15 +107,19 @@ const ChatPage = ({ busInfo }) => {
       />
 
       <div className="chat-support-container">
-        {/* Header */}
-        {/* <div className="header">
-        <button className="back-button">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <h2 className="title">Chat Support</h2>
-      </div> */}
+        <div className="header">
+          <button
+            type="button"
+            className="back-button"
+            onClick={() => router.back()}
+            aria-label="Go back"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <h2 className="title">Chat Support</h2>
+        </div>
 
         {/* Card */}
         <div className="card">
