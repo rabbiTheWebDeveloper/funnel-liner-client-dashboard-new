@@ -127,6 +127,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
       "unverified",
       "confirmed",
       "shipped",
+      "in_transit",
       "delivered",
       "cancelled",
       "returned",
@@ -1044,7 +1045,17 @@ const activeCouriers = Array.isArray(courierList)
                       : "0"}
                   </h6>
                 </BootstrapButton>
-
+                <BootstrapButton
+                  className={active === "in_transit" ? "filterActive" : ""}
+                  onClick={e => handleFilterStatusChange("in_transit")}
+                >
+                  In Transit
+                  <h6>
+                    {pendingOrderCount?.in_transit > 0
+                      ? pendingOrderCount?.in_transit
+                      : "0"}
+                  </h6>
+                </BootstrapButton>
                 <BootstrapButton
                   className={active === "delivered" ? "filterActive" : ""}
                   onClick={e => handleFilterStatusChange("delivered")}
