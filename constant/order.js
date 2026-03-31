@@ -13,6 +13,13 @@ export const followUpOrderFilterOption = [
   { value: "next_seven_days", label: "Next Seven Days" },
   { value: "custom", label: "Custom" },
 ];
+
+export const dispatchDateFilterOption = [
+  { value: "today", label: "Today" },
+  { value: "tommorow", label: "Tomorrow" },
+  { value: "next_seven_days", label: "Next Seven Days" },
+  { value: "date_range", label: "Custom Date Range" },
+];
 export const confirmedOrderFilterOption = [
   { value: "today", label: "Today" },
   { value: "tomorrow", label: "Tomorrow" },

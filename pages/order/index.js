@@ -64,6 +64,7 @@ import {
   formatDateToBST,
   pendingStatus,
   multiStatus,
+  dispatchDateFilterOption,
 } from "../../constant/order";
 
 const OrderPage = ({ myAddonsList, busInfo }) => {
@@ -110,6 +111,10 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
   const [followUpDate, setFollowUpDate] = useState();
   const [pendingOrderCount, setPendingOrderCount] = useState([]);
   const [perPage, setPerPage] = useState(10);
+  const [dispatchDateValue, setDispatchDateValue] = useState(null);
+  const [showDispatchPicker, setShowDispatchPicker] = useState(false);
+  const [dispatchStartDate, setDispatchStartDate] = useState();
+  const [dispatchEndDate, setDispatchEndDate] = useState();
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -233,6 +238,22 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
       ? `${formatDate(startDate)} - ${formatDate(endDate)}`
       : "";
 
+  const dispatchDateValueStr =
+    dispatchStartDate && dispatchEndDate
+      ? `${formatDate(dispatchStartDate)} - ${formatDate(dispatchEndDate)}`
+      : "";
+
+  const handleDispatchSelected = value => {
+    setDispatchDateValue(value);
+    if (value === "date_range") {
+      setShowDispatchPicker(true);
+    } else {
+      setShowDispatchPicker(false);
+      setDispatchStartDate();
+      setDispatchEndDate();
+    }
+  };
+
   const handleSelected = value => {
     setFollowUpInputChange(value);
     setOpenDialog(false);
@@ -261,6 +282,10 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
     setShowPicker(false);
     setStartDate();
     setEndDate();
+    setDispatchDateValue(null);
+    setShowDispatchPicker(false);
+    setDispatchStartDate();
+    setDispatchEndDate();
     setEnableGlobalSearch(false);
     setPerPage(10);
     setCurrentPage(1);
@@ -283,12 +308,15 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
     courier_status: selectCourierStatus,
     // search: search,
 
-    start_date:
-      active === "all"
+    dispatch_date: dispatchDateValue,
+    start_date: dispatchDateValue === "date_range"
+      ? formatDateToBST(dispatchStartDate)
+      : active === "all"
         ? formatDateToBST(startDate)
         : formatDateToBST(startDate),
-    end_date:
-      active === "all" ? formatDateToBST(endDate) : formatDateToBST(endDate),
+    end_date: dispatchDateValue === "date_range"
+      ? formatDateToBST(dispatchEndDate)
+      : active === "all" ? formatDateToBST(endDate) : formatDateToBST(endDate),
 
     filter_date: selectedValue,
   };
@@ -529,7 +557,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
             setApiResponse(true);
           }
         })
-        .catch(e => {});
+        .catch(e => { });
       if (modalOpenUpdate || modalOpen) {
         SuperFetch.get("/client/products-for-search", {
           headers: headers,
@@ -614,6 +642,39 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
         }
       });
   };
+
+  const onChangeDispatchDate = orderId => {
+    if (followUpDate === undefined) {
+      showToast("Please select valid Date", "error");
+      return;
+    }
+    const day = followUpDate.$D < 10 ? `0${followUpDate.$D}` : followUpDate.$D;
+    const month = (followUpDate.$M + 1) < 10 ? `0${followUpDate.$M + 1}` : followUpDate.$M + 1;
+    const postBody = {
+      order_id: orderId,
+      dispatch_date: `${day}-${month}-${followUpDate.$y}`,
+    };
+    axios
+      .post(
+        API_ENDPOINTS.BASE_URL + `/client/order/dispatch-date/update`,
+        postBody,
+        {
+          headers: headers,
+        }
+      )
+      .then(function (response) {
+        if (response.status === 200) {
+          handleFetch();
+          toast.success(response.data.message, {
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+          });
+        }
+      });
+  };
+
 
   const [courierViewValue, setCourierViewValue] = useState("");
 
@@ -842,7 +903,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
           setOrders(data?.data?.data);
           setTotalPage(data?.data.last_page);
         }
-      } catch (err) {}
+      } catch (err) { }
     }
   }, [active, currentPage, perPage]);
 
@@ -858,7 +919,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
         headers: headers,
       });
       setPendingOrderCount(data.data.data);
-    } catch (err) {}
+    } catch (err) { }
   };
 
   useEffect(() => {
@@ -938,10 +999,10 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
       updateStatus();
     }
   };
-// Make sure courierList is an array before calling filter
-const activeCouriers = Array.isArray(courierList) 
-  ? courierList.filter(item => item.status === "active")
-  : [];
+  // Make sure courierList is an array before calling filter
+  const activeCouriers = Array.isArray(courierList)
+    ? courierList.filter(item => item.status === "active")
+    : [];
   const hasSteadfast = activeCouriers?.some(
     item => item.provider === "steadfast"
   );
@@ -1139,15 +1200,15 @@ const activeCouriers = Array.isArray(courierList)
                 ) : null}
               </Box>
               {active === "all" ||
-              active === "pending" ||
-              active === "unverified" ||
-              active === "confirmed" ||
-              active === "shipped" ||
-              active === "delivered" ||
-              active === "cancelled" ||
-              active === "returned" ||
-              active === "follow_up" ||
-              active === "hold_on" ? (
+                active === "pending" ||
+                active === "unverified" ||
+                active === "confirmed" ||
+                active === "shipped" ||
+                active === "delivered" ||
+                active === "cancelled" ||
+                active === "returned" ||
+                active === "follow_up" ||
+                active === "hold_on" ? (
                 <div className="custom_date_picer_width">
                   <DateRangePicker
                     startDate={startDate}
@@ -1190,6 +1251,46 @@ const activeCouriers = Array.isArray(courierList)
               ) : (
                 <div></div>
               )}
+              {
+                active === "shipped" &&
+                <div style={{ display: "flex", gap: "10px", alignItems: "center", marginLeft: "auto", marginRight: "10px" }}>
+                  <div style={{ minWidth: "180px" }}>
+                    <ReactSelect
+                      options={dispatchDateFilterOption}
+                      onChange={event => handleDispatchSelected(event ? event.value : null)}
+                      placeholder="Dispatch Date"
+                      isClearable={true}
+                      value={dispatchDateFilterOption.find(opt => opt.value === dispatchDateValue) || null}
+                    />
+                  </div>
+                  {showDispatchPicker && (
+                    <div className="custom_date_picer_width">
+                      <DateRangePicker
+                        startDate={dispatchStartDate}
+                        endDate={dispatchEndDate}
+                        onStartDateChange={setDispatchStartDate}
+                        onEndDateChange={setDispatchEndDate}
+                        locale={enGB}
+                        modifiersClassNames={{ open: "-open" }}
+                      >
+                        {({ startDateInputProps, endDateInputProps }) => (
+                          <div className="date-range" style={{ minWidth: "200px" }}>
+                            <FilterDateInput
+                              className="input"
+                              {...endDateInputProps}
+                              {...startDateInputProps}
+                              value={dispatchDateValueStr}
+                              placeholder="Select date range"
+                            />
+                          </div>
+                        )}
+                      </DateRangePicker>
+                    </div>
+                  )}
+                </div>
+              }
+
+
               <DownloadOption
                 orders={orders}
                 perPage={perPage}
@@ -1556,7 +1657,7 @@ const activeCouriers = Array.isArray(courierList)
                 )}
                 {/* || active === "confirmed" */}
                 {(shippingDateConfig && active === "confirmed") ||
-                active === "follow_up" ? (
+                  active === "follow_up" ? (
                   <div className="DataTableColum">
                     <h3>
                       {active === "confirmed"
@@ -1567,6 +1668,9 @@ const activeCouriers = Array.isArray(courierList)
                 ) : null}
                 {active === "shipped" && (
                   <>
+                    <div className="DataTableColum">
+                      <h3>Dispatch Date</h3>
+                    </div>
                     <div className="DataTableColum">
                       <h3>Courier Provider</h3>
                     </div>
@@ -1596,10 +1700,10 @@ const activeCouriers = Array.isArray(courierList)
                   active === "all" ||
                   active === "hold_on" ||
                   active === "cancelled") && (
-                  <div className={`DataTableColum `}>
-                    <h3>Status</h3>
-                  </div>
-                )}
+                    <div className={`DataTableColum `}>
+                      <h3>Status</h3>
+                    </div>
+                  )}
                 {active === "delivered" && (
                   <div className="DataTableColum">
                     <h3>Delivery Providers</h3>
@@ -1619,10 +1723,10 @@ const activeCouriers = Array.isArray(courierList)
                   active === "delivered" ||
                   active === "cancelled" ||
                   active === "returned") && (
-                  <div className="DataTableColum">
-                    <h3>Action</h3>
-                  </div>
-                )}
+                    <div className="DataTableColum">
+                      <h3>Action</h3>
+                    </div>
+                  )}
               </div>
 
               {/* DataTableRow */}
@@ -1763,21 +1867,20 @@ const activeCouriers = Array.isArray(courierList)
                               title={
                                 order?.order_details[0]?.product
                                   ? order?.order_details?.map((item, index) => {
-                                      return (
-                                        <ul>
-                                          <li>
-                                            {" "}
-                                            {index + 1} .{item?.product} -
-                                            {item?.variant !== null &&
-                                              `(${
-                                                item?.variant !== null
-                                                  ? item?.variations?.variant
-                                                  : ""
-                                              })`}
-                                          </li>
-                                        </ul>
-                                      );
-                                    })
+                                    return (
+                                      <ul>
+                                        <li>
+                                          {" "}
+                                          {index + 1} .{item?.product} -
+                                          {item?.variant !== null &&
+                                            `(${item?.variant !== null
+                                              ? item?.variations?.variant
+                                              : ""
+                                            })`}
+                                        </li>
+                                      </ul>
+                                    );
+                                  })
                                   : "N/A"
                               }
                               placement="top-start"
@@ -1790,7 +1893,7 @@ const activeCouriers = Array.isArray(courierList)
                                 }}
                               >
                                 {order?.order_details[0]?.product?.length <
-                                15 ? (
+                                  15 ? (
                                   <span>
                                     {order?.order_details[0]?.product}
                                   </span>
@@ -1876,13 +1979,13 @@ const activeCouriers = Array.isArray(courierList)
                                       parseInt(order?.fraud_info?.fraud_return),
                                       parseInt(order?.fraud_info?.fraud_entry)
                                     ) < 70 &&
-                                    calculateDeliveryPercentage(
-                                      parseInt(
-                                        order?.fraud_info?.fraud_delivery
-                                      ),
-                                      parseInt(order?.fraud_info?.fraud_return),
-                                      parseInt(order?.fraud_info?.fraud_entry)
-                                    ) > 0
+                                      calculateDeliveryPercentage(
+                                        parseInt(
+                                          order?.fraud_info?.fraud_delivery
+                                        ),
+                                        parseInt(order?.fraud_info?.fraud_return),
+                                        parseInt(order?.fraud_info?.fraud_entry)
+                                      ) > 0
                                       ? { color: "red" }
                                       : { color: "green" }
                                   }
@@ -2095,7 +2198,7 @@ const activeCouriers = Array.isArray(courierList)
                                               value={item?.provider}
                                             >
                                               {item?.provider ===
-                                              "steadfast" ? (
+                                                "steadfast" ? (
                                                 <>
                                                   <img
                                                     src="https://funnelliner-bucket.s3.ap-southeast-1.amazonaws.com/media/steadfast.svg"
@@ -2192,10 +2295,10 @@ const activeCouriers = Array.isArray(courierList)
                                     order?.confirmed_date !== null
                                       ? dayjs(order?.confirmed_date)
                                       : dayjs(
-                                          moment(order?.updated_at).format(
-                                            "YYYY-MM-DD"
-                                          )
+                                        moment(order?.updated_at).format(
+                                          "YYYY-MM-DD"
                                         )
+                                      )
                                   }
                                   sx={{
                                     "& .MuiInputBase-input": {
@@ -2215,6 +2318,33 @@ const activeCouriers = Array.isArray(courierList)
                         ) : null}
                         {active === "shipped" && (
                           <>
+                            {/* dispatch date */}
+                            <div className="DataTableColum">
+                              <div className="TotalPrice">
+                                <MobileDatePicker
+                                  defaultValue={
+                                    order?.dispatch_date !== null
+                                      ? dayjs(order?.dispatch_date)
+                                      : dayjs(
+                                        moment(order?.dispatch_date).format(
+                                          "YYYY-MM-DD"
+                                        )
+                                      )
+                                  }
+                                  sx={{
+                                    "& .MuiInputBase-input": {
+                                      fontSize: "11px",
+                                      padding: "0",
+                                    },
+                                  }}
+                                  key={order?.id}
+                                  onChange={e => setFollowUpDate(dayjs(e))}
+                                  onAccept={() =>
+                                    onChangeDispatchDate(order?.id)
+                                  }
+                                />
+                              </div>
+                            </div>
                             <div className="DataTableColum">
                               <div className="TotalPrice">
                                 {/* <i className='flaticon-taka'></i> */}
@@ -2441,62 +2571,36 @@ const activeCouriers = Array.isArray(courierList)
                           active === "follow_up" ||
                           active === "hold_on" ||
                           active === "cancelled") && (
-                          <div className="DataTableColum Address">
-                            <div className="Status ">
-                              <FormControl sx={{ m: 1, width: 150 }}>
-                                <Select
-                                  displayEmpty
-                                  value={order?.order_status}
-                                  onChange={event =>
-                                    handleStatusChange(event, order?.id)
-                                  }
-                                  input={<OutlinedInput />}
-                                  inputProps={{ "aria-label": "Without label" }}
-                                >
-                                  <MenuItem disabled value="">
-                                    <em>Select Status</em>
-                                  </MenuItem>
-                                  {active === "pending" &&
-                                    pendingStatusData.map((item, index) => (
-                                      <MenuItem
-                                        key={index}
-                                        value={item.value}
-                                        selected={
-                                          item.value === order?.order_status
-                                        }
-                                      >
-                                        {item.item}
-                                      </MenuItem>
-                                    ))}
+                            <div className="DataTableColum Address">
+                              <div className="Status ">
+                                <FormControl sx={{ m: 1, width: 150 }}>
+                                  <Select
+                                    displayEmpty
+                                    value={order?.order_status}
+                                    onChange={event =>
+                                      handleStatusChange(event, order?.id)
+                                    }
+                                    input={<OutlinedInput />}
+                                    inputProps={{ "aria-label": "Without label" }}
+                                  >
+                                    <MenuItem disabled value="">
+                                      <em>Select Status</em>
+                                    </MenuItem>
+                                    {active === "pending" &&
+                                      pendingStatusData.map((item, index) => (
+                                        <MenuItem
+                                          key={index}
+                                          value={item.value}
+                                          selected={
+                                            item.value === order?.order_status
+                                          }
+                                        >
+                                          {item.item}
+                                        </MenuItem>
+                                      ))}
 
-                                  {active === "follow_up" &&
-                                    followUpStatusData.map((status, index) => (
-                                      <MenuItem
-                                        key={index}
-                                        value={status.value}
-                                        selected={
-                                          status.value === order?.order_status
-                                        }
-                                      >
-                                        {status.item}
-                                      </MenuItem>
-                                    ))}
-
-                                  {active === "hold_on" &&
-                                    holdOnStatus.map((status, index) => (
-                                      <MenuItem
-                                        key={index}
-                                        value={status.value}
-                                        selected={
-                                          status.value === order?.order_status
-                                        }
-                                      >
-                                        {status.item}
-                                      </MenuItem>
-                                    ))}
-                                  {active === "cancelled" &&
-                                    cancelledOnStatusData.map(
-                                      (status, index) => (
+                                    {active === "follow_up" &&
+                                      followUpStatusData.map((status, index) => (
                                         <MenuItem
                                           key={index}
                                           value={status.value}
@@ -2506,13 +2610,39 @@ const activeCouriers = Array.isArray(courierList)
                                         >
                                           {status.item}
                                         </MenuItem>
-                                      )
-                                    )}
-                                </Select>
-                              </FormControl>
+                                      ))}
+
+                                    {active === "hold_on" &&
+                                      holdOnStatus.map((status, index) => (
+                                        <MenuItem
+                                          key={index}
+                                          value={status.value}
+                                          selected={
+                                            status.value === order?.order_status
+                                          }
+                                        >
+                                          {status.item}
+                                        </MenuItem>
+                                      ))}
+                                    {active === "cancelled" &&
+                                      cancelledOnStatusData.map(
+                                        (status, index) => (
+                                          <MenuItem
+                                            key={index}
+                                            value={status.value}
+                                            selected={
+                                              status.value === order?.order_status
+                                            }
+                                          >
+                                            {status.item}
+                                          </MenuItem>
+                                        )
+                                      )}
+                                  </Select>
+                                </FormControl>
+                              </div>
                             </div>
-                          </div>
-                        )) ||
+                          )) ||
                           (active === "all" && (
                             <div className="DataTableColum">
                               <div className="TotalPrice">
@@ -2596,14 +2726,14 @@ const activeCouriers = Array.isArray(courierList)
                                 order?.invoice_note,
                                 order?.courier_note
                               ) > 0 && (
-                                <h6>
-                                  {countNonNullFields(
-                                    order?.invoice_note,
-                                    order?.courier_note
-                                  )}
-                                  <i class="flaticon-plus"></i>
-                                </h6>
-                              )}
+                                  <h6>
+                                    {countNonNullFields(
+                                      order?.invoice_note,
+                                      order?.courier_note
+                                    )}
+                                    <i class="flaticon-plus"></i>
+                                  </h6>
+                                )}
                             </Button>
                             <Note
                               orderNote={order}
@@ -2766,7 +2896,7 @@ const activeCouriers = Array.isArray(courierList)
                     id="per-page-select"
                     value={perPage}
                     onChange={handlePerPageChange}
-                    // label="Items per page"
+                  // label="Items per page"
                   >
                     <MenuItem value={10}>10</MenuItem>
                     <MenuItem value={20}>20</MenuItem>
