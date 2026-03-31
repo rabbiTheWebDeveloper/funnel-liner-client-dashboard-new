@@ -1248,9 +1248,18 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                 <Button className="CreateNewBtn" onClick={handleOpenModal}>
                   Create New Order <i className="flaticon-plus"></i>
                 </Button>
+              ) : active === "in_transit" ? (
+                <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                  <BootstrapButton>Received Courier</BootstrapButton>
+                  <BootstrapButton>Assigned (Rider)</BootstrapButton>
+                  <BootstrapButton>Delivery Approval Pending</BootstrapButton>
+                  <BootstrapButton>Return Approval pending</BootstrapButton>
+                </div>
               ) : (
                 <div></div>
               )}
+
+              {/* // filter by dispatch date */}
               {
                 active === "shipped" &&
                 <div style={{ display: "flex", gap: "10px", alignItems: "center", marginLeft: "auto", marginRight: "10px" }}>
