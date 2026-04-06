@@ -34,6 +34,7 @@ const baseUrl = `/client/analytics`;
 import { fetcher } from "../App/reports/_reports";
 import useSWR from "swr";
 import DailyAnalytics from "./DailyAnalytics";
+import PaymentRequestSection from "./PaymentRequestSection";
 const formatDate = date => date.toISOString().split("T")[0];
 export const BusinessAnalyticsSection = ({ busInfo }) => {
   const today = new Date();
@@ -735,7 +736,11 @@ export const BusinessAnalyticsSection = ({ busInfo }) => {
             </CardContent>
           </Card>
         </Grid>
+
       </Grid>
+
+      {/* Payment Request System - Courier wise */}
+      <PaymentRequestSection />
     </section>
   );
 };

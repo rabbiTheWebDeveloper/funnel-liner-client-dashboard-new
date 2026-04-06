@@ -1,0 +1,532 @@
+/* ============================================
+   PAYMENT REQUEST SECTION STYLES
+   ============================================ */
+
+/* Summary Cards */
+.summaryCard {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.summaryCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.summaryCardInner {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 90px;
+}
+
+.summaryIconBox {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summaryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 1;
+}
+
+.summaryLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.02em;
+}
+
+.summaryValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.summaryGlow {
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+/* Courier Tabs */
+.courierTabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.courierTabs::-webkit-scrollbar {
+  height: 3px;
+}
+
+.courierTabs::-webkit-scrollbar-thumb {
+  background: rgba(137, 75, 202, 0.25);
+  border-radius: 4px;
+}
+
+.courierTab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  font-family: inherit;
+  min-width: fit-content;
+}
+
+.courierTab:hover {
+  border-color: var(--courier-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.courierTabActive {
+  border-color: var(--courier-color) !important;
+  background: var(--courier-bg) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.courierTabLogo {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.courierTabLogo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.courierTabInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.courierTabName {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.courierTabBalance {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--courier-color);
+}
+
+/* Balance Overview */
+.balanceOverview {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.balanceMain {
+  text-align: center;
+  padding: 0.75rem 0;
+}
+
+.balanceLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.balanceAmount {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Progress Bar */
+.balanceProgress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.balanceProgressLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  border-radius: 8px;
+  background: #f0f0f0;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Balance Stats */
+.balanceStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.balanceStat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f8f8fa;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.balanceStat:hover {
+  background: #f0f0f4;
+  transform: translateY(-1px);
+}
+
+.balanceStat > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.balanceStatLabel {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.balanceStatValue {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* Payment Request Button */
+.paymentRequestBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.paymentRequestBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.paymentRequestBtn:active {
+  transform: translateY(0);
+}
+
+/* Order Stats */
+.orderStats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.orderStatsBig {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.orderStatsBigNumber {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: #1a1a1a;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.orderStatsBigLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.45);
+  margin-top: 4px;
+  display: block;
+}
+
+/* Dual Progress Bar */
+.orderStatsBar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.orderStatsBarLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.dualProgressBar {
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+  background: #f0f0f0;
+  display: flex;
+  overflow: hidden;
+  gap: 2px;
+}
+
+.dualProgressFill {
+  height: 100%;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mini Stats */
+.miniStats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.miniStat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f8f8fa;
+  transition: background 0.2s ease;
+}
+
+.miniStat:hover {
+  background: #f0f0f4;
+}
+
+.miniStatDot {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  border-radius: 50%;
+}
+
+.miniStatContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.miniStatLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.miniStatValue {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* Payment Requests List */
+.requestsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.requestItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #f8f8fa;
+  transition: all 0.2s ease;
+  gap: 12px;
+}
+
+.requestItem:hover {
+  background: #f0f0f4;
+  transform: translateX(2px);
+}
+
+.requestItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.requestIdBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.requestMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.requestDate {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 500;
+}
+
+.requestItemRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.requestAmount {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  white-space: nowrap;
+}
+
+/* Status Badge */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* View All Button */
+.viewAllBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  padding: 10px;
+  border: 1px dashed rgba(137, 75, 202, 0.3);
+  border-radius: 10px;
+  background: transparent;
+  color: #894BCA;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  margin-top: 4px;
+}
+
+.viewAllBtn:hover {
+  background: rgba(137, 75, 202, 0.05);
+  border-color: #894BCA;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 1200px) {
+  .balanceStats {
+    grid-template-columns: 1fr;
+  }
+  
+  .summaryValue {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .courierTabs {
+    gap: 8px;
+  }
+
+  .courierTab {
+    padding: 10px 14px;
+  }
+
+  .summaryCardInner {
+    padding: 1rem;
+  }
+
+  .summaryValue {
+    font-size: 1.15rem;
+  }
+
+  .balanceAmount {
+    font-size: 1.5rem;
+  }
+
+  .orderStatsBigNumber {
+    font-size: 2rem;
+  }
+}
