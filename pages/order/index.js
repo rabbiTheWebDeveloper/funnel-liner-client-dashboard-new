@@ -1652,6 +1652,23 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                     <h3>Due</h3>
                   </div>
                 )}
+
+                  {active == "delivered" && (
+                    <>
+                      <div className="DataTableColum">
+                        <h3>Delivery Date</h3>
+                      </div>
+                      <div className="DataTableColum">
+                        <h3>Product Weight</h3>
+                      </div>
+                      <div className="DataTableColum">
+                        <h3>Delivery Charge</h3>
+                      </div>
+                      <div className="DataTableColum">
+                        <h3>Customer Payment</h3>
+                      </div>
+                    </>
+                  )}
                 {active === "confirmed" && (
                   <>
                     <div className="DataTableColum">
@@ -2147,6 +2164,33 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                             </div>
                           </div>
                         ) : null}
+
+                        {active === "delivered" && (
+                          <>
+                            <div className="DataTableColum">
+                              <div className="TotalPrice">
+                                {order?.delivery_date ? moment(order?.delivery_date).format("DD.MM.YY") : "N/A"}
+                              </div>
+                            </div>
+                            <div className="DataTableColum">
+                              <div className="TotalPrice">
+                                {order?.product_weight ? order?.product_weight : "N/A"}
+                              </div>
+                            </div>
+                            <div className="DataTableColum">
+                              <div className="TotalPrice">
+                                <i className="flaticon-taka"></i>
+                                {order?.delivery_charge ? order?.delivery_charge : "0"}
+                              </div>
+                            </div>
+                            <div className="DataTableColum">
+                              <div className="TotalPrice">
+                                <i className="flaticon-taka"></i>
+                                {order?.customer_payment ? order?.customer_payment : "0"}
+                              </div>
+                            </div>
+                          </>
+                        )}
 
                         {active === "confirmed" && (
                           <>
