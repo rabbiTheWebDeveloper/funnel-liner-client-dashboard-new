@@ -54,6 +54,9 @@ const AsyncSearchBar = ({ setOrders, handleFilterStatusChange, setEnableGlobalSe
     if (order_status === "hold_on") {
       return <span style={{ color: "#894BCA" }}>Hold On</span>
     }
+    if (order_status === "partially_delivered") {
+      return <span style={{ color: "#894BCA" }}>Partially Delivered</span>
+    }
     if (order_status === "trashed") {
       return <span style={{ color: "red" }}>Trashed</span>
     }

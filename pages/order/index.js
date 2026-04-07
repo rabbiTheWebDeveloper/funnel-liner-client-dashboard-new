@@ -108,6 +108,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
   const [courierModal, setCourierModal] = useState(false);
   const [courierList, setCourierList] = useState({});
   const [cities, setCities] = useState();
+  const [inTransitSubStatus, setInTransitSubStatus] = useState(null);
   const [followUpDate, setFollowUpDate] = useState();
   const [pendingOrderCount, setPendingOrderCount] = useState([]);
   const [perPage, setPerPage] = useState(10);
@@ -134,6 +135,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
       "shipped",
       "in_transit",
       "delivered",
+      "partially_delivered",
       "cancelled",
       "returned",
       "follow_up",
@@ -277,6 +279,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
     setSelectCourierStatus(null);
     setFollowUpInputChange(null);
     setSelectedValue(null);
+    setInTransitSubStatus(null);
     setDefault(value);
     setCurrentPage(1);
     setShowPicker(false);
@@ -319,6 +322,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
       : active === "all" ? formatDateToBST(endDate) : formatDateToBST(endDate),
 
     filter_date: selectedValue,
+    in_transit_status: inTransitSubStatus,
   };
   // if (active === "all" && startDate && endDate) delete params.type;
   if (active === "all" && startDate && endDate) delete params.page;
@@ -1128,6 +1132,18 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                       : "0"}
                   </h6>
                 </BootstrapButton>
+
+                 <BootstrapButton
+                  className={active === "partially_delivered" ? "filterActive" : ""}
+                  onClick={e => handleFilterStatusChange("partially_delivered")}
+                >
+                Partially Delivered
+                  <h6>
+                    {pendingOrderCount?.partially_delivered > 0
+                      ? pendingOrderCount?.partially_delivered
+                      : "0"}
+                  </h6>
+                </BootstrapButton>
                 <BootstrapButton
                   className={active === "cancelled" ? "filterActive" : ""}
                   onClick={e => handleFilterStatusChange("cancelled")}
@@ -1208,7 +1224,8 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                 active === "cancelled" ||
                 active === "returned" ||
                 active === "follow_up" ||
-                active === "hold_on" ? (
+                active === "hold_on" ||
+                active === "partially_delivered" ? (
                 <div className="custom_date_picer_width">
                   <DateRangePicker
                     startDate={startDate}
@@ -1249,11 +1266,35 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                   Create New Order <i className="flaticon-plus"></i>
                 </Button>
               ) : active === "in_transit" ? (
-                <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                  <BootstrapButton>Received Courier</BootstrapButton>
-                  <BootstrapButton>Assigned (Rider)</BootstrapButton>
-                  <BootstrapButton>Delivery Approval Pending</BootstrapButton>
-                  <BootstrapButton>Return Approval pending</BootstrapButton>
+                <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap", marginBottom: "15px" }}>
+                  <BootstrapButton
+                    className={inTransitSubStatus === "received_courier" ? "filterActive" : ""}
+                    onClick={() => setInTransitSubStatus("received_courier")}
+                    style={{ minWidth: "140px", padding: "8px 15px", borderRadius: "8px", fontWeight: "600" }}
+                  >
+                    Received Courier: {pendingOrderCount?.received_courier || 0}
+                  </BootstrapButton>
+                  <BootstrapButton
+                    className={inTransitSubStatus === "assigned_rider" ? "filterActive" : ""}
+                    onClick={() => setInTransitSubStatus("assigned_rider")}
+                    style={{ minWidth: "140px", padding: "8px 15px", borderRadius: "8px", fontWeight: "600" }}
+                  >
+                    Assigned (Rider): {pendingOrderCount?.assigned_rider || 0}
+                  </BootstrapButton>
+                  <BootstrapButton
+                    className={inTransitSubStatus === "delivery_approval_pending" ? "filterActive" : ""}
+                    onClick={() => setInTransitSubStatus("delivery_approval_pending")}
+                    style={{ minWidth: "140px", padding: "8px 15px", borderRadius: "8px", fontWeight: "600" }}
+                  >
+                    Delivery Approval Pending: {pendingOrderCount?.delivery_approval_pending || 0}
+                  </BootstrapButton>
+                  <BootstrapButton
+                    className={inTransitSubStatus === "return_approval_pending" ? "filterActive" : ""}
+                    onClick={() => setInTransitSubStatus("return_approval_pending")}
+                    style={{ minWidth: "140px", padding: "8px 15px", borderRadius: "8px", fontWeight: "600" }}
+                  >
+                    Return Approval pending: {pendingOrderCount?.return_approval_pending || 0}
+                  </BootstrapButton>
                 </div>
               ) : (
                 <div></div>
@@ -1692,7 +1733,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                     </h3>
                   </div>
                 ) : null}
-                {active === "shipped" && (
+                {(active === "shipped" || active === "partially_delivered") && (
                   <>
                     <div className="DataTableColum">
                       <h3>Dispatch Date</h3>
@@ -1711,7 +1752,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                     </div>
                   </>
                 )}
-                {active === "delivered" || active === "returned" ? (
+                {active === "delivered" || active === "returned" || active === "partially_delivered" ? (
                   <React.Fragment>
                     <div className="DataTableColum">
                       <h3>Courier ID</h3>
@@ -1746,6 +1787,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                   active === "shipped" ||
                   active === "confirmed" ||
                   active === "hold_on" ||
+                  active === "partially_delivered" ||
                   active === "delivered" ||
                   active === "cancelled" ||
                   active === "returned") && (
@@ -2369,7 +2411,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                             </div>
                           ) : null
                         ) : null}
-                        {active === "shipped" && (
+                        {(active === "shipped" || active === "partially_delivered") && (
                           <>
                             {/* dispatch date */}
                             <div className="DataTableColum">
@@ -2452,7 +2494,13 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                             </div>
                             <div className="DataTableColum">
                               <div className="TotalPrice">
-                                {courierStatusFormate(order?.courier_status)}
+                                {active === "partially_delivered" ? order?.courier_status : courierStatusFormate(order?.courier_status)}
+                                {active === "in_transit" && order?.courier_status === "assigned_rider" && (
+                                  <div style={{ fontSize: "10px", marginTop: "5px", color: "#894BCA" }}>
+                                    <div style={{ fontWeight: "bold" }}>Rider: {order?.rider_name || "N/A"}</div>
+                                    <div>{order?.rider_phone || ""}</div>
+                                  </div>
+                                )}
                               </div>
                             </div>
                             <div className="DataTableColum">
