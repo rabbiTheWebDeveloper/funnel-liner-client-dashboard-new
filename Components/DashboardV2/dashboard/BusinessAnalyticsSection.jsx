@@ -29,7 +29,9 @@ import {
 
 import styles from "../global.module.css";
 import { cls } from "../lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { headers } from "../../../pages/api/index";
 const baseUrl = `/client/analytics`;
 import { fetcher } from "../App/reports/_reports";
 import useSWR from "swr";
@@ -44,6 +46,7 @@ export const BusinessAnalyticsSection = ({ busInfo }) => {
     from: formatDate(past),
     to: formatDate(today),
   });
+  const [steadfastBalance, setSteadfastBalance] = useState(0);
   const { data, error, isLoading } = useSWR(
     baseUrl + `?from=${dateRange.from}&to=${dateRange.to}`,
     fetcher
@@ -72,6 +75,25 @@ export const BusinessAnalyticsSection = ({ busInfo }) => {
     }
   };
 
+
+  const handleFetchSteadfastBalance = async () => {
+    try {
+      let res = await axios({
+        method: "get",
+        url: `${process.env.NEXT_PUBLIC_API_URL}/client/courier/courier-balance?provider=steadfast`,
+        headers: headers,
+      });
+      if (res?.data?.data !== undefined) {
+        setSteadfastBalance(res.data.data);
+      }
+    } catch (err) {
+      console.error("Error fetching steadfast balance:", err);
+    }
+  };
+
+  useEffect(() => {
+    handleFetchSteadfastBalance();
+  }, []);
   const {
     order_status_analytics,
     business_analytics,
@@ -711,17 +733,28 @@ export const BusinessAnalyticsSection = ({ busInfo }) => {
         </Grid>
 
         <Grid item xs={6} sm={6} lg={3}>
-          <Card className={styles.dashboard_card}>
+          <Card
+            className={styles.dashboard_card}
+            style={{
+              border: "1px solid #e0f2f1",
+              boxShadow: "0 4px 12px rgba(0, 150, 136, 0.08)",
+              background: "linear-gradient(135deg, #ffffff 0%, #f4fbf9 100%)",
+            }}
+          >
             <CardHeader>
               <CardTitle>
                 <div
                   className={styles["flex-between"]}
                   style={{ width: "100%", alignItems: "center" }}
                 >
-                  Courier Balance
-                  <CardIcon color="#e0f2f1">
-                    <Wallet size={20} color="#009688" />
-                  </CardIcon>
+                  <span style={{ fontWeight: 600, color: "#009688" }}>
+                    Steadfast Balance
+                  </span>
+                  <img
+                    src="/images/steadfast.png"
+                    alt="Steadfast Balance"
+                    style={{ height: "32px", width: "auto", objectFit: "contain" }}
+                  />
                 </div>
               </CardTitle>
             </CardHeader>
@@ -730,8 +763,26 @@ export const BusinessAnalyticsSection = ({ busInfo }) => {
                 className={styles["flex-items-center"]}
                 style={{ gap: "8px" }}
               >
-                <h1 className={styles.card_value}>৳ {busInfo?.courier_balance ? busInfo?.courier_balance : 0}</h1>
-              
+                <h1
+                  className={styles.card_value}
+                  style={{
+                    fontSize: "1.6rem",
+                    color: "#009688",
+                    fontWeight: "bold",
+                  }}
+                >
+                  ৳ {steadfastBalance ? steadfastBalance : 0}
+                </h1>
+              </div>
+              <div
+                style={{
+                  fontSize: "0.85rem",
+                  color: "#666",
+                  marginTop: "6px",
+                  fontWeight: 500,
+                }}
+              >
+               
               </div>
             </CardContent>
           </Card>
@@ -739,8 +790,6 @@ export const BusinessAnalyticsSection = ({ busInfo }) => {
 
       </Grid>
 
-      {/* Payment Request System - Courier wise */}
-      <PaymentRequestSection />
     </section>
   );
 };
