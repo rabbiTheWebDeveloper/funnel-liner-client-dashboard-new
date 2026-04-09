@@ -127,6 +127,9 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
     const limitFromQuery =
       typeof router.query?.limit === "string" ? parseInt(router.query.limit, 10) : NaN;
 
+    const tabFromQuery =
+      typeof router.query?.tab === "string" ? router.query.tab : null;
+
     const allowedStatuses = new Set([
       "all",
       "pending",
@@ -148,6 +151,19 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
       setDefault(statusFromQuery);
     }
 
+    if (statusFromQuery === "in_transit" && tabFromQuery) {
+      const lowerTab = tabFromQuery.toLowerCase();
+      let normalizedTab = tabFromQuery;
+      if (lowerTab === "received_courier") normalizedTab = "Received_Courier";
+      else if (lowerTab === "assigned_rider") normalizedTab = "Assigned_Rider";
+      else if (lowerTab === "delivery_approval_pending") normalizedTab = "Delivery_Approval_Pending";
+      else if (lowerTab === "return_approval_pending") normalizedTab = "Return_Approval_Pending";
+
+      if (normalizedTab !== inTransitSubStatus) {
+        setInTransitSubStatus(normalizedTab);
+      }
+    }
+
     if (Number.isFinite(pageFromQuery) && pageFromQuery > 0 && pageFromQuery !== currentPage) {
       setCurrentPage(pageFromQuery);
     }
@@ -167,11 +183,13 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
     const currentStatus = typeof router.query?.status === "string" ? router.query.status : null;
     const currentPageQuery = typeof router.query?.page === "string" ? router.query.page : null;
     const currentLimitQuery = typeof router.query?.limit === "string" ? router.query.limit : null;
+    const currentTabQuery = typeof router.query?.tab === "string" ? router.query.tab : null;
 
     if (
       currentStatus === active &&
       currentPageQuery === String(currentPage) &&
-      currentLimitQuery === String(perPage)
+      currentLimitQuery === String(perPage) &&
+      (active !== "in_transit" || currentTabQuery === (inTransitSubStatus || null))
     ) {
       return;
     }
@@ -183,12 +201,18 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
       limit: String(perPage),
     };
 
+    if (active === "in_transit" && inTransitSubStatus) {
+      nextQuery.tab = inTransitSubStatus;
+    } else {
+      delete nextQuery.tab;
+    }
+
     router.replace({ pathname: router.pathname, query: nextQuery }, undefined, {
       shallow: true,
       scroll: false,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.isReady, active, currentPage, perPage]);
+  }, [router.isReady, active, currentPage, perPage, inTransitSubStatus]);
   //order note functionality
   const [isOpenOrderNoteModal, setIsOpenOrderNoteModal] = useState(false);
   const [orderIdOfModal, setOrderIdOfModal] = useState(null);
@@ -308,7 +332,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
     perPage: perPage,
     date: selectedValue,
     provider: selectCourier,
-    courier_status: selectCourierStatus,
+    courier_status: active === "in_transit" && inTransitSubStatus ? inTransitSubStatus : selectCourierStatus,
     // search: search,
 
     dispatch_date: dispatchDateValue,
@@ -322,7 +346,6 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
       : active === "all" ? formatDateToBST(endDate) : formatDateToBST(endDate),
 
     filter_date: selectedValue,
-    in_transit_status: inTransitSubStatus,
   };
   // if (active === "all" && startDate && endDate) delete params.type;
   if (active === "all" && startDate && endDate) delete params.page;
@@ -615,6 +638,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
     modalOpenUpdate,
     modalOpen,
     perPage,
+    inTransitSubStatus,
   ]);
 
   const onChangeDate = (orderId, type) => {
@@ -1133,11 +1157,11 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                   </h6>
                 </BootstrapButton>
 
-                 <BootstrapButton
+                <BootstrapButton
                   className={active === "partially_delivered" ? "filterActive" : ""}
                   onClick={e => handleFilterStatusChange("partially_delivered")}
                 >
-                Partially Delivered
+                  Partially Delivered
                   <h6>
                     {pendingOrderCount?.partially_delivered > 0
                       ? pendingOrderCount?.partially_delivered
@@ -1267,34 +1291,43 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                 </Button>
               ) : active === "in_transit" ? (
                 <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap", marginBottom: "15px" }}>
-                  <BootstrapButton
-                    className={inTransitSubStatus === "received_courier" ? "filterActive" : ""}
-                    onClick={() => setInTransitSubStatus("received_courier")}
-                    style={{ minWidth: "140px", padding: "8px 15px", borderRadius: "8px", fontWeight: "600" }}
-                  >
-                    Received Courier: {pendingOrderCount?.received_courier || 0}
-                  </BootstrapButton>
-                  <BootstrapButton
-                    className={inTransitSubStatus === "assigned_rider" ? "filterActive" : ""}
-                    onClick={() => setInTransitSubStatus("assigned_rider")}
-                    style={{ minWidth: "140px", padding: "8px 15px", borderRadius: "8px", fontWeight: "600" }}
-                  >
-                    Assigned (Rider): {pendingOrderCount?.assigned_rider || 0}
-                  </BootstrapButton>
-                  <BootstrapButton
-                    className={inTransitSubStatus === "delivery_approval_pending" ? "filterActive" : ""}
-                    onClick={() => setInTransitSubStatus("delivery_approval_pending")}
-                    style={{ minWidth: "140px", padding: "8px 15px", borderRadius: "8px", fontWeight: "600" }}
-                  >
-                    Delivery Approval Pending: {pendingOrderCount?.delivery_approval_pending || 0}
-                  </BootstrapButton>
-                  <BootstrapButton
-                    className={inTransitSubStatus === "return_approval_pending" ? "filterActive" : ""}
-                    onClick={() => setInTransitSubStatus("return_approval_pending")}
-                    style={{ minWidth: "140px", padding: "8px 15px", borderRadius: "8px", fontWeight: "600" }}
-                  >
-                    Return Approval pending: {pendingOrderCount?.return_approval_pending || 0}
-                  </BootstrapButton>
+                  {[
+                    { id: "Received_Courier", key: "received_courier", label: "Received Courier" },
+                    { id: "Assigned_Rider", key: "assigned_rider", label: "Assigned (Rider)" },
+                    { id: "Delivery_Approval_Pending", key: "delivery_approval_pending", label: "Delivery Approval Pending" },
+                    { id: "Return_Approval_Pending", key: "return_approval_pending", label: "Return Approval pending" }
+                  ].map((tab) => {
+                    const isActive = inTransitSubStatus?.toLowerCase() === tab.key;
+                    return (
+                      <BootstrapButton
+                        key={tab.id}
+                        onClick={() => setInTransitSubStatus(tab.id)}
+                        sx={{
+                          minWidth: "140px",
+                          padding: "8px 15px",
+                          borderRadius: "8px",
+                          fontWeight: "600",
+                          backgroundColor: isActive ? "#8b5cf6" : "#fff",
+                          color: isActive ? "#fff" : "#894bca",
+                          border: isActive ? "1px solid #8b5cf6" : "1px solid #894bca",
+                          boxShadow: "none",
+                          "&:hover": {
+                            backgroundColor: isActive ? "#7c3aed" : "#d8b4fe",
+                            borderColor: isActive ? "#7c3aed" : "#d8b4fe",
+                            color: "#fff",
+                            boxShadow: "none",
+                          }
+                        }}
+                      >
+                        {tab.label}
+                        <h6>
+                          {pendingOrderCount?.[tab.key] > 0
+                            ? pendingOrderCount?.[tab.key]
+                            : "0"}
+                        </h6>
+                      </BootstrapButton>
+                    );
+                  })}
                 </div>
               ) : (
                 <div></div>
@@ -1694,22 +1727,22 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                   </div>
                 )}
 
-                  {active == "delivered" && (
-                    <>
-                      <div className="DataTableColum">
-                        <h3>Delivery Date</h3>
-                      </div>
-                      <div className="DataTableColum">
-                        <h3>Product Weight</h3>
-                      </div>
-                      <div className="DataTableColum">
-                        <h3>Delivery Charge</h3>
-                      </div>
-                      <div className="DataTableColum">
-                        <h3>Customer Payment</h3>
-                      </div>
-                    </>
-                  )}
+                {active == "delivered" && (
+                  <>
+                    <div className="DataTableColum">
+                      <h3>Delivery Date</h3>
+                    </div>
+                    <div className="DataTableColum">
+                      <h3>Product Weight</h3>
+                    </div>
+                    <div className="DataTableColum">
+                      <h3>Delivery Charge</h3>
+                    </div>
+                    <div className="DataTableColum">
+                      <h3>Customer Payment</h3>
+                    </div>
+                  </>
+                )}
                 {active === "confirmed" && (
                   <>
                     <div className="DataTableColum">
@@ -1790,6 +1823,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                   active === "partially_delivered" ||
                   active === "delivered" ||
                   active === "cancelled" ||
+                  active === "in_transit" ||
                   active === "returned") && (
                     <div className="DataTableColum">
                       <h3>Action</h3>

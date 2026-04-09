@@ -84,7 +84,7 @@ export const BusinessAnalyticsSection = ({ busInfo }) => {
         headers: headers,
       });
       if (res?.data?.data !== undefined) {
-        setSteadfastBalance(res.data.data);
+        setSteadfastBalance(res?.data?.data?.balance);
       }
     } catch (err) {
       console.error("Error fetching steadfast balance:", err);
@@ -771,7 +771,7 @@ export const BusinessAnalyticsSection = ({ busInfo }) => {
                     fontWeight: "bold",
                   }}
                 >
-                  ৳ {steadfastBalance ? steadfastBalance : 0}
+             ৳ {(steadfastBalance ?? 0).toLocaleString()}
                 </h1>
               </div>
               <div
