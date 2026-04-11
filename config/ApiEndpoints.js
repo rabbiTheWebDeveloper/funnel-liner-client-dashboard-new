@@ -35,7 +35,7 @@ const API_ENDPOINTS = {
     TIKTOK_PIXEL_SETUP: `/client/settings/tiktok_pixel_setup`,
     MS_CLARITY_SETUP: `/client/settings/ms_clarity_id_setup`,
     GET_TIKTOK_PIXEL: `/customer/tiktok_pixel`,
-    GET_MS_CLARITY: `/customer/ms_clarity_id`,
+    GET_MS_CLARITY: `/client/settings/ms_clarity_id`,
   },
   ACCOUNTS: {
     GET_PAYOR_LIST: `/client/accounts/payor/list`,
