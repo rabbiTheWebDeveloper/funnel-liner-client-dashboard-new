@@ -80,65 +80,82 @@ const Index = () => {
     color: "#0369a1",
   };
 
-  const cards = [
-    {
-      title: "Shop Settings",
-      desc: "General shop configurations customize your shop's core settings for a seamless experience.",
-      icon: "🏬",
-      link: "/dashboard-setting",
-      badge: "Essential",
-    },
-    {
-      title: "Shop Domain",
-      desc: "Manage your shop's core configurations, including domain setup and general settings.",
-      icon: "🔗",
-      link: "/website-setting?domain=3&redirect_from=panel4",
-    },
-    {
-      title: "Shop Policy",
-      desc: "Define and customize policies for your shop, including returns, refunds, and customer service guidelines.",
-      icon: "📄",
-      link: "/privacy-policy",
-      badge: "Important",
-    },
-    {
-      title: "Delivery Support",
-      desc: "Manage your shop's delivery settings to ensure smooth and efficient order fulfillment.",
-      icon: "🚚",
-      link: "/website-setting?tab=5",
-    },
-    {
-      title: "Payment Gateway",
-      desc: "Integrate and manage payment options to provide customers with secure and flexible transaction methods.",
-      icon: "🏦",
-      link: "/payment-gateway",
-      badge: "Essential",
-    },
-    {
-      title: "Slider & banner",
-      desc: "Enhance your shop's visibility by connecting SEO tools and marketing integrations for better engagement.",
-      icon: "📈",
-      link: "/home-slider",
-    },
-    {
-      title: "SMS Support",
-      desc: "Enable SMS notifications and support to keep your customers informed with real-time updates.",
-      icon: "💬",
-      link: "/bulk-sms",
-    },
-    {
-      title: "Chat Support",
-      desc: "Provide instant communication and assistance to customers with chat support system.",
-      icon: "💭",
-      link: "/chat-support",
-    },
-    {
-      title: "Social Links",
-      desc: "Connect your shop with social media platforms to enhance visibility and engagement.",
-      icon: "🔗",
-      link: "/dashboard-setting",
-    },
-  ];
+const cards = [
+  {
+    title: "Shop Settings",
+    desc: "General shop configurations customize your shop's core settings for a seamless experience.",
+    icon: "🏬",
+    link: "/dashboard-setting",
+    badge: "Essential",
+  },
+  {
+    title: "Shop Domain",
+    desc: "Manage your shop's core configurations, including domain setup and general settings.",
+    icon: "🔗",
+    link: "/website-setting?domain=3&redirect_from=panel4",
+  },
+  {
+    title: "Shop Policy",
+    desc: "Define and customize policies for your shop, including returns, refunds, and customer service guidelines.",
+    icon: "📄",
+    link: "/privacy-policy",
+    badge: "Important",
+  },
+  {
+    title: "Delivery Support",
+    desc: "Manage your shop's delivery settings to ensure smooth and efficient order fulfillment.",
+    icon: "🚚",
+    link: "/website-setting?tab=5",
+  },
+  {
+    title: "Payment Gateway",
+    desc: "Integrate and manage payment options to provide customers with secure and flexible transaction methods.",
+    icon: "🏦",
+    link: "/payment-gateway",
+    badge: "Essential",
+  },
+  {
+    title: "Slider & banner",
+    desc: "Enhance your shop's visibility by connecting SEO tools and marketing integrations for better engagement.",
+    icon: "📈",
+    link: "/home-slider",
+  },
+  {
+    title: "SMS Support",
+    desc: "Enable SMS notifications and support to keep your customers informed with real-time updates.",
+    icon: "💬",
+    link: "/bulk-sms",
+  },
+  {
+    title: "Chat Support",
+    desc: "Provide instant communication and assistance to customers with chat support system.",
+    icon: "💭",
+    link: "/chat-support",
+  },
+  {
+    title: "Social Links",
+    desc: "Connect your shop with social media platforms to enhance visibility and engagement.",
+    icon: "🔗",
+    link: "/dashboard-setting",
+  },
+
+  // ✅ NEW ITEMS
+
+  {
+    title: "TikTok Pixel Setup",
+    desc: "Track user behavior and optimize ad performance by integrating TikTok Pixel with your shop.",
+    icon: "🎯",
+    link: "/tiktok-pixel",
+    badge: "Marketing",
+  },
+  {
+    title: "Microsoft Clarity",
+    desc: "Analyze user interactions with session recordings and heatmaps to improve user experience.",
+    icon: "📊",
+    link: "/microsoft-clarity",
+    badge: "Analytics",
+  },
+];
 
   return (
     <>
