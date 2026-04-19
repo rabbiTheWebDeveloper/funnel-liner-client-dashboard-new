@@ -1766,11 +1766,14 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                     </h3>
                   </div>
                 ) : null}
-                {(active === "shipped" || active === "partially_delivered") && (
+                {(active === "shipped" || active === "partially_delivered" || active === "in_transit") && (
                   <>
-                    <div className="DataTableColum">
-                      <h3>Dispatch Date</h3>
-                    </div>
+                    {active !== "in_transit" && (
+                      <div className="DataTableColum">
+                        <h3>Dispatch Date</h3>
+                      </div>
+                    )}
+                   
                     <div className="DataTableColum">
                       <h3>Courier Provider</h3>
                     </div>
@@ -1823,7 +1826,6 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                   active === "partially_delivered" ||
                   active === "delivered" ||
                   active === "cancelled" ||
-                  active === "in_transit" ||
                   active === "returned") && (
                     <div className="DataTableColum">
                       <h3>Action</h3>
@@ -2445,35 +2447,37 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                             </div>
                           ) : null
                         ) : null}
-                        {(active === "shipped" || active === "partially_delivered") && (
+                        {(active === "shipped" || active === "partially_delivered" || active === "in_transit") && (
                           <>
                             {/* dispatch date */}
-                            <div className="DataTableColum">
-                              <div className="TotalPrice">
-                                <MobileDatePicker
-                                  defaultValue={
-                                    order?.dispatch_date !== null
-                                      ? dayjs(order?.dispatch_date)
-                                      : dayjs(
-                                        moment(order?.dispatch_date).format(
-                                          "YYYY-MM-DD"
+                            {active !== "in_transit" && (
+                              <div className="DataTableColum">
+                                <div className="TotalPrice">
+                                  <MobileDatePicker
+                                    defaultValue={
+                                      order?.dispatch_date !== null
+                                        ? dayjs(order?.dispatch_date)
+                                        : dayjs(
+                                          moment(order?.dispatch_date).format(
+                                            "YYYY-MM-DD"
+                                          )
                                         )
-                                      )
-                                  }
-                                  sx={{
-                                    "& .MuiInputBase-input": {
-                                      fontSize: "11px",
-                                      padding: "0",
-                                    },
-                                  }}
-                                  key={order?.id}
-                                  onChange={e => setFollowUpDate(dayjs(e))}
-                                  onAccept={() =>
-                                    onChangeDispatchDate(order?.id)
-                                  }
-                                />
+                                    }
+                                    sx={{
+                                      "& .MuiInputBase-input": {
+                                        fontSize: "11px",
+                                        padding: "0",
+                                      },
+                                    }}
+                                    key={order?.id}
+                                    onChange={e => setFollowUpDate(dayjs(e))}
+                                    onAccept={() =>
+                                      onChangeDispatchDate(order?.id)
+                                    }
+                                  />
+                                </div>
                               </div>
-                            </div>
+                            )}
                             <div className="DataTableColum">
                               <div className="TotalPrice">
                                 {/* <i className='flaticon-taka'></i> */}
@@ -2886,7 +2890,7 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                             />
                           </div>
                         </div>
-                        {active !== "trashed" ? (
+                        {active !== "trashed" && active !== "in_transit" ? (
                           <div className="DataTableColum">
                             <div className="Action">
                               <div className="commonDropdown">
