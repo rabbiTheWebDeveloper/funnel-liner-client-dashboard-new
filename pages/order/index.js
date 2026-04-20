@@ -47,6 +47,7 @@ import { headers } from "../api";
 import ViewModal from "../../Components/OrderPage/ViewModal";
 import _ from "lodash";
 import RedxCourierModel from "../../Components/OrderPage/RedxCourierModel";
+import CarrybeeModal from "../../Components/OrderPage/CarrybeeModal";
 import { calculateDeliveryPercentage } from "../../utlit/orders";
 import Image from "next/image";
 import searchAnimation from "../../public/search.gif";
@@ -91,6 +92,10 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
     open: false,
     orderID: "",
     provider: "",
+  });
+  const [carrybeeModal, setCarrybeeModal] = useState({
+    open: false,
+    orderID: "",
   });
   const [selectedValue, setSelectedValue] = useState(null);
   const [selectCourier, setSelectCourier] = useState(null);
@@ -747,6 +752,13 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
         open: true,
         orderID: id,
         provider: event.target.value,
+      });
+      stopLoading();
+      setCourierViewValue("");
+    } else if (event.target.value === "carrybee") {
+      setCarrybeeModal({
+        open: true,
+        orderID: id,
       });
       stopLoading();
       setCourierViewValue("");
@@ -2369,6 +2381,19 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                                                   />
                                                   Redx
                                                 </>
+                                              ) : item?.provider === "carrybee" ? (
+                                                <>
+                                                  <img
+                                                    src="/images/carrybee-logo.png"
+                                                    alt=""
+                                                    style={{
+                                                      width: "20px",
+                                                      height: "auto",
+                                                      margin: "5px",
+                                                    }}
+                                                  />
+                                                  Carrybee
+                                                </>
                                               ) : null}
                                             </MenuItem>
                                           );
@@ -2513,12 +2538,25 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                                       src="https://redx.com.bd//images/favicon.png"
                                       alt=""
                                       style={{
-                                        width: "20px", // Adjust the width as desired
-                                        height: "auto", // Set height to 'auto' to maintain aspect ratio
-                                        margin: "5px", // Adjust the margin value as desired
+                                        width: "20px",
+                                        height: "auto",
+                                        margin: "5px",
                                       }}
                                     />
                                     Redx
+                                  </>
+                                ) : order?.courier_provider === "carrybee" ? (
+                                  <>
+                                    <img
+                                      src="/images/carrybee-logo.png"
+                                      alt=""
+                                      style={{
+                                        width: "20px",
+                                        height: "auto",
+                                        margin: "5px",
+                                      }}
+                                    />
+                                    Carrybee
                                   </>
                                 ) : (
                                   <div
@@ -2607,6 +2645,14 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                                   >
                                     {order?.tracking_code}
                                   </Link>
+                                ) : order?.courier_provider === "carrybee" ? (
+                                  <Link
+                                    href={`https://carrybee.com.bd/track?tracking_code=${order?.tracking_code}`}
+                                    className="TrackingId"
+                                    target="_blank"
+                                  >
+                                    {order?.tracking_code}
+                                  </Link>
                                 ) : (
                                   <div
                                     className="TrackingId"
@@ -2679,6 +2725,14 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                                   ) : order?.courier_provider === "redx" ? (
                                     <Link
                                       href={`https://redx.com.bd/track-parcel/?trackingId=${order?.tracking_code}`}
+                                      className="TrackingId"
+                                      target="_blank"
+                                    >
+                                      {order?.tracking_code}
+                                    </Link>
+                                  ) : order?.courier_provider === "carrybee" ? (
+                                    <Link
+                                      href={`https://carrybee.com.bd/track?tracking_code=${order?.tracking_code}`}
                                       className="TrackingId"
                                       target="_blank"
                                     >
@@ -2832,6 +2886,19 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
                                       }}
                                     />
                                     Redx
+                                  </>
+                                ) : order.courier_provider === "carrybee" ? (
+                                  <>
+                                    <img
+                                      src="/images/carrybee-logo.png"
+                                      alt=""
+                                      style={{
+                                        width: "20px",
+                                        height: "auto",
+                                        margin: "5px",
+                                      }}
+                                    />
+                                    Carrybee
                                   </>
                                 ) : null
                               ) : (
@@ -3105,6 +3172,13 @@ const OrderPage = ({ myAddonsList, busInfo }) => {
         <RedxCourierModel
           redxModal={redxModal}
           setRedxModal={setRedxModal}
+          handleFetch={handleFetch}
+        />
+      )}
+      {carrybeeModal.open && (
+        <CarrybeeModal
+          carrybeeModal={carrybeeModal}
+          setCarrybeeModal={setCarrybeeModal}
           handleFetch={handleFetch}
         />
       )}

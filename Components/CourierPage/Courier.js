@@ -1,4 +1,3 @@
-import { Button, Container, Grid } from "@mui/material";
 import Switch from "@mui/material/Switch";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
@@ -10,450 +9,262 @@ import useLoading from "../../hook/useLoading";
 import { useToast } from "../../hook/useToast";
 import { activateCourier, headers } from "../../pages/api";
 import SmallLoader from "../SmallLoader/SmallLoader";
+import CarrybeeCourier from "./CarrybeeCourier";
 import Pathao from "./Pathao";
 import RedxCourier from "./RedxCourier";
 
+/* ─────────────────────────────────────────────
+   Eye-toggle helper (used for Steadfast only)
+───────────────────────────────────────────── */
+const EyeToggle = ({ visible, onToggle }) => (
+    <div className="cb-eye" onClick={onToggle}>
+        <i className={visible ? "flaticon-eye" : "flaticon-hidden"} />
+    </div>
+);
+
+/* ─────────────────────────────────────────────
+   Generic courier card wrapper
+───────────────────────────────────────────── */
+const CourierCard = ({ logo, logoAlt, name, isActive, onToggle, badge, children }) => (
+    <div className={`cb-card${isActive ? " cb-card--active" : ""}`}>
+        {/* top bar */}
+        <div className="cb-card__header">
+            <div className="cb-card__logo">
+                <img src={logo} alt={logoAlt} />
+            </div>
+            <div className="cb-card__meta">
+                <span className="cb-card__name">{name}</span>
+                {isActive && <span className="cb-status cb-status--on">Connected</span>}
+                {!isActive && badge && <span className="cb-status cb-status--badge">{badge}</span>}
+            </div>
+            <div className="cb-card__toggle">
+                <Switch
+                    checked={isActive}
+                    onChange={(e) => onToggle(e.target.checked)}
+                    sx={{
+                        "& .MuiSwitch-switchBase.Mui-checked": { color: "#894bca" },
+                        "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": { backgroundColor: "#c59ef0" },
+                    }}
+                />
+            </div>
+        </div>
+
+        {/* collapsible form area */}
+        {isActive && (
+            <div className="cb-card__body">
+                <div className="cb-divider" />
+                {children}
+            </div>
+        )}
+    </div>
+);
+
+/* ─────────────────────────────────────────────
+   Main Courier component
+───────────────────────────────────────────── */
 const Courier = ({ busInfo }) => {
-    const router = useRouter()
+    const router = useRouter();
     const showToast = useToast();
     const [isLoading, startLoading, stopLoading] = useLoading();
-    let [showApi, setShowApi] = useState(false);
-    let [secretApi, setSecretApi] = useState(false);
-    const [showPathaoSicrets, setShowPathaoSicrets] = useState({
-        sicretKey: false,
-        password: false,
-    })
-    const data = Cookies.get();
 
+    // visibility toggles for password fields (Steadfast)
+    const [showSfApi, setShowSfApi] = useState(false);
+    const [showSfSecret, setShowSfSecret] = useState(false);
+
+    // Pathao secrets toggle (passed down)
+    const [showPathaoSecrets, setShowPathaoSecrets] = useState({ sicretKey: false, password: false });
+
+    const data = Cookies.get();
+    const mainData = data?.user;
+    let parseData;
+    if (mainData != null) parseData = JSON.parse(mainData);
+    const merchantId = parseData?.id;
+
+    // courier open/closed
     const [openSteadFast, setOpenSteadFast] = useState(false);
     const [openRedx, setOpenRedx] = useState(false);
     const [openPathao, setOpenPathao] = useState(false);
+    const [openCarrybee, setOpenCarrybee] = useState(false);
+
+    // stored API configs
+    const [steadFastData, setSteadFastData] = useState({});
+    const [pathaoData, setPathaoData] = useState();
+    const [redxData, setRedxData] = useState({});
+    const [carrybeeData, setCarrybeeData] = useState({});
+
+    // Steadfast react-hook-form
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [pathaoData, setPathaoData] = useState()
-    const [steadFastData, setSteadFastData] = useState({})
-    const [redxData, setRedxData] = useState({})
-    // handleApiKey
-    const handleApiKey = (key) => {
-        if (key === "apiKey") {
-            setShowApi(!showApi)
-        } if (key === "secretKey") {
-            setSecretApi(!secretApi)
-        }
-    }
 
-
-    const label = { inputProps: { "aria-label": "Switch demo" } };
-    const mainData = data?.user;
-    let parseData;
-    if (mainData != null) {
-        parseData = JSON.parse(mainData);
-    }
-    const merchantId = parseData?.id;
-
-
-    const decodeJson = (data) => {
-        return data === undefined ? " " : JSON.parse(data)
-    }
-    //steadfast courier
-    const handleSteadfastSubmit = (data) => {
-        startLoading()
-        const config = {
-            "Api-Key": data.apiKey,
-            "Secret-Key": data.apiSecret,
-        };
-        const configData = JSON.stringify(config);
-        activateCourier(merchantId, "steadfast", "active", configData).then(
-            (res) => {
-                if (res?.status === 200) {
-                    stopLoading()
-                    showToast("Steadfast details have been successfully submitted.")
-                    if (router.query.redirect_from) {
-                        router.push("/?current_steap=panel6")
-                    }
-
-                }
-            }
-        );
-    };
-    const handleRedxSubmit = (data) => {
-        startLoading()
-        const config = {
-            "Api-Key": data.apiKey,
-            "Secret-Key": data.apiSecret,
-        };
-        const configData = JSON.stringify(config);
-        activateCourier(merchantId, "redx", "active", configData).then(
-            (res) => {
-                if (res?.status === 200) {
-                    stopLoading()
-                    showToast("Steadfast details have been successfully submitted.")
-                    if (router.query.redirect_from) {
-                        router.push("/?current_steap=panel6")
-                    }
-
-                }
-            }
-        );
+    const decodeJson = (raw) => {
+        if (!raw) return {};
+        try { return JSON.parse(raw); } catch { return {}; }
     };
 
-
-    //pathao
-    const handlePathaoSubmit = (data) => {
-        startLoading()
-        const config = {
-            "client_id": data.client_id,
-            "client_secret": data.client_secret,
-            "username": data.username,
-            "password": data.password,
-            "grant_type": "password",
-            "store_id": data.store_id
-        }
-        const configData = JSON.stringify(config);
-        activateCourier(merchantId, "pathao", "active", configData).then((res) => {
-            if (res.status === 200) {
-                showToast("Pathao details have been successfully submitted.")
-                if (router.query.redirect_from) {
-                    router.push("/?current_steap=panel6")
-                }
-            }
-            stopLoading()
-        });
-    };
-
-
+    /* fetch current courier config ─────────────── */
     useEffect(() => {
-        startLoading()
-        SuperFetch.get("/client/courier/list", { headers: headers })
-            .then(function (response) {
-                if (response.data?.data?.length > 0) {
-                    for (let i = 0; i < response.data?.data.length; i++) {
-                        if (response.data?.data[i].provider === 'steadfast') {
-                            setSteadFastData(response.data?.data[i])
-                            setOpenSteadFast(true)
-                        }
-                        if (response.data?.data[i].provider === 'pathao') {
-                            setPathaoData(response.data?.data[i])
-                            setOpenPathao(true)
-                        }
-                        if (response.data?.data[i].provider === 'redx') {
-                            setRedxData(response.data?.data[i])
-                            setOpenRedx(true)
-                        }
-                    }
+        startLoading();
+        SuperFetch.get("/client/courier/list", { headers })
+            .then((response) => {
+                const list = response.data?.data || [];
+                list.forEach((item) => {
+                    if (item.provider === "steadfast") { setSteadFastData(item); setOpenSteadFast(true); }
+                    if (item.provider === "pathao")    { setPathaoData(item);    setOpenPathao(true); }
+                    if (item.provider === "redx")      { setRedxData(item);      setOpenRedx(true); }
+                    if (item.provider === "carrybee")  { setCarrybeeData(item);  setOpenCarrybee(true); }
+                });
+                stopLoading();
+            })
+            .catch(() => stopLoading());
+    }, []);
+
+    /* Steadfast submit ─────────────────────────── */
+    const handleSteadfastSubmit = (data) => {
+        startLoading();
+        const config = { "Api-Key": data.sfApiKey, "Secret-Key": data.sfSecretKey };
+        activateCourier(merchantId, "steadfast", "active", JSON.stringify(config))
+            .then((res) => {
+                stopLoading();
+                if (res?.status === 200) {
+                    showToast("Steadfast details have been successfully submitted.");
+                    if (router.query.redirect_from) router.push("/?current_steap=panel6");
                 }
-                stopLoading()
             })
-            .catch(function (error) {
-                stopLoading()
-            });
+            .catch(() => stopLoading());
+    };
 
-    }, [])
+    /* Pathao secrets helper ─────────────────────── */
+    const handlePathaoSecretToggle = (key) => {
+        setShowPathaoSecrets((prev) => ({ ...prev, [key]: !prev[key] }));
+    };
 
-
-    //toggle pathao sicret 
-
-
-    const hanldeInputTypeChange = (input) => {
-        if (input === "sicretKey") {
-            setShowPathaoSicrets({
-                sicretKey: !showPathaoSicrets?.sicretKey,
-            })
-        } if (input === "password") {
-            setShowPathaoSicrets({
-                password: !showPathaoSicrets?.password,
-            })
-        }
-    }
-
-
+    /* ─────────────────────────────────────────────
+       Render
+    ───────────────────────────────────────────── */
     return (
         <>
-            <section className='Courier'>
-                {
-                    isLoading && <SmallLoader />
-                }
+            <section className="Courier">
+                {isLoading && <SmallLoader />}
 
-                {/* header */}
-                <HeaderDescription videoLink={
-                    {
+                <HeaderDescription
+                    videoLink={{
                         video: "https://www.youtube.com/embed/PkGV4CPmCWo?si=Cqzjvs5kVd4Hkyjw",
-                        title: "How to add your courier API with Funnel Liner : A detailed tutorial"
-                    }} headerIcon={'flaticon-express-delivery'} title={'Courier'} subTitle={'Deliver your products with your preferred courier service'} search={false} order={false} />
+                        title: "How to add your courier API with Funnel Liner : A detailed tutorial",
+                    }}
+                    headerIcon="flaticon-express-delivery"
+                    title="Courier"
+                    subTitle="Deliver your products with your preferred courier service"
+                    search={false}
+                    order={false}
+                />
 
-                <Container maxWidth='sm'>
-
-                    {/* CourierContent */}
-                    <div className='CourierContent'>
-                        <Grid container spacing={3}>
-                            {/* item 1 */}
-                            <Grid item xs={12} sm={6} md={4}>
-                                <div className='CourierItem boxShadow'>
-
-                                    <div className='img'>
-                                        <img src='../images/steadfast.png' alt='' />
-                                    </div>
-
-                                    <div className='text'>
-                                        <h4>Select Steadfast</h4>
-
-                                        <div className='Toggle'>
-                                            <Switch
-                                                onChange={() => setOpenSteadFast(event.target.checked)}
-                                                {...label}
-                                                checked={openSteadFast}
-                                            />
-                                        </div>
-
-                                        {/* <div className='Toggle'>
-                                            {status && <>
-                                                {openSteadFast && <button>Activated</button>}
-                                            </>
-                                            }
-                                        </div> */}
-                                    </div>
-
-
-                                    {openSteadFast === true ? (
-
-                                        <div className='InputField'>
-                                            <form onSubmit={handleSubmit(handleSteadfastSubmit)}>
-
-                                                <div className='customInput'>
-
-                                                    <label>API Key</label>
-                                                    <input {...register("apiKey", { required: true })} type={showApi ? 'text' : 'password'}
-                                                        defaultValue={decodeJson(steadFastData?.config)['Api-Key'] !== undefined ? decodeJson(steadFastData?.config)['Api-Key'] : null} />
-                                                    <div className="eye" onClick={() => handleApiKey("apiKey")}>
-                                                        {
-                                                            showApi
-                                                                ?
-                                                                <i className="flaticon-eye"></i>
-                                                                :
-                                                                <i className="flaticon-hidden"></i>
-                                                        }
-                                                    </div>
-                                                    {errors.apiKey && (
-                                                        <p className="error">
-                                                            Api Key is required
-                                                        </p>
-                                                    )}
-
-                                                </div>
-
-                                                <div className="customInput">
-                                                    <label>Secret Key</label>
-                                                    <input {...register("apiSecret", { required: true })} defaultValue={decodeJson(steadFastData?.config)['Secret-Key']}
-                                                        type={secretApi ? 'text' : 'password'} />
-
-                                                    <div className="eye" onClick={() => handleApiKey("secretKey")}>
-                                                        {
-                                                            secretApi
-                                                                ?
-                                                                <i className="flaticon-eye"></i>
-                                                                :
-                                                                <i className="flaticon-hidden"></i>
-                                                        }
-                                                    </div>
-                                                    {errors.apiSecret && (
-                                                        <p className="error">
-                                                            Api secret is required
-                                                        </p>
-                                                    )}
-
-                                                </div>
-
-                                                <div className="duelButton">
-                                                    <Button type="submit">Submit</Button>
-
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                    ) : (
-                                        ""
-                                    )}
-                                </div>
-                            </Grid>
-
-
-                            <Grid item xs={12} sm={6} md={4}>
-                                <div className='CourierItem boxShadow'>
-                                    <div className='img'>
-                                        <img src='images/pathao.png' alt='' />
-                                    </div>
-
-                                    <div className='text'>
-                                        <h4>Select Pathao Parcels</h4>
-
-                                        <div className='Toggle'>
-                                            <Switch
-                                                onChange={() => setOpenPathao(event.target.checked)}
-                                                {...label}
-                                                checked={openPathao}
-                                            />
-                                        </div>
-                                    </div>
-                                    {openPathao === true ? (
-                                        <Pathao merchantId={merchantId} stopLoading={stopLoading} startLoading={startLoading} showPathaoSicrets={showPathaoSicrets} pathaoData={pathaoData} hanldeInputTypeChange={hanldeInputTypeChange} ></Pathao>
-                                        // <div className='InputField'>
-                                        //     <form onSubmit={handleSubmit(handlePathaoSubmit)}>
-
-                                        //         <div className='customInput'>
-                                        //             <label>Client Id</label>
-                                        //             <input type="text" {...register('client_id', { required: true })} defaultValue={decodeJson(pathaoData?.config)?.client_id} />
-                                        //         </div>
-
-                                        //         <div className='customInput'>
-                                        //             <label>Client Secret</label>
-                                        //             <input type={showPathaoSicrets?.sicretKey ? "text" : "password"} {...register('client_secret', { required: true })} defaultValue={decodeJson(pathaoData?.config)?.client_secret} />
-                                        //             <div className="eye" onClick={() => hanldeInputTypeChange("sicretKey")}>
-                                        //                 {
-                                        //                     showPathaoSicrets?.sicretKey
-                                        //                         ?
-                                        //                         <i className="flaticon-eye"></i>
-                                        //                         :
-                                        //                         <i className="flaticon-hidden"></i>
-                                        //                 }
-                                        //             </div>
-                                        //         </div>
-                                        //         <div className='customInput'>
-                                        //             <label>Username</label>
-                                        //             <input type="text" {...register('username', { required: true })} defaultValue={decodeJson(pathaoData?.config)?.username} />
-                                        //         </div>
-                                        //         <div className='customInput'>
-                                        //             <label>Password</label>
-                                        //             <input type={showPathaoSicrets?.password ? "text" : "password"} {...register('password', { required: true })} defaultValue={decodeJson(pathaoData?.config)?.password} />
-                                        //             <div className="eye" onClick={() => hanldeInputTypeChange("password")}>
-                                        //                 {
-                                        //                     showPathaoSicrets?.password
-                                        //                         ?
-                                        //                         <i className="flaticon-eye"></i>
-                                        //                         :
-                                        //                         <i className="flaticon-hidden"></i>
-                                        //                 }
-                                        //             </div>
-                                        //         </div>
-                                        //         {/* <div className='customInput'>
-                                        //             <label>Grant Type</label>
-                                        //             <input type="text" {...register('grant_type', { required: true })} defaultValue={decodeJson(pathaoData?.config)?.grant_type} />
-                                        //         </div> */}
-                                        //         <div className='customInput'>
-                                        //             <label>Store ID</label>
-                                        //             <input type="text" {...register('store_id', { required: true })} defaultValue={decodeJson(pathaoData?.config)?.store_id} />
-                                        //         </div>
-
-                                        //         <div className="duelButton">
-                                        //             <Button type="submit">Submit</Button>
-                                        //             {/* <Button disabled={isLoading} type="submit">{isLoading && <i><Spinner /> </i>}Submit</Button> */}
-                                        //         </div>
-
-                                        //     </form>
-                                        // </div>
-                                    ) : (
-                                        ""
-                                    )}
-                                </div>
-                            </Grid>
-
-
-
-                            {/* <Grid item xs={12} sm={6} md={4}>
-                                <div className='CourierItem boxShadow'>
-
-                                    <div className='img'>
-                                        <img src='../images/new-redx-logo.svg' alt='' />
-                                    </div>
-
-                                    <div className='text'>
-                                        <h4>Select Redx</h4>
-
-                                        <div className='Toggle'>
-                                            <Switch
-                                                onChange={() => setOpenSteadFast(event.target.checked)}
-                                                {...label}
-                                                checked={openSteadFast}
-                                            />
-                                        </div>
-
-                                        <div className='Toggle'>
-                                            {status && <>
-                                                {openSteadFast && <button>Activated</button>}
-                                            </>
-                                            }
-                                        </div>
-                                    </div>
-
-
-                                    {openSteadFast === true ? (
-
-                                        <div className='InputField'>
-                                            <form onSubmit={handleSubmit(handleRedxSubmit)}>
-
-                                                <div className='customInput'>
-
-                                                    <label>API Key</label>
-                                                    <input {...register("apiKey", { required: true })} type={showApi ? 'text' : 'password'}
-
-                                                        // defaultValue={decodeJson(steadFastData?.config)['Api-Key'] !== undefined ? decodeJson(steadFastData?.config)['Api-Key'] : null} 
-                                                        />
-                                                    <div className="eye" onClick={() => handleApiKey("apiKey")}>
-                                                        {
-                                                            showApi
-                                                                ?
-                                                                <i className="flaticon-eye"></i>
-                                                                :
-                                                                <i className="flaticon-hidden"></i>
-                                                        }
-                                                    </div>
-                                                    {errors.apiKey && (
-                                                        <p className="error">
-                                                            Api Key is required
-                                                        </p>
-                                                    )}
-
-                                                </div>
-
-                                                <div className="customInput">
-                                                    <label>Secret Key</label>
-                                                    <input {...register("apiSecret", { required: true })}
-                                                        // defaultValue={decodeJson(steadFastData?.config)['Secret-Key']}
-                                                        type={secretApi ? 'text' : 'password'} />
-
-                                                    <div className="eye" onClick={() => handleApiKey("secretKey")}>
-                                                        {
-                                                            secretApi
-                                                                ?
-                                                                <i className="flaticon-eye"></i>
-                                                                :
-                                                                <i className="flaticon-hidden"></i>
-                                                        }
-                                                    </div>
-                                                    {errors.apiSecret && (
-                                                        <p className="error">
-                                                            Api secret is required
-                                                        </p>
-                                                    )}
-
-                                                </div>
-
-                                                <div className="duelButton">
-                                                    <Button type="submit">Submit</Button>
-
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                    ) : (
-                                        ""
-                                    )}
-                                </div>
-                            </Grid> */}
-                            <RedxCourier merchantId={merchantId} showToast={showToast} setOpenRedx={setOpenRedx} openRedx={openRedx} stopLoading={stopLoading} startLoading={startLoading} redxData={redxData}  />
-
-                        </Grid>
+                {/* ── Page intro banner ── */}
+                <div className="cb-hero">
+                    <div className="cb-hero__icon">
+                        <i className="flaticon-express-delivery" />
                     </div>
-                </Container>
+                    <div className="cb-hero__text">
+                        <h2 className="cb-hero__title">Courier Integrations</h2>
+                        <p className="cb-hero__sub">
+                            Connect your preferred courier partner and start delivering with full API automation.
+                        </p>
+                    </div>
+                    <div className="cb-hero__stat">
+                        <span className="cb-stat-pill">
+                            {[openSteadFast, openPathao, openRedx, openCarrybee].filter(Boolean).length} / 4 Connected
+                        </span>
+                    </div>
+                </div>
 
+                {/* ── Courier grid ── */}
+                <div className="cb-grid">
+
+                    {/* ── Steadfast ── */}
+                    <CourierCard
+                        logo="../images/steadfast.png"
+                        logoAlt="Steadfast"
+                        name="Steadfast Courier"
+                        isActive={openSteadFast}
+                        onToggle={setOpenSteadFast}
+                    >
+                        <form onSubmit={handleSubmit(handleSteadfastSubmit)} className="cb-form">
+                            <div className="cb-field">
+                                <label className="cb-label">API Key</label>
+                                <div className="cb-input-wrap">
+                                    <input
+                                        {...register("sfApiKey", { required: true })}
+                                        type={showSfApi ? "text" : "password"}
+                                        defaultValue={decodeJson(steadFastData?.config)["Api-Key"] || ""}
+                                        className="cb-input"
+                                        placeholder="Enter API Key"
+                                    />
+                                    <EyeToggle visible={showSfApi} onToggle={() => setShowSfApi((v) => !v)} />
+                                </div>
+                                {errors.sfApiKey && <p className="cb-error">API Key is required</p>}
+                            </div>
+
+                            <div className="cb-field">
+                                <label className="cb-label">Secret Key</label>
+                                <div className="cb-input-wrap">
+                                    <input
+                                        {...register("sfSecretKey", { required: true })}
+                                        type={showSfSecret ? "text" : "password"}
+                                        defaultValue={decodeJson(steadFastData?.config)["Secret-Key"] || ""}
+                                        className="cb-input"
+                                        placeholder="Enter Secret Key"
+                                    />
+                                    <EyeToggle visible={showSfSecret} onToggle={() => setShowSfSecret((v) => !v)} />
+                                </div>
+                                {errors.sfSecretKey && <p className="cb-error">Secret Key is required</p>}
+                            </div>
+
+                            <button type="submit" className="cb-submit-btn">
+                                <i className="flaticon-checked" /> Save Steadfast
+                            </button>
+                        </form>
+                    </CourierCard>
+
+                    {/* ── Pathao ── */}
+                    <CourierCard
+                        logo="images/pathao.png"
+                        logoAlt="Pathao"
+                        name="Pathao Parcels"
+                        isActive={openPathao}
+                        onToggle={setOpenPathao}
+                    >
+                        <Pathao
+                            merchantId={merchantId}
+                            stopLoading={stopLoading}
+                            startLoading={startLoading}
+                            showPathaoSicrets={showPathaoSecrets}
+                            pathaoData={pathaoData}
+                            hanldeInputTypeChange={handlePathaoSecretToggle}
+                        />
+                    </CourierCard>
+
+                    {/* ── Redx ── */}
+                    <RedxCourier
+                        merchantId={merchantId}
+                        showToast={showToast}
+                        setOpenRedx={setOpenRedx}
+                        openRedx={openRedx}
+                        stopLoading={stopLoading}
+                        startLoading={startLoading}
+                        redxData={redxData}
+                        useCard
+                    />
+
+                    {/* ── Carrybee ── */}
+                    <CarrybeeCourier
+                        merchantId={merchantId}
+                        showToast={showToast}
+                        setOpenCarrybee={setOpenCarrybee}
+                        openCarrybee={openCarrybee}
+                        stopLoading={stopLoading}
+                        startLoading={startLoading}
+                        carrybeeData={carrybeeData}
+                    />
+
+                </div>
             </section>
         </>
     );
