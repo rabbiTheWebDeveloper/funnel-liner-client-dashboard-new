@@ -50,7 +50,8 @@ const ProductVideo = React.memo(({ productVideoLinks = [], setProductGalleryVide
 
   const addVideoLink = () => {
     if (!inputValue) return;
-    if (productVideoLinks.length >= 5) {
+    const currentLinks = Array.isArray(productVideoLinks) ? productVideoLinks : [];
+    if (currentLinks.length >= 5) {
       alert("You can add up to 5 videos only");
       return;
     }
@@ -58,12 +59,12 @@ const ProductVideo = React.memo(({ productVideoLinks = [], setProductGalleryVide
       alert("Please enter a valid YouTube URL");
       return;
     }
-    setProductGalleryVideos([...productVideoLinks, inputValue]);
+    setProductGalleryVideos([...currentLinks, inputValue]);
     setInputValue("");
   };
 
   const removeVideoLink = index => {
-    const updated = [...productVideoLinks];
+    const updated = [...(Array.isArray(productVideoLinks) ? productVideoLinks : [])];
     updated.splice(index, 1);
     setProductGalleryVideos(updated);
   };
@@ -122,7 +123,7 @@ const ProductVideo = React.memo(({ productVideoLinks = [], setProductGalleryVide
       </div>
 
       <div style={videoPreviewContainer}>
-        {productVideoLinks?.map((link, index) => (
+        {(Array.isArray(productVideoLinks) ? productVideoLinks : []).map((link, index) => (
           <div key={index} style={videoCard}>
             <iframe
               src={getEmbedUrl(link)}
@@ -144,16 +145,16 @@ const ProductVideo = React.memo(({ productVideoLinks = [], setProductGalleryVide
   );
 }, (prevProps, nextProps) => {
   // Custom comparison function
-  if (prevProps?.productVideoLinks?.length !== nextProps?.productVideoLinks?.length) {
+  const prev = Array.isArray(prevProps?.productVideoLinks) ? prevProps.productVideoLinks : [];
+  const next = Array.isArray(nextProps?.productVideoLinks) ? nextProps.productVideoLinks : [];
+  if (prev.length !== next.length) {
     return false;
   }
-  
-  for (let i = 0; i < prevProps?.productVideoLinks?.length; i++) {
-    if (prevProps?.productVideoLinks[i] !== nextProps?.productVideoLinks[i]) {
+  for (let i = 0; i < prev.length; i++) {
+    if (prev[i] !== next[i]) {
       return false;
     }
   }
-  
   return true;
 });
 

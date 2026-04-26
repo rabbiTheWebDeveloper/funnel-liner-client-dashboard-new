@@ -116,9 +116,11 @@ const EditProduct = ({ busInfo }) => {
   if (productDetails?.video_url) {
     try {
       const videos = JSON.parse(productDetails.video_url);
-      setProductGalleryVideos(videos);
+      // Guard: only set if it's actually an array (JSON.parse("null") returns null)
+      setProductGalleryVideos(Array.isArray(videos) ? videos : []);
     } catch (error) {
       console.error("Invalid video_url format", error);
+      setProductGalleryVideos([]);
     }
   }
 }, [productDetails]);
